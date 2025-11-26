@@ -1,0 +1,21 @@
+---
+// GlobalShell layout component
+// TODO: Wire up layout styles and responsive behavior
+
+import '../../styles/global.css';
+import Navbar from './Navbar.astro';
+import LeftSidebar from './LeftSidebar.astro';
+import RightSidebar from './RightSidebar.astro';
+// TODO: Import and use TSS style definitions from the styles/ directory
+---
+
+<div
+  class="flex flex-col min-h-screen bg-[color:var(--bg-app)] text-[color:var(--text-main)] px-4 pb-6 md:px-12 md:pb-8 md:grid md:grid-cols-[16rem_minmax(0,_1fr)_16rem] md:grid-rows-[auto_1fr]"
+>
+  <LeftSidebar />
+  <Navbar />
+  <RightSidebar />
+  <main class="order-4 md:order-none md:col-start-2 md:row-start-2 px-4 pt-4 md:px-8 md:pt-6">
+    <slot />
+  </main>
+</div>

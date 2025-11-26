@@ -1,0 +1,69 @@
+---
+// Contact button UI component
+// TODO: Wire to real contact action (e.g., mailto:)
+
+interface Props {
+  label?: string;
+  subtitle?: string;
+  href?: string;
+}
+
+const {
+  label = 'Email',
+  subtitle = 'Get in touch',
+  href,
+} = Astro.props;
+
+const baseClasses =
+  'group inline-flex w-full items-center gap-3 rounded-full border border-purple-400/30 bg-slate-900/40 px-4 py-2 text-left text-[0.85rem] text-[color:var(--text-main)] shadow-sm transition hover:border-purple-300/60 hover:bg-purple-500/10 hover:shadow-[0_0_18px_rgba(168,85,247,0.25)]';
+---
+
+{href ? (
+  <a href={href} target="_blank" rel="noreferrer" class={baseClasses}>
+    <span
+      class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-purple-200"
+    >
+      <svg viewBox="0 0 20 20" aria-hidden="true" class="h-3.5 w-3.5">
+        <path
+          d="M3 6.75 10 11l7-4.25M4 5h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+
+    <span class="flex min-w-0 flex-col">
+      <span class="truncate tracking-[0.12em] uppercase">{label}</span>
+      <span class="truncate text-[0.75rem] text-[color:var(--text-muted)]">
+        {subtitle}
+      </span>
+    </span>
+  </a>
+) : (
+  <button type="button" class={baseClasses}>
+    <span
+      class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-purple-200"
+    >
+      <svg viewBox="0 0 20 20" aria-hidden="true" class="h-3.5 w-3.5">
+        <path
+          d="M3 6.75 10 11l7-4.25M4 5h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+
+    <span class="flex min-w-0 flex-col">
+      <span class="truncate tracking-[0.12em] uppercase">{label}</span>
+      <span class="truncate text-[0.75rem] text-[color:var(--text-muted)]">
+        {subtitle}
+      </span>
+    </span>
+  </button>
+)}

@@ -1,8 +1,22 @@
 ---
 // Left sidebar layout component
 // TODO: Implement left sidebar content and behavior
+
+import { ContactButton } from '../ui';
+import { contacts } from '../../data/contacts';
 ---
 
-<aside class="flex items-start justify-center border-r border-[color:var(--border-subtle)] px-5 pt-6">
-  <div class="sidebar-title">Leftsidebar</div>
+<aside class="order-1 md:order-none md:row-span-2 md:col-start-1 flex items-start justify-center border-r border-[color:var(--border-subtle)] px-5 pt-6">
+  <div class="flex w-full max-w-xs flex-col gap-3">
+    <div class="sidebar-title">Leftsidebar</div>
+    <div class="mt-2 grid gap-2">
+      {contacts.map((contact) => (
+        <ContactButton
+          label={contact.title}
+          subtitle={contact.subtitle}
+          href={contact.link}
+        />
+      ))}
+    </div>
+  </div>
 </aside>
