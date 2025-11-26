@@ -1,0 +1,208 @@
+:root {
+  --bg-app: #18102e;
+  --bg-elevated: #120b24;
+  --border-subtle: rgba(148, 163, 184, 0.2);
+  --accent: #22d3ee;
+  --accent-soft: rgba(34, 211, 238, 0.12);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --sidebar-width: 16rem;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top, #020617 0, #020617 40%, #000 100%);
+  color: var(--text-main);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+    'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-main);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.global-shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--sidebar-width);
+  min-height: 100vh;
+  padding: 0 3rem 2rem;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+}
+
+.global-shell-center {
+  display: flex;
+  flex-direction: column;
+}
+
+.global-shell-main {
+  flex: 1 1 auto;
+  padding: 1.5rem 2rem;
+}
+
+.navbar {
+  padding: 1rem 2rem 0.75rem;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.96),
+    rgba(15, 23, 42, 0.88)
+  );
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(18px);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-links {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  gap: 1.25rem;
+  padding: 0 1rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  font-size: clamp(0.75rem, 0.75rem + 0.15vw, 0.9rem);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.navbar-links::-webkit-scrollbar {
+  display: none;
+}
+
+.navbar-link {
+  color: var(--text-muted);
+  padding-bottom: 0.15rem;
+  border-bottom: 1px solid transparent;
+}
+
+.navbar-link:hover {
+  color: var(--text-main);
+  border-bottom-color: var(--accent);
+}
+
+.sidebar {
+  width: 100%;
+  max-width: 100%;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sidebar-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border-subtle);
+  background-color: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+}
+
+.left-sidebar {
+  border-right: 1px solid var(--border-subtle);
+}
+
+.right-sidebar {
+  border-left: 1px solid var(--border-subtle);
+}
+:root {
+  --bg-app: #020617;
+  --bg-elevated: #020617;
+  --border-subtle: rgba(148, 163, 184, 0.2);
+  --accent: #22d3ee;
+  --accent-soft: rgba(34, 211, 238, 0.12);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --sidebar-width: 16rem;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background:
+      radial-gradient(circle at top, #27124a 0, #18102e 45%, #050112 100%);
+    color: var(--text-main);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+      'Segoe UI', sans-serif;
+  }
+
+  body {
+    background-color: var(--bg-app);
+    color: var(--text-main);
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+@layer components {
+  .sidebar-title {
+    @apply flex items-center justify-center w-full rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 backdrop-blur-lg px-4 py-1 text-[0.8rem] tracking-[0.08em] uppercase text-[color:var(--text-muted)];
+  }
+
+  .navbar-strip {
+    scrollbar-width: none;
+  }
+
+  .navbar-strip::-webkit-scrollbar {
+    display: none;
+  }
+}

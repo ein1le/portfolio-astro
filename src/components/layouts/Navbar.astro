@@ -1,0 +1,104 @@
+---
+// Navbar layout component
+// TODO: Implement navigation bar content and behavior
+
+import { navbarLinks } from './styles/navbarLinks';
+---
+
+<header class="px-8 pt-4 pb-3 bg-gradient-to-r from-slate-900/95 to-slate-900/85 border-b border-[color:var(--border-subtle)] backdrop-blur-xl">
+  <div class="flex items-center justify-center gap-3">
+    <button
+      type="button"
+      data-navbar-prev
+      aria-label="Scroll tabs left"
+      class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 text-xs text-[color:var(--text-muted)] transition-opacity opacity-0 pointer-events-none"
+    >
+      ‹
+    </button>
+
+    <nav
+      class="navbar-strip flex flex-1 px-4 text-[0.8rem] tracking-[0.14em] uppercase text-[color:var(--text-muted)] overflow-x-auto whitespace-nowrap"
+      aria-label="Primary"
+      data-navbar-links
+    >
+      {navbarLinks.map((link) => (
+        <a
+          href={link.href}
+          class="pb-0.5 border-b border-transparent hover:text-[color:var(--text-main)] hover:border-[color:var(--accent)]"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <button
+      type="button"
+      data-navbar-next
+      aria-label="Scroll tabs right"
+      class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 text-xs text-[color:var(--text-muted)] transition-opacity opacity-0 pointer-events-none"
+    >
+      ›
+    </button>
+  </div>
+</header>
+
+<script>
+  const setupNavbarScroll = () => {
+    const nav = document.querySelector('[data-navbar-links]');
+    const prev = document.querySelector('[data-navbar-prev]');
+    const next = document.querySelector('[data-navbar-next]');
+
+    if (!nav || !prev || !next || nav.dataset.scrollSetup === 'true') return;
+    nav.dataset.scrollSetup = 'true';
+
+    const updateButtons = () => {
+      const maxScroll = nav.scrollWidth - nav.clientWidth;
+      const scrollable = maxScroll > 1;
+      const atStart = nav.scrollLeft <= 0;
+      const atEnd = nav.scrollLeft >= maxScroll - 1;
+
+      // Dynamic spacing: evenly distribute when everything fits,
+      // use left-aligned strip when it overflows.
+      nav.classList.toggle('justify-between', !scrollable);
+      nav.classList.toggle('justify-start', scrollable);
+      nav.classList.toggle('gap-6', !scrollable);
+      nav.classList.toggle('gap-4', scrollable);
+
+      const showPrev = scrollable && !atStart;
+      const showNext = scrollable && !atEnd;
+
+      prev.disabled = !showPrev;
+      next.disabled = !showNext;
+
+      prev.classList.toggle('opacity-0', !showPrev);
+      prev.classList.toggle('pointer-events-none', !showPrev);
+      next.classList.toggle('opacity-0', !showNext);
+      next.classList.toggle('pointer-events-none', !showNext);
+    };
+
+    const scrollByStep = (direction) => {
+      const items = nav.querySelectorAll('a');
+      if (!items.length) return;
+
+      let step = items[0].getBoundingClientRect().width;
+      if (items.length > 1) {
+        const first = items[0].getBoundingClientRect();
+        const second = items[1].getBoundingClientRect();
+        step = Math.abs(second.left - first.left);
+      }
+
+      nav.scrollBy({ left: direction * step, behavior: 'smooth' });
+    };
+
+    prev.addEventListener('click', () => scrollByStep(-1));
+    next.addEventListener('click', () => scrollByStep(1));
+    nav.addEventListener('scroll', updateButtons);
+    window.addEventListener('resize', updateButtons);
+
+    updateButtons();
+  };
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('load', setupNavbarScroll);
+  }
+</script>
