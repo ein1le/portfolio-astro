@@ -1,0 +1,96 @@
+---
+// EducationCard UI component
+// Composed from the generic Card container.
+
+import Card from './Card.astro';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  title: string;
+  institution: string;
+  period?: string;
+  location?: string;
+  description?: string;
+  image?: any;
+  details?: Record<string, string>;
+}
+
+const {
+  title,
+  institution,
+  period,
+  location,
+  description,
+  image,
+  details,
+} = Astro.props;
+
+const imageSrc =
+  typeof image === 'object' && image?.src ? image.src : image;
+
+const detailEntries = details ? Object.entries(details) : [];
+---
+
+<Card>
+  <details class="group flex flex-col gap-1.5 rounded-lg bg-slate-900/40 px-4 py-3 text-sm text-[color:var(--text-main)]">
+    <summary
+      class="flex cursor-pointer list-none items-center gap-3"
+    >
+      {imageSrc && (
+        <img
+          src={imageSrc}
+          alt={`${institution} logo`}
+          loading="lazy"
+          class="h-12 w-12 shrink-0 rounded-md border border-purple-400/40 bg-slate-900 object-cover"
+        />
+      )}
+
+      <div class="flex min-w-0 flex-1 flex-col gap-1">
+        <div class="flex flex-col gap-0.5">
+          <div class="flex flex-wrap items-baseline justify-between gap-2">
+            <h2 class="text-[0.9rem] font-semibold tracking-[0.08em] uppercase">
+              {title}
+            </h2>
+            {period && (
+              <p class="text-[0.75rem] text-[color:var(--text-muted)]">{period}</p>
+            )}
+          </div>
+
+          <div class="flex flex-wrap items-baseline justify-between gap-2 text-[0.8rem] text-[color:var(--text-muted)]">
+            <p class="truncate">{institution}</p>
+            {location && (
+              <p class="shrink-0 text-right">{location}</p>
+            )}
+          </div>
+        </div>
+
+        {description && (
+          <p class="mt-1 text-[0.78rem] leading-relaxed text-[color:var(--text-muted)]">
+            {description}
+          </p>
+        )}
+      </div>
+
+      {detailEntries.length > 0 && (
+        <span
+          class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-900/70 text-[color:var(--text-muted)] group-open:rotate-180 transition-transform"
+        >
+          <Icon name="chevron-down" class="h-3.5 w-3.5" />
+        </span>
+      )}
+    </summary>
+
+    {detailEntries.length > 0 && (
+      <div class="mt-2 border-t border-[color:var(--border-subtle)] pt-2 text-[0.78rem] leading-relaxed text-[color:var(--text-muted)] space-y-1">
+        {detailEntries.map(([key, value]) => (
+          <div class="flex gap-2">
+            <span class="w-28 shrink-0 font-semibold text-[color:var(--text-main)]">
+              {key}
+            </span>
+            <span class="flex-1">{value}</span>
+          </div>
+        ))}
+      </div>
+    )}
+  </details>
+</Card>

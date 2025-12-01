@@ -1,12 +1,26 @@
 ---
 // Education page
-// TODO: Import education data and render within the global layout shell
+// TODO: Import real education data and render within the global layout shell
 
 import GlobalShell from '../components/layouts/GlobalShell.astro';
+import { EducationCard } from '../components/ui';
+import { educationEntries } from '../data/education';
 ---
 
 <GlobalShell>
-  <section>
-    <!-- TODO: Education content goes here -->
+  <section class="mx-auto flex max-w-4xl flex-col gap-4 px-4 pt-6 md:px-0 md:pt-8">
+    {educationEntries.map((entry) => (
+      <EducationCard
+        title={entry.subheader}
+        institution={entry.title}
+        period={entry.date}
+        location={entry.location}
+        description={entry.grade}
+        image={entry.image}
+        details={entry.details}
+      />
+    ))}
   </section>
 </GlobalShell>
+
+ 

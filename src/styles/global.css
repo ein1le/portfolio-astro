@@ -2,8 +2,8 @@
   --bg-app: #18102e;
   --bg-elevated: #120b24;
   --border-subtle: rgba(148, 163, 184, 0.2);
-  --accent: #22d3ee;
-  --accent-soft: rgba(34, 211, 238, 0.12);
+  --accent: #c4a7ff;
+  --accent-soft: rgba(196, 167, 255, 0.15);
   --text-main: #e5e7eb;
   --text-muted: #9ca3af;
   --sidebar-width: 16rem;
@@ -145,8 +145,8 @@ a:hover {
   --bg-app: #020617;
   --bg-elevated: #020617;
   --border-subtle: rgba(148, 163, 184, 0.2);
-  --accent: #22d3ee;
-  --accent-soft: rgba(34, 211, 238, 0.12);
+  --accent: #c4a7ff;
+  --accent-soft: rgba(196, 167, 255, 0.15);
   --text-main: #e5e7eb;
   --text-muted: #9ca3af;
   --sidebar-width: 16rem;

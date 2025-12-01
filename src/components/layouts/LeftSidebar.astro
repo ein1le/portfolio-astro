@@ -2,21 +2,123 @@
 // Left sidebar layout component
 // TODO: Implement left sidebar content and behavior
 
-import { ContactButton } from '../ui';
+import { Button, Card, ContactButton, Textbox } from '../ui';
+import { Icon } from 'astro-icon/components';
 import { contacts } from '../../data/contacts';
 ---
 
-<aside class="order-1 md:order-none md:row-span-2 md:col-start-1 flex items-start justify-center border-r border-[color:var(--border-subtle)] px-5 pt-6">
-  <div class="flex w-full max-w-xs flex-col gap-3">
-    <div class="sidebar-title">Leftsidebar</div>
-    <div class="mt-2 grid gap-2">
-      {contacts.map((contact) => (
-        <ContactButton
-          label={contact.title}
-          subtitle={contact.subtitle}
-          href={contact.link}
-        />
-      ))}
+<aside class="order-1 md:order-none md:row-span-2 md:col-start-1 flex items-start justify-center border-r border-[color:var(--border-subtle)] pl-0 pr-5 md:px-5 pt-6">
+  <div class="sidebar-content flex w-full max-w-xs flex-col items-center gap-4">
+    <div class="h-28 w-28 rounded-full border border-[color:var(--border-subtle)] bg-slate-900/60 shadow-md shadow-slate-900/50" />
+
+    <h1 class="mt-1 text-base font-extrabold tracking-[0.28em] uppercase text-[color:var(--text-main)]">
+      Wishawin Lertnawapan
+    </h1>
+
+    <div class="w-full">
+      <Card>
+        <div class="flex flex-col gap-1.5 text-[0.8rem] text-[color:var(--text-main)]">
+          <div class="flex items-center gap-2">
+            <Icon name="map-pin" class="h-3.5 w-3.5 text-[color:var(--accent)]" />
+            <span>W3, London</span>
+          </div>
+
+          <div class="flex items-center gap-2 text-[color:var(--text-muted)]">
+            <Icon name="phone" class="h-3.5 w-3.5 text-[color:var(--accent)]" />
+            <span>+44 7534 578 468</span>
+          </div>
+
+          <div class="flex items-center gap-2 text-[color:var(--text-muted)]">
+            <Icon name="mail" class="h-3.5 w-3.5 text-[color:var(--accent)]" />
+            <span>wlertnawapan@gmail.com</span>
+          </div>
+        </div>
+      </Card>
+    </div>
+
+    <p class="text-xs leading-relaxed text-center text-[color:var(--text-muted)]">
+      Short about-me blurb goes here. Mention your role, focus, or what you enjoy building.
+    </p>
+
+    <div class="mt-2 grid w-full grid-cols-2 gap-2">
+      {contacts
+        .filter((contact) => contact.title !== 'Email' && contact.title !== 'Phone')
+        .map((contact) => (
+          <ContactButton
+            label={contact.title}
+            subtitle={contact.subtitle}
+            href={contact.link}
+            icon={contact.icon}
+          />
+        ))}
+    </div>
+
+    <div class="mt-3 w-full">
+      <Card>
+        <div class="flex flex-col gap-2">
+          <button
+            type="button"
+            class="flex w-full items-center justify-center gap-2 text-xs font-medium tracking-[0.14em] uppercase text-[color:var(--text-main)]"
+          >
+            <span>Email me</span>
+          </button>
+          <Textbox placeholder="youremail@example.com" rows={1} />
+          <Textbox placeholder="Drop me a message here..." rows={3} />
+          <div class="mt-1 flex w-full justify-end">
+            <Button>
+              <span class="flex items-center gap-1">
+                <span>Send</span>
+                <Icon name="paper-plane" class="h-3.5 w-3.5" />
+              </span>
+            </Button>
+          </div>
+        </div>
+      </Card>
+    </div>
+
+    <div class="mt-4 w-full">
+      <h3 class="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--text-muted)]">
+        Languages
+      </h3>
+      <div class="grid grid-cols-3 gap-4">
+        <Card>
+          <span class="block text-center text-[0.7rem] font-medium text-[color:var(--text-main)]">
+            English
+          </span>
+        </Card>
+        <Card>
+          <span class="block text-center text-[0.7rem] font-medium text-[color:var(--text-main)]">
+            Thai
+          </span>
+        </Card>
+        <Card>
+          <span class="block text-center text-[0.7rem] font-medium text-[color:var(--text-main)]">
+            Chinese
+          </span>
+        </Card>
+      </div>
+    </div>
+
+    <div class="mt-3 w-full flex justify-center">
+      <Button>
+        <span class="flex items-center gap-2 px-2">
+          <span>CV</span>
+          <svg
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+            class="h-3.5 w-3.5"
+          >
+            <path
+              d="M10 4v9m0 0-3.5-3.5M10 13l3.5-3.5M4 15.5h12"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+      </Button>
     </div>
   </div>
 </aside>

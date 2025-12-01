@@ -1,8 +1,40 @@
 ---
 // Right sidebar layout component
 // TODO: Implement right sidebar content and behavior
+
+import { Card } from '../ui';
 ---
 
 <aside class="order-3 md:order-none md:row-span-2 md:col-start-3 flex items-start justify-center border-l border-[color:var(--border-subtle)] px-5 pt-6">
-  <div class="sidebar-title">Rightsidebar</div>
+  <div class="sidebar-content flex w-full max-w-xs flex-col gap-4">
+    <div class="w-full">
+      <h2 class="text-[0.7rem] font-bold uppercase tracking-[0.20em] text-[color:var(--text-muted)] text-center">
+        Activity
+      </h2>
+    </div>
+
+    <div class="w-full">
+      <Card>
+        <div class="space-y-1 text-[0.8rem] text-[color:var(--text-main)]">
+          <p class="font-medium">Currently exploring new projects.</p>
+          <p class="text-[color:var(--text-muted)]">
+            Placeholder text for your active work, side projects, or learning goals.
+          </p>
+        </div>
+      </Card>
+    </div>
+
+    <hr class="my-2 w-full border-t border-[color:var(--border-subtle)]" />
+
+    <div class="w-full">
+      <h2 class="text-[0.7rem] font-bold uppercase tracking-[0.20em] text-[color:var(--text-muted)] text-center">
+        Contributions
+      </h2>
+      <Card>
+        <div class="flex h-24 items-center justify-center text-[0.75rem] text-[color:var(--text-muted)]">
+          GitHub contribution graph placeholder
+        </div>
+      </Card>
+    </div>
+  </div>
 </aside>

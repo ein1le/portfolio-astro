@@ -3,9 +3,14 @@
 // TODO: Implement navigation bar content and behavior
 
 import { navbarLinks } from './styles/navbarLinks';
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => currentPath === href;
+const baseLinkClasses =
+  'inline-flex items-center rounded-t-2xl px-5 py-2 border text-[0.8rem] tracking-[0.14em] uppercase transition-colors duration-150 border-transparent';
 ---
 
-<header class="order-2 md:order-none md:col-start-2 md:row-start-1 px-8 pt-4 pb-3 bg-gradient-to-r from-slate-900/95 to-slate-900/85 border-b border-[color:var(--border-subtle)] backdrop-blur-xl">
+<header class="order-2 md:order-none md:col-start-2 md:row-start-1 px-8 pt-3 pb-0 bg-gradient-to-r from-slate-900/95 to-slate-900/85 border-b border-transparent backdrop-blur-xl">
   <div class="flex items-center justify-center gap-3">
     <button
       type="button"
@@ -24,7 +29,11 @@ import { navbarLinks } from './styles/navbarLinks';
       {navbarLinks.map((link) => (
         <a
           href={link.href}
-          class="pb-0.5 border-b border-transparent hover:text-[color:var(--text-main)] hover:border-[color:var(--accent)]"
+          class={`${baseLinkClasses} ${
+            isActive(link.href)
+              ? '-mb-px border-x border-t border-[color:var(--border-subtle)] border-b-transparent bg-[color:var(--bg-app)] text-[color:var(--text-main)] shadow-sm shadow-black/40'
+              : 'text-[color:var(--text-muted)] hover:text-[color:var(--text-main)] hover:border-slate-600/70 hover:bg-slate-900/40'
+          }`}
         >
           {link.label}
         </a>
@@ -57,9 +66,9 @@ import { navbarLinks } from './styles/navbarLinks';
       const atStart = nav.scrollLeft <= 0;
       const atEnd = nav.scrollLeft >= maxScroll - 1;
 
-      // Dynamic spacing: evenly distribute when everything fits,
+      // Dynamic spacing: center when everything fits,
       // use left-aligned strip when it overflows.
-      nav.classList.toggle('justify-between', !scrollable);
+      nav.classList.toggle('justify-center', !scrollable);
       nav.classList.toggle('justify-start', scrollable);
       nav.classList.toggle('gap-6', !scrollable);
       nav.classList.toggle('gap-4', scrollable);
