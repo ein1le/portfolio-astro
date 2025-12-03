@@ -3,23 +3,31 @@ import GlobalShell from '../components/layouts/GlobalShell.astro';
 ---
 
 <GlobalShell>
-  <main class="flex min-h-[calc(100vh-5rem)] items-center justify-center px-4">
-    <div class="flex max-w-3xl flex-col items-center gap-4 text-center">
+  <div
+    id="home-main-hover"
+    class="home-main-hover flex min-h-[70vh] items-center justify-center px-4"
+  >
+    <div class="flex w-full max-w-2xl flex-col items-center gap-6 text-center">
       <div class="h-32 w-32 rounded-full border border-[color:var(--border-subtle)] bg-slate-900/60 shadow-md shadow-slate-900/50" />
 
-      <h1 class="text-3xl font-extrabold tracking-[0.3em] uppercase text-[color:var(--text-main)] md:text-4xl">
+      <h1 class="w-full text-2xl font-extrabold tracking-[0.12em] uppercase text-[color:var(--text-main)] break-words md:text-4xl md:tracking-[0.2em]">
         Wishawin Lertnawapan
       </h1>
 
-      <p class="max-w-xl text-sm leading-relaxed text-[color:var(--text-muted)] md:text-base">
-Hi there! I'm Ein, an integrated master's student in Engineering, driven by a passion for continuous learning and staying at the forefront of digital transformation. With a strong foundation in problem-solving and project-based work in academia, I've developed a deep interest in the intersection of Data Science, Macine Learning, and Data-driven Infrastructure with a sprinkle of Full-stack Web Development and AI Engineering from side projects along the way.
-
-Despite my engineering background, I am always working in projects in these areas of interest, taking a wide approach to a diverse range of topics. I'm actively seeking off-cycle, internship, and graduate opportunities in London.
-
-I'm especially keen to explore analyst and research roles in the financial and technology sectors, such as Quantitative Research, Risk Management, and Software Engineering.
-
-If you're working on something exciting, I'd love to connect!
-      </p>
+      <div class="w-full space-y-3 text-sm leading-relaxed text-[color:var(--text-muted)] md:text-base">
+        <p>
+          Hi there &#128522;! My name is Ein, I'm a recent <span class="font-semibold text-[color:var(--text-main)]">Integrated Masters' engineering graduate from the University of Bristol</span>, currently based in London. Despite an engineering background, my interests lie at the intersection of <span class="font-semibold text-[color:var(--text-main)]">Data Science, Machine Learning</span>, and <span class="font-semibold text-[color:var(--text-main)]">Software Engineering</span>. I'm always working on projects that involve leveraging technologies to drive innovation.
+        </p>
+        <p>
+          Currently, I aim to pursue a Master's degree in mathematical computation in London, and I'm working towards credentials in Financial Engineering at WQU and AWS, driven by the slightly impossible task of wanting to learn everything (and caffeine &#9749;).
+        </p>
+        <p>
+          I thrive where I can work simultaneously with both data scientists and business analytics teams&mdash;being able to make technical decisions and be hands-on with models, while also communicating insights clearly to help clients perform at their best. Through project-based work in academia and work experiences, I continue to explore full-stack development, cloud engineering, and quantitative finance.
+        </p>
+        <p>
+          Thanks for stopping by &#128075;
+        </p>
+      </div>
     </div>
-  </main>
+  </div>
 </GlobalShell>
