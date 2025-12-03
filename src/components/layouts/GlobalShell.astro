@@ -10,12 +10,41 @@ import RightSidebar from './RightSidebar.astro';
 ---
 
 <div
+  id="global-shell-root"
   class="flex flex-col min-h-screen bg-[color:var(--bg-app)] text-[color:var(--text-main)] md:grid md:grid-cols-[24rem_minmax(0,_1fr)_24rem] md:grid-rows-[auto_1fr]"
 >
   <LeftSidebar />
   <Navbar />
-  <RightSidebar />
-  <main class="order-4 md:order-none md:col-start-2 md:row-start-2 px-2 pt-4 md:px-4 md:pt-6">
+  <main class="md:col-start-2 md:row-start-2 px-2 pt-4 md:px-4 md:pt-6 flex flex-col flex-1 min-h-0">
     <slot />
   </main>
+  <RightSidebar />
 </div>
+
+<script>
+  const setupShellLayout = () => {
+    const root = document.getElementById('global-shell-root');
+    if (!root) return;
+
+    const updateLayout = () => {
+      const screenWidth = window.screen?.width || window.innerWidth;
+      const ratio = window.innerWidth / screenWidth;
+      const shouldStack = ratio < 0.6;
+
+      if (shouldStack) {
+        root.style.display = 'flex';
+        root.style.flexDirection = 'column';
+      } else {
+        root.style.display = '';
+        root.style.flexDirection = '';
+      }
+    };
+
+    window.addEventListener('resize', updateLayout);
+    updateLayout();
+  };
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('load', setupShellLayout);
+  }
+</script>

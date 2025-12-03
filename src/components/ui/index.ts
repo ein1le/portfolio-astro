@@ -6,3 +6,4 @@ export { default as Card } from './Card.astro';
 export { default as ContactButton } from './ContactButton.astro';
 export { default as Textbox } from './Textbox.astro';
 export { default as EducationCard } from './EducationCard.astro';
+export { default as ProjectsCard } from './ProjectsCard.astro';

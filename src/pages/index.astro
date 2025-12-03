@@ -5,7 +5,7 @@ import GlobalShell from '../components/layouts/GlobalShell.astro';
 <GlobalShell>
   <div
     id="home-main-hover"
-    class="home-main-hover flex min-h-[70vh] items-center justify-center px-4"
+    class="home-main-hover flex flex-1 items-center justify-center px-4"
   >
     <div class="flex w-full max-w-2xl flex-col items-center gap-6 text-center">
       <div class="h-32 w-32 rounded-full border border-[color:var(--border-subtle)] bg-slate-900/60 shadow-md shadow-slate-900/50" />
@@ -14,15 +14,32 @@ import GlobalShell from '../components/layouts/GlobalShell.astro';
         Wishawin Lertnawapan
       </h1>
 
-      <div class="w-full space-y-3 text-sm leading-relaxed text-[color:var(--text-muted)] md:text-base">
+      <div class="home-typewriter w-full space-y-3 text-sm leading-relaxed text-[color:var(--text-muted)] md:text-base">
         <p>
           Hi there &#128522;! My name is Ein, I'm a recent <span class="font-semibold text-[color:var(--text-main)]">Integrated Masters' engineering graduate from the University of Bristol</span>, currently based in London. Despite an engineering background, my interests lie at the intersection of <span class="font-semibold text-[color:var(--text-main)]">Data Science, Machine Learning</span>, and <span class="font-semibold text-[color:var(--text-main)]">Software Engineering</span>. I'm always working on projects that involve leveraging technologies to drive innovation.
         </p>
         <p>
-          Currently, I aim to pursue a Master's degree in mathematical computation in London, and I'm working towards credentials in Financial Engineering at WQU and AWS, driven by the slightly impossible task of wanting to learn everything (and caffeine &#9749;).
+          Currently, I aim to pursue a Master's degree in mathematical computation in London, while working towards credentials in
+          <a
+            href="https://www.wqu.edu/mscfe"
+            target="_blank"
+            rel="noreferrer"
+            class="font-semibold text-[color:var(--accent)]"
+          >
+            Financial Engineering
+          </a>
+          at WQU and
+          <a
+            href="https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/"
+            target="_blank"
+            rel="noreferrer"
+            class="font-semibold text-[color:var(--accent)]"
+          >
+            AWS
+          </a>, driven by the slightly impossible task of wanting to learn everything (and caffeine &#9749;).
         </p>
         <p>
-          I thrive where I can work simultaneously with both data scientists and business analytics teams&mdash;being able to make technical decisions and be hands-on with models, while also communicating insights clearly to help clients perform at their best. Through project-based work in academia and work experiences, I continue to explore full-stack development, cloud engineering, and quantitative finance.
+          I thrive where I can work simultaneously with both data scientists and business analytics teams directly &mdash; bridging <span class="font-semibold text-[color:var(--text-main)]">technical decision-making and getting involved with models, while also communicating insights</span> effectively to help clients perform at their best. Through project-based work in academia and work experiences, I continue to explore various domains including full-stack development, serverless cloud development, and quantitative finance that supplement my data skills.
         </p>
         <p>
           Thanks for stopping by &#128075;
@@ -31,3 +48,5 @@ import GlobalShell from '../components/layouts/GlobalShell.astro';
     </div>
   </div>
 </GlobalShell>
+
+<script type="module" src="/src/scripts/homeEffects.ts"></script>

@@ -1,0 +1,111 @@
+---
+// ProjectsCard UI component
+// Composed from the generic Card container.
+
+import Card from './Card.astro';
+import Button from './Button.astro';
+import { Icon } from 'astro-icon/components';
+import { getIconName } from '../../icons/iconMap';
+
+interface Props {
+  image?: string;
+  title: string;
+  languages?: string[];
+  contributors?: string[];
+  description?: string;
+}
+
+const {
+  image,
+  title,
+  languages = [],
+  contributors = [],
+  description,
+} = Astro.props;
+
+const languageIconKeyMap: Record<string, string> = {
+  TypeScript: 'typescript',
+  Typescript: 'typescript',
+  TS: 'typescript',
+  Python: 'python',
+  Vercel: 'vercel',
+};
+
+const getLanguageIconName = (lang: string): string | null => {
+  const key = languageIconKeyMap[lang];
+  return key ? getIconName(key as any) : null;
+};
+---
+
+<Card>
+  <div class="flex w-full flex-col space-y-2 text-sm text-[color:var(--text-main)]">
+    {image && (
+      <div class="overflow-hidden rounded-lg border border-purple-400/30 bg-slate-950/40">
+        <img
+          src={image}
+          alt={`${title} preview`}
+          loading="lazy"
+          class="h-40 w-full object-cover"
+        />
+      </div>
+    )}
+
+    <h2 class="text-base font-semibold tracking-[0.12em] uppercase break-words">
+      {title}
+    </h2>
+
+    {languages.length > 0 && (
+      <div class="flex w-full flex-wrap gap-2 text-[0.75rem] text-[color:var(--text-muted)]">
+        {languages.map((lang) => {
+          const iconName = getLanguageIconName(lang);
+
+          if (iconName) {
+            return (
+              <span
+                class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/40"
+                aria-label={lang}
+                title={lang}
+              >
+                <Icon
+                  name={iconName}
+                  class="h-3.5 w-3.5 text-[color:var(--text-main)]"
+                />
+              </span>
+            );
+          }
+
+          return (
+            <span
+              class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5"
+            >
+              {lang}
+            </span>
+          );
+        })}
+      </div>
+    )}
+
+    {contributors.length > 0 && (
+      <p class="text-[0.78rem] text-[color:var(--text-muted)]">
+        <span class="font-semibold text-[color:var(--text-main)]">
+          Contributors:
+        </span>{' '}
+        {contributors.join(', ')}
+      </p>
+    )}
+
+    {description && (
+      <p class="break-words text-[0.8rem] leading-relaxed text-[color:var(--text-muted)]">
+        {description}
+      </p>
+    )}
+
+    <div class="flex justify-end pt-1">
+      <Button>
+        <span class="flex items-center gap-1">
+          <span>View</span>
+        </span>
+      </Button>
+    </div>
+  </div>
+</Card>

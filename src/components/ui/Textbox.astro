@@ -4,11 +4,15 @@
 interface Props {
   placeholder?: string;
   rows?: number;
+  name?: string;
+  id?: string;
 }
 
 const {
   placeholder = '',
   rows = 3,
+  name,
+  id,
 } = Astro.props;
 
 const autoResize = (event: Event) => {
@@ -21,6 +25,8 @@ const autoResize = (event: Event) => {
 
 <textarea
   rows={rows}
+  name={name}
+  id={id}
   placeholder={placeholder}
   class="mt-1 w-full rounded-md border border-[color:var(--border-subtle)] bg-slate-950/40 px-2 py-1.5 text-[0.8rem] text-[color:var(--text-main)] outline-none placeholder:text-[color:var(--text-muted)] focus:border-[color:var(--accent)] focus:ring-1 focus:ring-[color:var(--accent)] overflow-hidden"
   onInput={autoResize}

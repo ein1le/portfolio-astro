@@ -2,39 +2,88 @@
 // Right sidebar layout component
 // TODO: Implement right sidebar content and behavior
 
-import { Card } from '../ui';
+import { Card, ProjectsCard } from '../ui';
+import { projects } from '../../data/projects';
+import GithubCalendarSection from '../../scripts/GitHubCalendarSection.jsx';
+
+const featuredProject = projects.find((project) => project.id === 0);
 ---
 
-<aside class="order-3 md:order-none md:row-span-2 md:col-start-3 flex items-start justify-center border-l border-[color:var(--border-subtle)] px-5 pt-6">
-  <div class="sidebar-content flex w-full max-w-xs flex-col gap-4">
+<aside class="md:row-span-2 md:col-start-3 flex items-start justify-center border-l border-[color:var(--border-subtle)] px-5 pt-6">
+  <div class="sidebar-content flex w-full max-w-xs flex-col gap-5">
     <div class="w-full">
-      <h2 class="text-[0.7rem] font-bold uppercase tracking-[0.20em] text-[color:var(--text-muted)] text-center">
-        Activity
+      <h2 class="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.20em] text-[color:var(--text-muted)] text-center">
+        Status
       </h2>
-    </div>
-
-    <div class="w-full">
       <Card>
-        <div class="space-y-1 text-[0.8rem] text-[color:var(--text-main)]">
-          <p class="font-medium">Currently exploring new projects.</p>
-          <p class="text-[color:var(--text-muted)]">
-            Placeholder text for your active work, side projects, or learning goals.
-          </p>
+        <div class="space-y-3 text-[0.8rem] text-[color:var(--text-main)]">
+          <div class="flex items-center justify-between rounded-full border border-[color:var(--border-subtle)] bg-slate-950/40 px-2 py-1.5">
+            <div class="flex items-center gap-2 text-[0.72rem] font-semibold text-[color:var(--text-muted)]">
+              <span class="h-2.5 w-2.5 rounded-full bg-slate-700" />
+              <span>Not actively searching</span>
+            </div>
+            <div class="flex items-center gap-2 rounded-full bg-slate-900/80 px-3 py-1 shadow-inner">
+              <span class="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.7)]" />
+              <span class="text-[0.72rem] font-semibold text-[color:var(--text-main)]">
+                Seeking Opportunities
+              </span>
+            </div>
+          </div>
+
+          <div class="space-y-1 text-[0.74rem] text-[color:var(--text-muted)]">
+            <p>
+              <span class="font-semibold text-[color:var(--text-main)]">Open to:</span>
+              {' '}Various data-related roles
+            </p>
+            <p>
+              <span class="font-semibold text-[color:var(--text-main)]">Available for:</span>
+              {' '}full-time, internships, or collaborations
+            </p>
+            <p class="pt-1">
+              I'm open to analyst and engineering roles that involve data, particularly in the financial and technology sectors; including quantitative finance, product analytics, and AI/ML engineering.
+            </p>
+          </div>
         </div>
       </Card>
     </div>
+
+
+
+    {featuredProject && (
+      <div class="w-full">
+        <h2 class="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.20em] text-[color:var(--text-muted)] text-center">
+          Featured Project
+        </h2>
+        <div class="px-4">
+          <ProjectsCard
+            title={featuredProject.title}
+            languages={featuredProject.languages}
+            contributors={featuredProject.contributors}
+            image={featuredProject.image}
+          />
+        </div>
+      </div>
+    )}
 
     <hr class="my-2 w-full border-t border-[color:var(--border-subtle)]" />
 
     <div class="w-full">
-      <h2 class="text-[0.7rem] font-bold uppercase tracking-[0.20em] text-[color:var(--text-muted)] text-center">
-        Contributions
+      <h2 class="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.20em] text-[color:var(--text-muted)] text-center">
+        Activity
       </h2>
+      <div class="mb-3 space-y-1 sidebar-paragraph">
+        <p class="sidebar-paragraph">
+          Currently, I actively lead infrastructure and analytics initiatives for SS125 and the UKSSC, each representing the largest student-run organisations for Thai and Singaporean students in the UK, respectively.
+        </p>
+        <p class="sidebar-paragraph">
+          Balancing this with applications and upskilling where I can, I also spend a significant amount of time on NexusKCG, a consulting startup focused on translating behavioural data into quantitative insights for clients.
+        </p>
+      </div>
       <Card>
-        <div class="flex h-24 items-center justify-center text-[0.75rem] text-[color:var(--text-muted)]">
-          GitHub contribution graph placeholder
-        </div>
+        <GithubCalendarSection client:only="react" />
       </Card>
     </div>
   </div>
+
+  
 </aside>

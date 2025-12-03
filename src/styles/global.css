@@ -194,6 +194,10 @@ a:hover {
 }
 
 @layer components {
+  .sidebar-paragraph {
+    @apply text-[0.78rem] leading-relaxed text-[color:var(--text-muted)];
+  }
+
   .sidebar-title {
     @apply flex items-center justify-center w-full rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 backdrop-blur-lg px-4 py-1 text-[0.8rem] tracking-[0.08em] uppercase text-[color:var(--text-muted)];
   }
@@ -204,5 +208,89 @@ a:hover {
 
   .navbar-strip::-webkit-scrollbar {
     display: none;
+  }
+
+  .home-main-hover {
+    position: relative;
+    background-color: var(--bg-app);
+    overflow: hidden;
+  }
+
+  /* Static grid layer for the home page background */
+  .home-main-hover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+    transform: translate3d(var(--home-bg-x, 0px), var(--home-bg-y, 0px), 0);
+    transition: transform 160ms ease-out;
+  }
+
+  /* Home page paragraph typewriter container */
+  .home-typewriter p {
+    position: relative;
+    overflow: hidden;
+    clip-path: inset(0 100% 0 0);
+    animation: home-typewriter 2s steps(40, end) forwards;
+  }
+
+  .home-typewriter p:nth-of-type(2) {
+    animation-delay: 0.25s;
+  }
+
+  .home-typewriter p:nth-of-type(3) {
+    animation-delay: 0.5s;
+  }
+
+  .home-typewriter p:nth-of-type(4) {
+    animation-delay: 0.75s;
+  }
+}
+
+@layer utilities {
+  @keyframes home-typewriter {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @keyframes edu-drop {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .edu-card {
+    @apply opacity-0 translate-y-3;
+    animation-name: edu-drop;
+    animation-duration: 0.55s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+  }
+
+  .home-cursor-glow {
+    position: fixed;
+    width: 320px;
+    height: 320px;
+    border-radius: 9999px;
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(196, 167, 255, 0.35), transparent 60%);
+    mix-blend-mode: screen;
+    opacity: 0;
+    transform: translate(-9999px, -9999px);
+    transition: opacity 150ms ease-out;
+    z-index: 40;
   }
 }

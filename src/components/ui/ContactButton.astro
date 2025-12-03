@@ -3,6 +3,7 @@
 // TODO: Wire to real contact action (e.g., mailto:)
 
 import { Icon } from 'astro-icon/components';
+import { getIconName } from '../../icons/iconMap';
 
 interface Props {
   label?: string;
@@ -15,10 +16,13 @@ const {
   label = 'Email',
   subtitle = 'Get in touch',
   href,
+  icon,
 } = Astro.props;
 
 const baseClasses =
   'group inline-flex w-full items-center gap-3 rounded-full border border-purple-400/30 bg-slate-900/40 px-4 py-2 text-left text-[0.85rem] text-[color:var(--text-main)] shadow-sm transition hover:border-purple-300/60 hover:bg-purple-500/10 hover:shadow-[0_0_18px_rgba(168,85,247,0.25)]';
+
+const iconName = icon ? getIconName(icon as any) : getIconName('envelope');
 ---
 
 {href ? (
@@ -26,7 +30,7 @@ const baseClasses =
     <span
       class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-purple-200"
     >
-      <Icon name={Astro.props.icon || 'envelope'} class="h-3.5 w-3.5" />
+      <Icon name={iconName} class="h-3.5 w-3.5" />
     </span>
 
     <span class="flex min-w-0 flex-col">
@@ -41,7 +45,7 @@ const baseClasses =
     <span
       class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-purple-200"
     >
-      <Icon name={Astro.props.icon || 'envelope'} class="h-3.5 w-3.5" />
+      <Icon name={iconName} class="h-3.5 w-3.5" />
     </span>
 
     <span class="flex min-w-0 flex-col">

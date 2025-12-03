@@ -1,11 +1,20 @@
 ---
 // Primary Button UI component
 // Simple purple-outlined button with hover animation.
+
+interface Props {
+  type?: 'button' | 'submit';
+  class?: string;
+  [key: string]: any;
+}
+
+const { type = 'button', class: extraClass = '', ...attrs } = Astro.props;
+
+const baseClass =
+  'inline-flex items-center justify-center rounded-lg border border-purple-400/60 bg-transparent px-6 py-2 text-xs font-medium uppercase tracking-[0.14em] text-[color:var(--text-main)] transition-transform transition-colors duration-150 hover:border-purple-300 hover:bg-purple-500/15 hover:-translate-y-[1px] active:translate-y-0';
+const className = `${baseClass} ${extraClass}`.trim();
 ---
 
-<button
-  type="button"
-  class="inline-flex items-center justify-center rounded-lg border border-purple-400/60 bg-transparent px-6 py-2 text-xs font-medium uppercase tracking-[0.14em] text-[color:var(--text-main)] transition-transform transition-colors duration-150 hover:border-purple-300 hover:bg-purple-500/15 hover:-translate-y-[1px] active:translate-y-0"
->
+<button type={type} class={className} {...attrs}>
   <slot />
 </button>
