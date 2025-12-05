@@ -1,11 +1,17 @@
 ---
 import GlobalShell from '../components/layouts/GlobalShell.astro';
+import AppHead from './_app-head.astro';
 ---
 
-<GlobalShell>
+<html lang="en">
+  <head>
+    <AppHead />
+  </head>
+  <body>
+    <GlobalShell>
   <div
     id="home-main-hover"
-    class="home-main-hover flex flex-1 items-center justify-center px-4"
+    class="home-main-hover flex flex-1 items-center justify-center px-6 md:px-8"
   >
     <div class="flex w-full max-w-2xl flex-col items-center gap-6 text-center">
       <div class="h-32 w-32 rounded-full border border-[color:var(--border-subtle)] bg-slate-900/60 shadow-md shadow-slate-900/50" />
@@ -46,7 +52,8 @@ import GlobalShell from '../components/layouts/GlobalShell.astro';
         </p>
       </div>
     </div>
-  </div>
-</GlobalShell>
+    </GlobalShell>
 
-<script type="module" src="/src/scripts/homeEffects.ts"></script>
+    <script type="module" src="/src/scripts/homeEffects.ts"></script>
+  </body>
+</html>

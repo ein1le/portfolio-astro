@@ -2,8 +2,11 @@
 // EducationCard UI component
 // Composed from the generic Card container.
 
+import Button from './Button.astro';
 import Card from './Card.astro';
+import PublicationCard from './PublicationCard.astro';
 import { Icon } from 'astro-icon/components';
+import type { EducationPublication } from '../../data/education';
 
 interface Props {
   title: string;
@@ -12,7 +15,10 @@ interface Props {
   location?: string;
   description?: string;
   image?: any;
-  details?: Record<string, string>;
+  modules?: Record<string, string[]>;
+  awards?: string[];
+  publications?: EducationPublication[];
+  transcriptUrls?: string[];
 }
 
 const {
@@ -22,19 +28,25 @@ const {
   location,
   description,
   image,
-  details,
+  modules = {},
+  awards = [],
+  publications = [],
+  transcriptUrls = [],
 } = Astro.props;
 
 const imageSrc =
   typeof image === 'object' && image?.src ? image.src : image;
-
-const detailEntries = details ? Object.entries(details) : [];
+const moduleGroups = Object.entries(modules);
+const hasStructuredContent =
+  moduleGroups.length > 0 || awards.length > 0 || publications.length > 0;
+const hasExpandableContent =
+  hasStructuredContent;
 ---
 
 <Card>
-  <details class="group flex flex-col gap-1.5 rounded-lg bg-slate-900/40 px-4 py-3 text-sm text-[color:var(--text-main)]">
+  <details class="group flex w-full flex-col gap-1.5 rounded-lg bg-slate-900/40 px-4 py-3 text-sm text-[color:var(--text-main)]">
     <summary
-      class="flex cursor-pointer list-none items-center gap-3"
+      class="flex cursor-pointer list-none items-center gap-8"
     >
       {imageSrc && (
         <img
@@ -46,18 +58,20 @@ const detailEntries = details ? Object.entries(details) : [];
       )}
 
       <div class="flex min-w-0 flex-1 flex-col gap-1">
-        <div class="flex flex-col gap-0.5">
-          <div class="flex flex-wrap items-baseline justify-between gap-2">
-            <h2 class="text-[0.9rem] font-semibold tracking-[0.08em] uppercase">
-              {title}
-            </h2>
+          <div class="flex flex-col gap-0.5">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h2 class="text-[0.9rem] font-semibold tracking-[0.08em] uppercase text-[color:var(--text-main)]">
+                {title}
+              </h2>
             {period && (
-              <p class="text-[0.75rem] text-[color:var(--text-muted)]">{period}</p>
+              <p class="text-[0.75rem] font-semibold text-[color:var(--text-muted)]">{period}</p>
             )}
           </div>
 
           <div class="flex flex-wrap items-baseline justify-between gap-2 text-[0.8rem] text-[color:var(--text-muted)]">
-            <p class="truncate">{institution}</p>
+            <p class="subtitle truncate">
+              {institution}
+            </p>
             {location && (
               <p class="shrink-0 text-right">{location}</p>
             )}
@@ -65,31 +79,119 @@ const detailEntries = details ? Object.entries(details) : [];
         </div>
 
         {description && (
-          <p class="mt-1 text-[0.78rem] leading-relaxed text-[color:var(--text-muted)]">
+          <p class="mt-0.2 text-[0.78rem] leading-relaxed text-[color:var(--text-muted)]">
             {description}
           </p>
         )}
       </div>
 
-      {detailEntries.length > 0 && (
-        <span
-          class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-900/70 text-[color:var(--text-muted)] group-open:rotate-180 transition-transform"
-        >
-          <Icon name="chevron-down" class="h-3.5 w-3.5" />
-        </span>
-      )}
+      <span
+        class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-900/70 text-[color:var(--text-muted)] group-open:rotate-180 transition-transform"
+      >
+        <Icon name="chevron-down" class="h-3.5 w-3.5" />
+      </span>
     </summary>
 
-    {detailEntries.length > 0 && (
-      <div class="mt-2 border-t border-[color:var(--border-subtle)] pt-2 text-[0.78rem] leading-relaxed text-[color:var(--text-muted)] space-y-1">
-        {detailEntries.map(([key, value]) => (
-          <div class="flex gap-2">
-            <span class="w-28 shrink-0 font-semibold text-[color:var(--text-main)]">
-              {key}
-            </span>
-            <span class="flex-1">{value}</span>
+    {hasExpandableContent && (
+      <div class="edu-expand mt-2 border-t border-[color:var(--border-subtle)] pt-3 text-[0.78rem] leading-relaxed text-[color:var(--text-muted)] space-y-3">
+        {awards.length > 0 && (
+          <div class="space-y-2">
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="subtitle mb-0">
+                Awards
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {awards.map((award) => (
+                  <Button class="px-3 py-1 text-[0.75rem] font-semibold normal-case tracking-normal">
+                    {award}
+                  </Button>
+                ))}
+              </div>
+            </div>
           </div>
-        ))}
+        )}
+
+        {moduleGroups.length > 0 && (
+          <div class="space-y-1">
+            <details class="group/modules">
+              <summary class="flex cursor-pointer list-none items-center gap-2">
+                <h3 class="subtitle mb-0">
+                  Modules
+                </h3>
+                <span class="flex h-4 w-4 items-center justify-center text-[color:var(--text-muted)] transition-transform group-open/modules:rotate-180">
+                  <Icon name="chevron-down" class="h-3 w-3" />
+                </span>
+              </summary>
+              <div class="mt-2 flex gap-3 text-[0.78rem]">
+                <div class="border-l-2 border-purple-400/70" />
+                <div class="grid flex-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {moduleGroups.map(([year, yearModules]) => (
+                    <div class="space-y-1">
+                      <p class="font-semibold text-[color:var(--text-main)]">
+                        {year}
+                      </p>
+                      {yearModules.map((module) => (
+                        <p class="text-[color:var(--text-muted)]">
+                          {module}
+                        </p>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </details>
+          </div>
+        )}
+
+        {publications.length > 0 && (
+          <div class="space-y-2">
+            <h3 class="subtitle">
+              Publications
+            </h3>
+            <div class="grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {publications.map((publication) => (
+                <PublicationCard
+                  title={publication.title}
+                  pdfUrl={publication.pdfUrl}
+                  course={publication.course}
+                  authors={publication.authors}
+                  description={publication.description}
+                  date={publication.date}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {transcriptUrls.length > 0 && (
+          <div class="flex justify-end pt-1">
+            {transcriptUrls.map((url) => (
+              <a href={url} download class="inline-block">
+                <Button
+                  type="button"
+                  class="flex items-center gap-1 px-3 py-1 text-[0.7rem]"
+                  pdfPreviewUrl={url}
+                >
+                  <span>Transcript</span>
+                  <svg
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                    class="h-3.5 w-3.5"
+                  >
+                    <path
+                      d="M10 4v9m0 0-3.5-3.5M10 13l3.5-3.5M4 15.5h12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </Button>
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     )}
   </details>

@@ -1,0 +1,35 @@
+---
+// PublicationCard UI component
+// Composed from the generic Card container and used for PDF previews.
+
+import Card from './Card.astro';
+
+interface Props {
+  title: string;
+  pdfUrl?: string;
+  course?: string;
+  authors?: string;
+  description?: string;
+  date?: string;
+}
+
+const { title, pdfUrl, course, authors, description, date } = Astro.props;
+---
+
+<button
+  type="button"
+  class="w-full h-full text-left"
+  data-pdf-load
+  data-pdf-url={pdfUrl}
+  data-pdf-title={title}
+  data-pdf-course={course}
+  data-pdf-authors={authors}
+  data-pdf-description={description}
+  data-pdf-date={date}
+>
+  <Card>
+    <span class="block py-1 text-[0.72rem] font-medium leading-snug text-[color:var(--text-main)]">
+      {title}
+    </span>
+  </Card>
+</button>

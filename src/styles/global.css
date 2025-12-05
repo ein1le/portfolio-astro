@@ -198,6 +198,10 @@ a:hover {
     @apply text-[0.78rem] leading-relaxed text-[color:var(--text-muted)];
   }
 
+  .subtitle {
+    @apply block mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-white;
+  }
+
   .sidebar-title {
     @apply flex items-center justify-center w-full rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 backdrop-blur-lg px-4 py-1 text-[0.8rem] tracking-[0.08em] uppercase text-[color:var(--text-muted)];
   }
@@ -230,34 +234,36 @@ a:hover {
     transition: transform 160ms ease-out;
   }
 
-  /* Home page paragraph typewriter container */
-  .home-typewriter p {
-    position: relative;
-    overflow: hidden;
-    clip-path: inset(0 100% 0 0);
-    animation: home-typewriter 2s steps(40, end) forwards;
-  }
+    /* Home page paragraph cascade container */
+    .home-typewriter p {
+      position: relative;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: home-cascade 500ms ease-out forwards;
+    }
 
-  .home-typewriter p:nth-of-type(2) {
-    animation-delay: 0.25s;
-  }
+    .home-typewriter p:nth-of-type(2) {
+      animation-delay: 0.15s;
+    }
 
-  .home-typewriter p:nth-of-type(3) {
-    animation-delay: 0.5s;
-  }
+    .home-typewriter p:nth-of-type(3) {
+      animation-delay: 0.3s;
+    }
 
-  .home-typewriter p:nth-of-type(4) {
-    animation-delay: 0.75s;
-  }
+    .home-typewriter p:nth-of-type(4) {
+      animation-delay: 0.45s;
+    }
 }
 
 @layer utilities {
-  @keyframes home-typewriter {
+  @keyframes home-cascade {
     from {
-      clip-path: inset(0 100% 0 0);
+      opacity: 0;
+      transform: translateY(8px);
     }
     to {
-      clip-path: inset(0 0 0 0);
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
@@ -278,6 +284,21 @@ a:hover {
     animation-duration: 0.55s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
+  }
+
+  @keyframes edu-expand {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  details.group[open] .edu-expand {
+    animation: edu-expand 0.22s ease-out;
   }
 
   .home-cursor-glow {

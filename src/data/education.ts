@@ -19,60 +19,108 @@ export interface EducationEntry {
   location: string;
   grade: string;
   image?: any;
-  modules: string[];
+  modules: Record<string, string[]>;
   publications: EducationPublication[];
   awards: string[];
-  // Optional dictionary used for the expandable details section in the UI.
-  details?: Record<string, string>;
+  transcriptUrls?: string[];
 }
 
 import wquLogo from '../assets/education/WQU.jpeg';
 import bristolLogo from '../assets/education/Bristol.png';
 import harrowLogo from '../assets/education/Harrow.jpg';
 
+// Transcripts
+import wquTranscript from '../assets/education/WQU_Transcript.pdf';
+import bristolTranscript from '../assets/education/Bristol_Transcript.pdf';
+import harrowTranscript from '../assets/education/Harrow_Transcript.pdf';
+
+// University of Bristol publication PDFs
+import gipReportPdf from '../assets/education/pdfs/G21_GIP_MENGM5000_REPORT.pdf';
+import biomechanicsPdf from '../assets/education/pdfs/BURN_2143062_pdf.pdf';
+import renewableEnergyPdf from '../assets/education/pdfs/Renewable_Energy.pdf';
+import multivariableControlPdf from '../assets/education/pdfs/Multivariable_and_Non_Linear_Control_Report.pdf';
+import irpPdf from '../assets/education/pdfs/IRP_2143062_Wishawin.pdf';
+import asmPdf from '../assets/education/pdfs/ASM_2143062.pdf';
+import materialsLabPdf from '../assets/education/pdfs/Materials_Lab.pdf';
+import stp1Pdf from '../assets/education/pdfs/STP/1_Organisation Brief_LocaVision.pdf';
+import stp2Pdf from '../assets/education/pdfs/STP/2_Concept Selection_LocaVision.pdf';
+import stp3Pdf from '../assets/education/pdfs/STP/3_Business Case_LocaVision.pdf';
+import stp4Pdf from '../assets/education/pdfs/STP/4_Communication Plan_LocaVision.pdf';
+import stp5Pdf from '../assets/education/pdfs/STP/5_Risk Register_LocaVision.pdf';
+import stp6Pdf from '../assets/education/pdfs/STP/6_Sustainability Assessment_LocaVision.pdf';
+import stp7Pdf from '../assets/education/pdfs/STP/7_Quality Management Plan_LocaVision.pdf';
+
 export const educationEntries: EducationEntry[] = [
   {
     title: 'Incoming',
     subheader: 'MSc Data Science and Machine Learning',
-    date: '2026 - 2027',
+    date: 'Sep 2026 - Jul 2027',
     location: 'London, UK',
     grade:
-      'Applications pending at Imperial College London, London School of Economics, University College London, and King’s College London',
+      'Applications pending at Imperial, LSE, and UCL for Sept 2026 intake',
     image: "",
-    modules: [],
+    modules: {},
     publications: [],
     awards: [],
-    details: {
-      Status: 'Applications pending for 2026–2027 intake.',
-    },
   },
   {
     title: 'WorldQuant University',
     subheader: 'MScFE Financial Engineering',
-    date: '2025 - 2027',
+    date: 'Sep 2025 - Sep 2027',
     location: 'Online, UK',
     grade: '',
     image: wquLogo,
-    modules: [],
+    modules: {
+      'Year 1': [
+        'MScFE560 25/10 Financial Markets',
+        'MScFE600 25/12 Financial Data' 
+      ]
+    },
     publications: [],
     awards: [],
-    details: {
-      Programme: 'Online MSc in Financial Engineering at WorldQuant University.',
-    },
+    transcriptUrls: [wquTranscript],
   },
   {
-    title: 'University of Bristol',
-    subheader: 'Integrated Masters, Mechanical Engineering [4MECH002U]',
-    date: '2021 - 2025',
+    title: 'University of Bristol (H300)',
+    subheader: 'MEng, Mechanical Engineering ',
+    date: 'Sep 2021 - Jul 2025',
     location: 'Bristol, UK',
     grade: 'Second Class Honours First Division',
     image: bristolLogo,
-    modules: [
-      'Year 4: Data Driven Physical Modelling, Multivariable and Non-linear Control, AT Generative Design, AT Quantum Information and Photonic Engineering, AT Design in a Constrained World, AT Machine Thinking in Smart Manufacturing, Group Industrial Project, Renewable Energy for a Sustainable Future, AT Biomechanics',
-      'Year 3: Individual Research Project, Applied Solid Mechanics, Engineering Management, Behaviour of Dynamic Systems, Fluid Mechanics and Heat Transfer',
-      'Year 2: Engineering Mathematics II, Dynamics and Control, Thermofluids, Engineering Practice, Materials Engineering',
-      'Year 1: Engineering Mathematics I, Engineering Communication Measurement and Data Analysis, Introduction to Design Practice, Principles of Mechanical Engineering, Engineering Science',
-    ],
+    modules: {
+      'Year 1': [
+        'EMAT10100 Engineering Mathematics I',
+        'CENG10012 Engineering by Design',
+        'CADE10002 Engineering Communication Measurement and Data Analysis',
+        'MENG10004 Engineering Science',
+        'MENG10006 Principles of Mechanical Engineering',
+      ],
+      'Year 2': [
+        'EMAT20200 Engineering Mathematics II',
+        'MENG20004 Dynamics and Control',
+        'MENG20005 Engineering Practice',
+        'MENG20009 Thermofluids',
+        'MENG20005 Materials Engineering',
+      ],
+      'Year 3': [
+        'MENG35000 Individual Research Project',
+        'MENG30011 Applied Solid Mechanics',
+        'MENG30012 Engineering Management',
+        'MENG30006 Behaviour of Dynamic Systems',
+        'MENG30008Fluid Mechanics and Heat Transfer',
+      ],
+      'Year 4': [
+        'SEMTM0007 Data Driven Physical Modelling',
+        'MENGM0067 Multivariable and Non-linear Control',
+        'MENGM5000 Group Industrial Project',
+        'MENGM0064 Renewable Energy for a Sustainable Future',
+        'MEMGM0059 AT Generative Design',
+        'MEMGM0059 AT Quantum Information and Photonic Engineering',
+        'MEMGM0059 AT Design in a Constrained World',
+        'MEMGM0059 AT Machine Thinking in Smart Manufacturing',
+        'MEMGM0059 AT Biomechanics',
+      ],
+    },
     publications: [
       {
         title: 'GKN Aerospace Ring Hoop Tension Test Investigation',
@@ -82,7 +130,7 @@ export const educationEntries: EducationEntry[] = [
         description:
           'An investigation on the parameters affecting the accuracy of material property determination of aluminium using ring hoop tension tests',
         date: '© April 29, 2025',
-        pdfUrl: '/pdfs/G21_GIP_MENGM5000_REPORT.pdf',
+        pdfUrl: gipReportPdf,
         hyperlink: 'https://github.com/ein1le/gip-ddest',
       },
       {
@@ -91,7 +139,7 @@ export const educationEntries: EducationEntry[] = [
         description:
           'Report on the biomechanical feasibility and modifications to a Boston Dynamics Spot robot for Martian applications',
         date: 'February 25, 2025',
-        pdfUrl: '/pdfs/BURN_2143062_pdf.pdf',
+        pdfUrl: biomechanicsPdf,
       },
       {
         title: 'Richmond Building - Renewable Energy Strategy',
@@ -100,7 +148,7 @@ export const educationEntries: EducationEntry[] = [
         description:
           "Official proposition of renewable energy alternative solutions for the University of Bristol's Richmond Building for Scope 1-2 emissions reduction",
         date: 'December 5, 2024',
-        pdfUrl: '/pdfs/Renewable_Energy.pdf',
+        pdfUrl: renewableEnergyPdf,
       },
       {
         title: 'Multivariable and Nonlinear Control of a 2-DOF Planar Manipulator',
@@ -108,7 +156,7 @@ export const educationEntries: EducationEntry[] = [
         authors: 'Ibrahim Arekat, William Sakyi',
         description: '',
         date: 'December 3, 2024',
-        pdfUrl: '/pdfs/Multivariable_and_Non_Linear_Control_Report.pdf',
+        pdfUrl: multivariableControlPdf,
         hyperlink: 'https://github.com/Will27-s/MultiVarControl',
       },
       {
@@ -126,7 +174,7 @@ export const educationEntries: EducationEntry[] = [
         description:
           'Dissertation investigating heuristic information-based convex optimisation algorithms such as genetic algorithms and particle swarm for nonlinear optimisation of sensor placements on structural beams',
         date: '© May 9, 2024',
-        pdfUrl: '/pdfs/IRP_2143062_Wishawin.pdf',
+        pdfUrl: irpPdf,
       },
       {
         title: 'STP Ltd. Management Portfolio',
@@ -137,13 +185,13 @@ export const educationEntries: EducationEntry[] = [
           'Business portfolio, including components of risk assessments, product quality management plan, shareholder brief, etc. for a planned fictional VR glasses product launch',
         date: 'May 2, 2024',
         pdfUrls: [
-          '/pdfs/STP/1_Organisation Brief_LocaVision.pdf',
-          '/pdfs/STP/2_Concept Selection_LocaVision.pdf',
-          '/pdfs/STP/3_Business Case_LocaVision.pdf',
-          '/pdfs/STP/4_Communication Plan_LocaVision.pdf',
-          '/pdfs/STP/5_Risk Register_LocaVision.pdf',
-          '/pdfs/STP/6_Sustainability Assessment_LocaVision.pdf',
-          '/pdfs/STP/7_Quality Management Plan_LocaVision.pdf',
+          stp1Pdf,
+          stp2Pdf,
+          stp3Pdf,
+          stp4Pdf,
+          stp5Pdf,
+          stp6Pdf,
+          stp7Pdf,
         ],
       },
       {
@@ -151,7 +199,7 @@ export const educationEntries: EducationEntry[] = [
         course: '[MENGM30011] Applied Solid Mechanics',
         description: '',
         date: 'December 14, 2023',
-        pdfUrl: '/pdfs/ASM_2143062.pdf',
+        pdfUrl: asmPdf,
       },
       {
         title: 'Deployable Solar Array Portfolio',
@@ -167,18 +215,10 @@ export const educationEntries: EducationEntry[] = [
         course: '[MENG10005] Engineering Communication, Measurement, and Data Analysis',
         description: '',
         date: 'May 14, 2022',
-        pdfUrl: '/pdfs/bristol-article.pdf',
+        pdfUrl: materialsLabPdf,
       },
       {
-        title: 'Design Portfolio',
-        course: '[CENG10012] Engineering Design',
-        description:
-          'Robot Chariot and artefact study of a SR-71 Design Report',
-        date: 'December 17, 2021',
-        pdfUrl: '/pdfs/bristol-article.pdf',
-      },
-      {
-        title: 'DMP',
+        title: 'DMP Project',
         course: '[MENG10006] Design & Manufacturing Project',
         authors: 'Sophie Tan, Daniel Kim',
         description: 'Concept generation, PDS, analytics',
@@ -191,25 +231,39 @@ export const educationEntries: EducationEntry[] = [
       'Bristol Skills Accelerator',
       'Think Big Scholarship',
     ],
-    details: {
-      Grade: 'Second Class Honours First Division',
-      Awards:
-        'Bristol PLUS Award, Bristol Skills Accelerator, Think Big Scholarship',
-    },
+    transcriptUrls: [bristolTranscript],
   },
   {
     title: 'Harrow International School',
     subheader: 'Highschool',
-    date: '2011 - 2021',
+    date: 'Aug 2011 - Jun 2021',
     location: 'Bangkok, Thailand',
     grade: 'A-Levels: A*A*A*, IGCSEs: 12A*s',
     image: harrowLogo,
-    modules: [
-      'A Levels: Mathematics, Physics, Biology',
-      'AS Levels: Mathematics, Physics, Chemistry, Extended Project Qualification',
-      'IGCSEs: Additional Mathematics, Mathematics, Physics, Chemistry, Biology, Development Studies, Geography, Thai Language, English Language, English Literature, English Second Language, Art & Design',
-      'IELTS: 8.0',
-    ],
+    modules: {
+      'A Levels': ['Mathematics', 'Physics', 'Biology'],
+      'AS Levels': [
+        'Mathematics',
+        'Physics',
+        'Chemistry',
+        'Extended Project Qualification',
+      ],
+      IGCSEs: [
+        'Additional Mathematics',
+        'Mathematics',
+        'Physics',
+        'Chemistry',
+        'Biology',
+        'Development Studies',
+        'Geography',
+        'Thai Language',
+        'English Language',
+        'English Literature',
+        'English Second Language',
+        'Art & Design',
+      ],
+      IELTS: ['8.0'],
+    },
     publications: [
       {
         title: 'Extended Project Qualification',
@@ -233,10 +287,6 @@ export const educationEntries: EducationEntry[] = [
       'Gold Scholarship',
       'Duke of Edinburgh Silver Award',
     ],
-    details: {
-      Grade: 'A-Levels: A*A*A*, IGCSEs: 12A*s',
-      Awards:
-        'Harrow Prize Distinction, Sixth Form Mathematics Prize, Sixth Form House Prize, Gold Scholarship, Duke of Edinburgh Silver Award',
-    },
+    transcriptUrls: [harrowTranscript],
   },
 ];

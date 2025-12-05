@@ -1,12 +1,17 @@
 ---
-// Experiences page
-// TODO: Import experiences data and render within the global layout shell
-
 import GlobalShell from '../components/layouts/GlobalShell.astro';
+import AppHead from './_app-head.astro';
 ---
 
-<GlobalShell>
-  <section>
-    <!-- TODO: Experiences content goes here -->
-  </section>
-</GlobalShell>
+<html lang="en">
+  <head>
+    <AppHead />
+  </head>
+  <body>
+    <GlobalShell>
+      <section class="mx-auto flex w-full flex-col gap-4 px-6 pt-6 md:px-8 md:pt-8">
+        <!-- TODO: Experiences content goes here -->
+      </section>
+    </GlobalShell>
+  </body>
+</html>
