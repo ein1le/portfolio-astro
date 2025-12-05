@@ -3,6 +3,7 @@
 // Composed from the generic Card container and used for PDF previews.
 
 import Card from './Card.astro';
+import { Icon } from 'astro-icon/components';
 
 interface Props {
   title: string;
@@ -11,9 +12,18 @@ interface Props {
   authors?: string;
   description?: string;
   date?: string;
+  copyright?: boolean;
 }
 
-const { title, pdfUrl, course, authors, description, date } = Astro.props;
+const {
+  title,
+  pdfUrl,
+  course,
+  authors,
+  description,
+  date,
+  copyright,
+} = Astro.props;
 ---
 
 <button
@@ -28,8 +38,15 @@ const { title, pdfUrl, course, authors, description, date } = Astro.props;
   data-pdf-date={date}
 >
   <Card>
-    <span class="block py-1 text-[0.72rem] font-medium leading-snug text-[color:var(--text-main)]">
-      {title}
-    </span>
+    <div class="flex items-start justify-between gap-2 py-1">
+      <span class="block text-[0.72rem] font-medium leading-snug text-[color:var(--text-main)]">
+        {title}
+      </span>
+      {copyright && (
+        <span class="shrink-0 text-[0.6rem] leading-none text-[color:var(--text-muted)]">
+          <Icon name="copyright" class="h-3 w-3" />
+        </span>
+      )}
+    </div>
   </Card>
 </button>

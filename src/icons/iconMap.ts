@@ -14,15 +14,18 @@ export type IconKey =
   | 'map-pin'
   | 'paper-plane'
   | 'phone'
-  | 'chevron-down';
+  | 'chevron-down'
+  | 'copyright'
+  | 'astro'
+  | 'tailwind';
 
 // For local icons, astro-icon uses the SVG filename (without extension)
 // as the icon name in the "local" set.
 export const iconMap: Record<IconKey, string> = {
-  python: 'python',
-  typescript: 'typescript',
-  vercel: 'vercel',
-  github: 'github',
+  python: 'logos:python',
+  typescript: 'logos:typescript-icon',
+  vercel: 'logos:vercel-icon',
+  github: 'logos:github-icon',
   linkedin: 'linkedin',
   telegram: 'telegram',
   kaggle: 'kaggle',
@@ -32,7 +35,9 @@ export const iconMap: Record<IconKey, string> = {
   'paper-plane': 'paper-plane',
   phone: 'phone',
   'chevron-down': 'chevron-down',
+  copyright: 'copyright',
+  astro: 'logos:astro-icon',
+  tailwind: 'logos:tailwindcss-icon',
 };
 
 export const getIconName = (key: IconKey): string => iconMap[key];
-

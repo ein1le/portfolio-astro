@@ -1,6 +1,8 @@
 // Projects page data
 // Central source of truth for project entries and types.
 
+import mssaLogo from '../assets/extra/MSSA.jpg';
+
 export interface ProjectEntry {
   id: number;
   title: string;
@@ -8,16 +10,45 @@ export interface ProjectEntry {
   languages: string[];
   contributors: string[];
   image?: string;
+  links?: string;
+  demo?: string;
+  organisation?: any;
 }
 
 export const projects: ProjectEntry[] = [
   {
     id: 0,
-    title: 'Placeholder Project',
-    description:
-      'This is a placeholder project card. Replace this description with details about a real project, including what you built, the problems you solved, and what you learned.',
+    title: 'Portfolio',
+    description: 'Portfolio website',
+    languages: ['Astro', 'TailwindCSS', 'TypeScript', 'Vercel'],
+    contributors: ['Ein'],
+    image: '/E.png',
+    links: 'https://github.com/ein1le/portfolio-astro',
+    demo: 'https://ein1le-devfolio-astro.vercel.app/',
+  },
+  {
+    id: 1,
+    title: 'Data Dashboard',
+    description: 'Placeholder data visualisation dashboard project.',
     languages: ['TypeScript', 'Astro', 'TailwindCSS'],
-    contributors: ['Wishawin Lertnawapan'],
+    contributors: ['Ein'],
+    image: undefined,
+  },
+  {
+    id: 2,
+    title: 'ML Playground',
+    description: 'Placeholder machine learning experimentation app.',
+    languages: ['Python', 'TypeScript'],
+    contributors: ['Ein'],
+    image: undefined,
+    organisation: mssaLogo,
+  },
+  {
+    id: 3,
+    title: 'API Service',
+    description: 'Placeholder backend API service.',
+    languages: ['TypeScript', 'Vercel'],
+    contributors: ['Ein'],
     image: undefined,
   },
 ];

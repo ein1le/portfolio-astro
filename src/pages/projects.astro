@@ -12,14 +12,18 @@ import { projects } from '../data/projects';
   <body>
     <GlobalShell>
       <section class="mx-auto flex w-full flex-col gap-6 px-6 pt-6 md:px-8 md:pt-8">
-        <div class="grid gap-4 md:grid-cols-3">
-          {projects.map((project) => (
+        <div class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(14rem,20rem))]">
+          {projects.map((project, index) => (
             <ProjectsCard
               title={project.title}
               description={project.description}
               languages={project.languages}
               contributors={project.contributors}
               image={project.image}
+              links={project.links}
+              demo={project.demo}
+              organisation={project.organisation}
+              index={index}
             />
           ))}
         </div>

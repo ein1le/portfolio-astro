@@ -9,9 +9,10 @@ export default defineConfig({
   integrations: [
     tailwind(),
     icon({
-      // Load all local icons from src/icons
+      // Load all local icons from src/icons and selected official icons
       include: {
         local: ['*'],
+        logos: ['typescript-icon', 'python', 'vercel-icon', 'github-icon', 'astro-icon', 'tailwindcss-icon'],
       },
     }),
     react(),
