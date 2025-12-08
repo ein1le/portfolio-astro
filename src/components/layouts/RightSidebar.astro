@@ -2,15 +2,31 @@
 // Right sidebar layout component
 // TODO: Implement right sidebar content and behavior
 
-import { Card, ProjectsCard } from '../ui';
+import { Card, ProjectsCard, ToggleButton } from '../ui';
 import { projects } from '../../data/projects';
 import GithubCalendarSection from '../../scripts/GitHubCalendarSection.jsx';
+import { Icon } from 'astro-icon/components';
 
 const featuredProject = projects.find((project) => project.id === 0);
 ---
 
 <aside class="md:row-span-2 md:col-start-3 flex items-start justify-center border-l border-[color:var(--border-subtle)] px-5 pt-6">
   <div class="sidebar-content flex w-full max-w-xs flex-col gap-5">
+    <div class="w-full">
+      <div class="flex items-center justify-between rounded-full bg-slate-950/30 px-1.5 py-1">
+        <ToggleButton label="Toggle theme" data-theme-toggle />
+
+        <div class="flex items-center gap-2 text-[color:var(--text-muted)]">
+          <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-950/60">
+            <Icon name="mobile" class="h-4 w-4" />
+          </span>
+          <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-950/60">
+            <Icon name="desktop" class="h-4 w-4" />
+          </span>
+        </div>
+      </div>
+    </div>
+
     <div class="w-full">
       <h2 class="subtitle text-center">
         Status

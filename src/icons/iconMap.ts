@@ -17,7 +17,35 @@ export type IconKey =
   | 'chevron-down'
   | 'copyright'
   | 'astro'
-  | 'tailwind';
+  | 'tailwind'
+  | 'mobile'
+  | 'desktop'
+  | 'javascript'
+  | 'cpp'
+  | 'sql'
+  | 'r-lang'
+  | 'pytorch-lightning'
+  | 'tensorflow'
+  | 'keras'
+  | 'scikit-learn'
+  | 'xarray'
+  | 'tslearn'
+  | 'scipy'
+  | 'quantlib'
+  | 'huggingface'
+  | 'spacy'
+  | 'opencv'
+  | 'surprise'
+  | 'cloud'
+  | 'analytics'
+  | 'ml'
+  | 'ai'
+  | 'engineering'
+  | 'coding-language'
+  | 'web'
+  | 'backend'
+  | 'cicd'
+  | 'database';
 
 // For local icons, astro-icon uses the SVG filename (without extension)
 // as the icon name in the "local" set.
@@ -38,6 +66,34 @@ export const iconMap: Record<IconKey, string> = {
   copyright: 'copyright',
   astro: 'logos:astro-icon',
   tailwind: 'logos:tailwindcss-icon',
+  mobile: 'mobile',
+  desktop: 'desktop',
+  javascript: 'logos:javascript',
+  cpp: 'logos:c-plusplus',
+  sql: 'logos:mysql-icon',
+  'r-lang': 'logos:r-lang',
+  'pytorch-lightning': 'pytorch-lightning',
+  tensorflow: 'tensorflow',
+  keras: 'keras',
+  'scikit-learn': 'scikit-learn',
+  xarray: 'xarray',
+  tslearn: 'tslearn',
+  scipy: 'scipy',
+  quantlib: 'quantlib',
+  huggingface: 'huggingface',
+  spacy: 'spacy',
+  opencv: 'opencv',
+  surprise: 'surprise',
+  cloud: 'cloud',
+  analytics: 'analytics',
+  ml: 'ml',
+  ai: 'ai',
+  engineering: 'engineeering',
+  'coding-language': 'coding-language',
+  web: 'web',
+  backend: 'backend',
+  cicd: 'cicd',
+  database: 'database',
 };
 
 export const getIconName = (key: IconKey): string => iconMap[key];

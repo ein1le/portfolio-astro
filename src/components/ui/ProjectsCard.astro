@@ -6,6 +6,7 @@ import Card from './Card.astro';
 import Button from './Button.astro';
 import { Icon } from 'astro-icon/components';
 import { getIconName } from '../../icons/iconMap';
+import type { ProjectStatus } from '../../data/projects';
 
 interface Props {
   image?: string;
@@ -13,6 +14,8 @@ interface Props {
   languages?: string[];
   contributors?: string[];
   description?: string;
+  information?: string;
+  status?: ProjectStatus;
   links?: string;
   demo?: string;
   index?: number;
@@ -25,6 +28,8 @@ const {
   languages = [],
   contributors = [],
   description,
+  information,
+  status = 'In development',
   links,
   demo,
   index = 0,
@@ -58,124 +63,150 @@ const getLanguageIconName = (lang: string): string | null => {
   style={`animation-delay: ${index * 0.08}s`}
 >
   <Card>
-  <div class="flex w-full flex-col space-y-2 text-sm text-[color:var(--text-main)]">
-    <div class="flex w-full gap-4">
-      <div class="flex min-w-0 flex-1 flex-col space-y-1">
-        <h2 class="text-base font-semibold tracking-[0.12em] uppercase break-words">
-          {title}
-        </h2>
-
-        {description && (
-          <p class="break-words text-[0.8rem] leading-relaxed text-[color:var(--text-muted)]">
-            {description}
-          </p>
-        )}
-
-        {contributors.length > 0 && (
-          <p class="pt-1 text-[0.78rem] text-[color:var(--text-muted)]">
-            <span class="font-semibold text-[color:var(--text-main)]">
-              Contributors:
-            </span>{' '}
-            {contributors.join(', ')}
-          </p>
-        )}
-
-        {languages.length > 0 && (
-          <div class="flex w-full flex-wrap gap-2 pt-1 text-[0.75rem] text-[color:var(--text-muted)]">
-            {languages.map((lang) => {
-              const iconName = getLanguageIconName(lang);
-
-              if (iconName) {
-                return (
-                  <span
-                    class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/40"
-                    aria-label={lang}
-                    title={lang}
-                  >
-                    <Icon
-                      name={iconName}
-                      class="h-3.5 w-3.5 text-[color:var(--text-main)]"
-                    />
+    <div class="project-card relative h-full">
+      <div class="project-card-inner relative h-full w-full">
+        <div class="project-card-face project-card-front flex h-full w-full flex-col space-y-2 text-sm text-[color:var(--text-main)]">
+          <div class="flex w-full gap-4">
+            <div class="flex min-w-0 flex-1 flex-col space-y-1">
+              <div class="flex items-start justify-between gap-2">
+                <h2 class="text-base font-semibold tracking-[0.12em] uppercase break-words">
+                  {title}
+                </h2>
+                {status && (
+                  <span class="inline-flex items-center rounded-full border border-[color:var(--border-subtle)] bg-slate-950/60 px-2 py-0.5 text-[0.7rem] font-semibold tracking-[0.12em] uppercase text-[color:var(--text-muted)]">
+                    {status}
                   </span>
-                );
-              }
+                )}
+              </div>
 
-              return (
-                <span
-                  class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5"
+              {description && (
+                <p class="break-words text-[0.8rem] leading-relaxed text-[color:var(--text-muted)]">
+                  {description}
+                </p>
+              )}
+
+              {languages.length > 0 && (
+                <div class="flex w-full flex-wrap gap-2 pt-1 text-[0.75rem] text-[color:var(--text-muted)]">
+                  {languages.map((lang) => {
+                    const iconName = getLanguageIconName(lang);
+
+                    if (iconName) {
+                      return (
+                        <span
+                          class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/40"
+                          aria-label={lang}
+                          title={lang}
+                        >
+                          <Icon
+                            name={iconName}
+                            class="h-3.5 w-3.5 text-[color:var(--text-main)]"
+                          />
+                        </span>
+                      );
+                    }
+
+                    return (
+                      <span
+                        class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5"
+                      >
+                        {lang}
+                      </span>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {(imageSrc || organisationSrc) && (
+              <div class="flex items-start">
+                <div class="flex flex-col items-center gap-2">
+                  {imageSrc && (
+                    <div class="h-16 w-16 shrink-0 overflow-hidden rounded-md border border-purple-400/40 bg-slate-900">
+                      <img
+                        src={imageSrc}
+                        alt={`${title} preview`}
+                        loading="lazy"
+                        class="h-full w-full object-cover"
+                      />
+                    </div>
+                  )}
+                  {organisationSrc && (
+                    <div class="h-8 w-8 shrink-0 overflow-hidden rounded-full border border-purple-400/40 bg-slate-900">
+                      <img
+                        src={organisationSrc}
+                        alt={`${title} organisation`}
+                        loading="lazy"
+                        class="h-full w-full object-cover"
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {(links || demo) && (
+            <div class="mt-1 flex w-full flex-col gap-2 pt-1 sm:flex-row">
+              {links && (
+                <a
+                  href={links}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 min-w-0"
                 >
-                  {lang}
-                </span>
-              );
-            })}
-          </div>
-        )}
-      </div>
+                  <Button class="w-full border-black text-[color:var(--text-main)] hover:border-black hover:bg-black/10">
+                    <span class="flex items-center justify-center gap-2">
+                      <Icon name="logos:github-icon" class="h-3.5 w-3.5" />
+                      <span>GitHub</span>
+                    </span>
+                  </Button>
+                </a>
+              )}
 
-      {(imageSrc || organisationSrc) && (
-        <div class="flex items-start">
-          <div class="flex flex-col items-center gap-2">
-            {imageSrc && (
-              <div class="h-16 w-16 shrink-0 overflow-hidden rounded-md border border-purple-400/40 bg-slate-900">
-                <img
-                  src={imageSrc}
-                  alt={`${title} preview`}
-                  loading="lazy"
-                  class="h-full w-full object-cover"
-                />
-              </div>
-            )}
-            {organisationSrc && (
-              <div class="h-8 w-8 shrink-0 overflow-hidden rounded-full border border-purple-400/40 bg-slate-900">
-                <img
-                  src={organisationSrc}
-                  alt={`${title} organisation`}
-                  loading="lazy"
-                  class="h-full w-full object-cover"
-                />
-              </div>
-            )}
-          </div>
+              {demo && (
+                <a
+                  href={demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 min-w-0"
+                >
+                  <Button class="w-full border-sky-400 text-sky-100 hover:border-sky-300 hover:bg-sky-500/15">
+                    <span class="flex items-center justify-center gap-2">
+                      <Icon name="external-link" class="h-3.5 w-3.5" />
+                      <span>Demo</span>
+                    </span>
+                  </Button>
+                </a>
+              )}
+            </div>
+          )}
         </div>
-      )}
-    </div>
 
-    {(links || demo) && (
-      <div class="mt-1 flex w-full flex-col gap-2 pt-1 sm:flex-row">
-        {links && (
-          <a
-            href={links}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex-1 min-w-0"
-          >
-            <Button class="w-full border-black text-[color:var(--text-main)] hover:border-black hover:bg-black/10">
-              <span class="flex items-center justify-center gap-2">
-                <Icon name="logos:github-icon" class="h-3.5 w-3.5" />
-                <span>GitHub</span>
-              </span>
-            </Button>
-          </a>
-        )}
+        <div class="project-card-face project-card-back flex h-full w-full flex-col justify-between space-y-2 text-sm text-[color:var(--text-main)]">
+          <div class="space-y-2">
+            <h3 class="text-[0.9rem] font-semibold tracking-[0.14em] uppercase text-[color:var(--text-main)]">
+              Details
+            </h3>
+            {information && (
+              <p class="text-[0.8rem] leading-relaxed text-[color:var(--text-muted)]">
+                {information}
+              </p>
+            )}
+          </div>
 
-        {demo && (
-          <a
-            href={demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex-1 min-w-0"
-          >
-            <Button class="w-full border-sky-400 text-sky-100 hover:border-sky-300 hover:bg-sky-500/15">
-              <span class="flex items-center justify-center gap-2">
-                <Icon name="external-link" class="h-3.5 w-3.5" />
-                <span>Demo</span>
-              </span>
-            </Button>
-          </a>
-        )}
+          {contributors.length > 0 && (
+            <div class="pt-1">
+              <p class="text-[0.78rem] text-[color:var(--text-muted)]">
+                <span class="font-semibold text-[color:var(--text-main)]">
+                  Contributors:
+                </span>{' '}
+                {contributors.join(', ')}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
-    )}
-  </div>
+    </div>
   </Card>
 </div>
 
@@ -193,5 +224,43 @@ const getLanguageIconName = (lang: string): string | null => {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .project-card-inner {
+    position: relative;
+  }
+
+  .project-card-face {
+    transition: opacity 220ms ease-out;
+    padding: 0.125rem;
+  }
+
+  .project-card-front {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+  }
+
+  .project-card-back {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .project-card:hover .project-card-inner,
+  .project-card:focus-within .project-card-inner {
+  }
+
+  .project-card:hover .project-card-front,
+  .project-card:focus-within .project-card-front {
+    opacity: 0;
+  }
+
+  .project-card:hover .project-card-back,
+  .project-card:focus-within .project-card-back {
+    opacity: 1;
+    pointer-events: auto;
   }
 </style>

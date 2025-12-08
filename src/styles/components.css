@@ -1,0 +1,59 @@
+.sidebar-paragraph {
+  @apply text-[0.78rem] leading-relaxed text-[color:var(--text-muted)];
+}
+
+.subtitle {
+  @apply block mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-white;
+}
+
+.sidebar-title {
+  @apply flex items-center justify-center w-full rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 backdrop-blur-lg px-4 py-1 text-[0.8rem] tracking-[0.08em] uppercase text-[color:var(--text-muted)];
+}
+
+.navbar-strip {
+  scrollbar-width: none;
+}
+
+.navbar-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.home-main-hover {
+  position: relative;
+  background-color: var(--bg-app);
+  overflow: hidden;
+}
+
+/* Static grid layer for the home page background */
+.home-main-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  transform: translate3d(var(--home-bg-x, 0px), var(--home-bg-y, 0px), 0);
+  transition: transform 160ms ease-out;
+}
+
+/* Home page paragraph cascade container */
+.home-typewriter p {
+  position: relative;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: home-cascade 500ms ease-out forwards;
+}
+
+.home-typewriter p:nth-of-type(2) {
+  animation-delay: 0.15s;
+}
+
+.home-typewriter p:nth-of-type(3) {
+  animation-delay: 0.3s;
+}
+
+.home-typewriter p:nth-of-type(4) {
+  animation-delay: 0.45s;
+}

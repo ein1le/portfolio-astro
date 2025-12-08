@@ -1,0 +1,25 @@
+---
+// Responsive grid wrapper for stack cards, defaulting to two columns on larger screens.
+
+import StackCard from './StackCard.astro';
+import type { StackGroup } from '../../data/stack';
+
+interface Props {
+  groups: StackGroup[];
+}
+
+const { groups } = Astro.props as Props;
+---
+
+<div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
+  {groups.map((group, index) => (
+    <StackCard
+      group={group.group}
+      description={group.description}
+      icon={group.icon}
+      major={group.major}
+      minor={group.minor}
+      index={index}
+    />
+  ))}
+</div>

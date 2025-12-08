@@ -1,0 +1,36 @@
+---
+// Reusable pill-style toggle button.
+// The sliding knob is driven by the `active` prop via a data attribute.
+
+interface Props {
+  active?: boolean;
+  class?: string;
+  label?: string;
+  [key: string]: any;
+}
+
+const {
+  active = false,
+  class: extraClass = '',
+  label = '',
+  ...attrs
+} = Astro.props as Props;
+
+const rootClass =
+  `toggle-button inline-flex items-center justify-center ${extraClass}`.trim();
+---
+
+<button
+  type="button"
+  class={rootClass}
+  data-state={active ? 'on' : 'off'}
+  aria-pressed={active}
+  {...attrs}
+>
+  <span class="relative inline-flex h-5 w-9 items-center rounded-full bg-slate-800 overflow-hidden">
+    <span
+      class="toggle-knob inline-flex h-3.5 w-3.5 rounded-full bg-slate-200 shadow transition-transform duration-200 ease-out"
+    ></span>
+  </span>
+  {label && <span class="sr-only">{label}</span>}
+</button>

@@ -1,0 +1,127 @@
+---
+// StackCard UI component
+// Visual card for a technology stack group, built on top of Card.
+
+import Card from './Card.astro';
+import { Icon } from 'astro-icon/components';
+import { getIconName } from '../../icons/iconMap';
+import type { StackElement } from '../../data/stack';
+
+interface Props {
+  group: string;
+  description: string;
+  icon?: string;
+  major: StackElement[];
+  minor: StackElement[];
+  index?: number;
+}
+
+const {
+  group,
+  description,
+  icon,
+  major,
+  minor,
+  index = 0,
+} = Astro.props as Props;
+
+const groupIconName = icon ? getIconName(icon) : null;
+---
+
+<div
+  class="opacity-0 translate-y-3 stack-card-animate"
+  style={`animation-delay: ${index * 0.08}s`}
+>
+  <Card>
+    <details class="stack-card-details">
+      <summary class="flex cursor-pointer select-none items-start justify-between gap-3">
+        <div class="flex items-start gap-3">
+          {groupIconName && (
+            <span class="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/40">
+              <Icon name={groupIconName} class="h-5 w-5 text-[color:var(--text-main)]" />
+            </span>
+          )}
+          <div class="min-w-0">
+            <h2 class="text-base font-semibold tracking-[0.12em] uppercase break-words">
+              {group}
+            </h2>
+            <p class="mt-1 text-[0.8rem] leading-relaxed text-[color:var(--text-muted)]">
+              {description}
+            </p>
+          </div>
+        </div>
+
+        <span class="stack-card-chevron mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-950/60 text-[color:var(--text-muted)] transition-transform duration-150">
+          <Icon name="chevron-down" class="h-3.5 w-3.5" />
+        </span>
+      </summary>
+
+      <div class="mt-3 flex flex-wrap gap-2 pt-1 text-sm text-[color:var(--text-main)]">
+        {major.map((item) => {
+          const itemIconName = item.icon ? getIconName(item.icon) : null;
+
+          return (
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60">
+              {itemIconName ? (
+                <Icon name={itemIconName} class="h-5 w-5 text-[color:var(--text-main)]" />
+              ) : (
+                <span class="text-[0.7rem] font-semibold text-[color:var(--text-main)]">
+                  {item.name[0]}
+                </span>
+              )}
+            </span>
+          );
+        })}
+      </div>
+
+      {minor.length > 0 && (
+        <div class="mt-2 flex flex-wrap gap-2 pt-1 text-[0.85rem] text-[color:var(--text-main)]">
+          {minor.map((item) => {
+            const itemIconName = item.icon ? getIconName(item.icon) : null;
+
+            return (
+              <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60">
+                {itemIconName ? (
+                  <Icon name={itemIconName} class="h-4 w-4 text-[color:var(--text-main)]" />
+                ) : (
+                  <span class="text-[0.65rem] font-semibold text-[color:var(--text-main)]">
+                    {item.name[0]}
+                  </span>
+                )}
+              </span>
+            );
+          })}
+        </div>
+      )}
+    </details>
+  </Card>
+</div>
+
+<style>
+  .stack-card-animate {
+    animation: stack-card-enter 0.4s ease-out forwards;
+  }
+
+  @keyframes stack-card-enter {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stack-card-details summary {
+    list-style: none;
+  }
+
+  .stack-card-details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .stack-card-details[open] .stack-card-chevron {
+    transform: rotate(180deg);
+  }
+</style>

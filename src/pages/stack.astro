@@ -1,6 +1,8 @@
 ---
 import GlobalShell from '../components/layouts/GlobalShell.astro';
 import AppHead from './_app-head.astro';
+import { StackGrid } from '../components/ui';
+import { stackGroups } from '../data/stack';
 ---
 
 <html lang="en">
@@ -9,8 +11,8 @@ import AppHead from './_app-head.astro';
   </head>
   <body>
     <GlobalShell>
-      <section class="mx-auto flex w-full flex-col gap-4 px-6 pt-6 md:px-8 md:pt-8">
-        <!-- TODO: Stack content goes here -->
+      <section class="mx-auto flex w-full flex-col gap-6 px-6 pt-6 md:px-8 md:pt-8">
+        <StackGrid groups={stackGroups} />
       </section>
     </GlobalShell>
   </body>
