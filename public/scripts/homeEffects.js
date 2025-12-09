@@ -1,6 +1,5 @@
 // Home page visual effects:
-// 1. Subtle purple cursor glow that follows the mouse within the main window.
-// 2. Parallax movement of the background grid.
+
 
 function setupHomeEffects() {
   const container = document.getElementById('home-main-hover');

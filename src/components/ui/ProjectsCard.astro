@@ -7,6 +7,7 @@ import Button from './Button.astro';
 import { Icon } from 'astro-icon/components';
 import { getIconName } from '../../icons/iconMap';
 import type { ProjectStatus } from '../../data/projects';
+import { getInitials } from '../../../public/scripts/nameinitials.js';
 
 interface Props {
   image?: string;
@@ -50,12 +51,28 @@ const languageIconKeyMap: Record<string, string> = {
   TS: 'typescript',
   Python: 'python',
   Vercel: 'vercel',
+  React: 'react',
+  Firebase: 'firebase',
+  Wix: 'wix',
 };
 
 const getLanguageIconName = (lang: string): string | null => {
   const key = languageIconKeyMap[lang];
   return key ? getIconName(key as any) : null;
 };
+
+const statusClassMap: Record<ProjectStatus, string> = {
+  'In development':
+    'border-amber-400/60 bg-amber-500/10 text-amber-100',
+  Ongoing:
+    'border-purple-400/60 bg-purple-500/10 text-purple-100',
+  Completed:
+    'border-emerald-400/60 bg-emerald-500/10 text-emerald-100',
+  Archived:
+    'border-rose-400/60 bg-rose-500/10 text-rose-100',
+};
+
+const statusClasses = statusClassMap[status];
 ---
 
 <div
@@ -63,26 +80,27 @@ const getLanguageIconName = (lang: string): string | null => {
   style={`animation-delay: ${index * 0.08}s`}
 >
   <Card>
-    <div class="project-card relative h-full">
+    <div class="project-card relative h-full" data-project-card>
       <div class="project-card-inner relative h-full w-full">
         <div class="project-card-face project-card-front flex h-full w-full flex-col space-y-2 text-sm text-[color:var(--text-main)]">
-          <div class="flex w-full gap-4">
+          <div class="flex w-full flex-1 gap-4">
             <div class="flex min-w-0 flex-1 flex-col space-y-1">
-              <div class="flex items-start justify-between gap-2">
+              <div class="flex items-start gap-2">
                 <h2 class="text-base font-semibold tracking-[0.12em] uppercase break-words">
                   {title}
                 </h2>
-                {status && (
-                  <span class="inline-flex items-center rounded-full border border-[color:var(--border-subtle)] bg-slate-950/60 px-2 py-0.5 text-[0.7rem] font-semibold tracking-[0.12em] uppercase text-[color:var(--text-muted)]">
-                    {status}
-                  </span>
-                )}
               </div>
 
               {description && (
                 <p class="break-words text-[0.8rem] leading-relaxed text-[color:var(--text-muted)]">
                   {description}
                 </p>
+              )}
+
+              {status && (
+                <span class={`mt-1 inline-flex w-fit items-center rounded-full px-2 py-0.5 text-[0.7rem] font-semibold tracking-[0.12em] uppercase ${statusClasses}`}>
+                  {status}
+                </span>
               )}
 
               {languages.length > 0 && (
@@ -146,7 +164,7 @@ const getLanguageIconName = (lang: string): string | null => {
           </div>
 
           {(links || demo) && (
-            <div class="mt-1 flex w-full flex-col gap-2 pt-1 sm:flex-row">
+            <div class="mt-auto flex w-full flex-col gap-2 pt-1 sm:flex-row">
               {links && (
                 <a
                   href={links}
@@ -196,12 +214,20 @@ const getLanguageIconName = (lang: string): string | null => {
 
           {contributors.length > 0 && (
             <div class="pt-1">
-              <p class="text-[0.78rem] text-[color:var(--text-muted)]">
-                <span class="font-semibold text-[color:var(--text-main)]">
-                  Contributors:
-                </span>{' '}
-                {contributors.join(', ')}
+              <p class="mb-1 text-[0.78rem] font-semibold text-[color:var(--text-main)]">
+                Contributors
               </p>
+              <div class="flex flex-wrap gap-2">
+                {contributors.map((name) => (
+                  <span
+                    class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60 text-[0.7rem] font-semibold text-[color:var(--text-main)]"
+                    title={name}
+                    aria-label={name}
+                  >
+                    {getInitials(name)}
+                  </span>
+                ))}
+              </div>
             </div>
           )}
         </div>
@@ -249,18 +275,32 @@ const getLanguageIconName = (lang: string): string | null => {
     pointer-events: none;
   }
 
-  .project-card:hover .project-card-inner,
-  .project-card:focus-within .project-card-inner {
-  }
-
-  .project-card:hover .project-card-front,
-  .project-card:focus-within .project-card-front {
+  .project-card[data-flipped='true'] .project-card-front {
     opacity: 0;
   }
 
-  .project-card:hover .project-card-back,
-  .project-card:focus-within .project-card-back {
+  .project-card[data-flipped='true'] .project-card-back {
     opacity: 1;
     pointer-events: auto;
   }
 </style>
+
+<script is:inline>
+  if (typeof window !== 'undefined' && !window.__projectCardClickInit) {
+    window.__projectCardClickInit = true;
+
+    window.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+
+      // Don't toggle when clicking links or buttons inside the card
+      if (target.closest('a, button')) return;
+
+      const card = target.closest('[data-project-card]');
+      if (!card) return;
+
+      const flipped = card.getAttribute('data-flipped') === 'true';
+      card.setAttribute('data-flipped', flipped ? 'false' : 'true');
+    });
+  }
+</script>

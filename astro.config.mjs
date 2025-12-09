@@ -12,7 +12,21 @@ export default defineConfig({
       // Load all local icons from src/icons and selected official icons
       include: {
         local: ['*'],
-        logos: ['typescript-icon', 'python', 'vercel-icon', 'github-icon', 'astro-icon', 'tailwindcss-icon', 'javascript', 'c-plusplus', 'mysql-icon', 'r-lang'],
+        logos: [
+          'typescript-icon',
+          'python',
+          'vercel-icon',
+          'github-icon',
+          'astro-icon',
+          'tailwindcss-icon',
+          'javascript',
+          'c-plusplus',
+          'mysql-icon',
+          'r-lang',
+          'react',
+          'firebase',
+          'wix',
+        ],
       },
     }),
     react(),

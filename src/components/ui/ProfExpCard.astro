@@ -1,0 +1,62 @@
+---
+// Professional Experience card
+// Built on top of the generic ExperienceCard container.
+
+import ExperienceCard from './ExperienceCard.astro';
+import type { ExperienceType } from '../../data/professionalExperiences';
+
+interface Props {
+  title: string;
+  role: string;
+  dates: string;
+  type: ExperienceType;
+  description: string;
+  skills?: string[];
+  location: string;
+  logo?: string;
+  subroles?: string[];
+  contributors?: string[];
+}
+
+const {
+  title,
+  role,
+  dates,
+  type,
+  description,
+  skills = [],
+  location,
+  logo,
+  subroles = [],
+  contributors = [],
+} = Astro.props as Props;
+
+const typeClassMap: Record<ExperienceType, string> = {
+  Contract: 'border-amber-400/70 bg-amber-500/10 text-amber-100',
+  'Full-time': 'border-emerald-400/70 bg-emerald-500/10 text-emerald-100',
+  'Student Role': 'border-sky-400/70 bg-sky-500/10 text-sky-100',
+  Internship: 'border-purple-400/70 bg-purple-500/10 text-purple-100',
+  Researcher: 'border-fuchsia-400/70 bg-fuchsia-500/10 text-fuchsia-100',
+};
+
+const typeClasses = typeClassMap[type];
+---
+
+<ExperienceCard
+  title={title}
+  role={role}
+  location={location}
+  dates={dates}
+  description={description}
+  logo={logo}
+  skills={skills}
+  subroles={subroles}
+  contributors={contributors}
+>
+  <span
+    slot="badge"
+    class={`inline-flex items-center rounded-full border px-2 py-0.5 text-[0.7rem] font-semibold tracking-[0.12em] uppercase ${typeClasses}`}
+  >
+    {type}
+  </span>
+</ExperienceCard>

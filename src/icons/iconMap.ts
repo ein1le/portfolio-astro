@@ -21,6 +21,9 @@ export type IconKey =
   | 'mobile'
   | 'desktop'
   | 'javascript'
+  | 'react'
+  | 'firebase'
+  | 'wix'
   | 'cpp'
   | 'sql'
   | 'r-lang'
@@ -69,6 +72,9 @@ export const iconMap: Record<IconKey, string> = {
   mobile: 'mobile',
   desktop: 'desktop',
   javascript: 'logos:javascript',
+  react: 'logos:react',
+  firebase: 'logos:firebase',
+  wix: 'logos:wix',
   cpp: 'logos:c-plusplus',
   sql: 'logos:mysql-icon',
   'r-lang': 'logos:r-lang',

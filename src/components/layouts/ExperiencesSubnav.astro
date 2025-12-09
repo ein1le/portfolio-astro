@@ -1,21 +1,26 @@
 ---
-// Navbar layout component
-// TODO: Implement navigation bar content and behavior
-
-import { navbarLinks } from './styles/navbarLinks';
+// Experiences sub-navbar component
+// Replica of the main navbar strip, scoped to the experiences section.
 
 const currentPath = Astro.url.pathname;
 const isActive = (href: string) =>
   currentPath === href || currentPath.startsWith(href + '/');
 const baseLinkClasses =
   'inline-flex items-center rounded-t-2xl px-5 py-2 border text-[0.8rem] tracking-[0.14em] uppercase transition-colors duration-150 border-transparent';
+
+const subnavLinks = [
+  { href: '/experiences/professional', label: 'Professional' },
+  { href: '/experiences/academics', label: 'Academic' },
+  { href: '/experiences/leadership', label: 'Leadership' },
+  { href: '/experiences/volunteering', label: 'Volunteering' },
+];
 ---
 
-<header class="md:col-start-2 md:row-start-1 px-8 pt-3 pb-0 bg-gradient-to-r from-slate-900/95 to-slate-900/85 border-b border-transparent backdrop-blur-xl">
+<div class="px-8 pt-1 pb-0 bg-gradient-to-r from-slate-900/95 to-slate-900/85 border-b border-transparent backdrop-blur-xl">
   <div class="flex items-center justify-center gap-3">
     <button
       type="button"
-      data-navbar-prev
+      data-subnav-prev
       aria-label="Scroll tabs left"
       class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 text-xs text-[color:var(--text-muted)] transition-opacity opacity-0 pointer-events-none"
     >
@@ -24,15 +29,15 @@ const baseLinkClasses =
 
     <nav
       class="navbar-strip flex flex-1 px-4 text-[0.8rem] tracking-[0.14em] uppercase text-[color:var(--text-muted)] overflow-x-auto whitespace-nowrap"
-      aria-label="Primary"
-      data-navbar-links
+      aria-label="Experiences subsections"
+      data-subnav-links
     >
-      {navbarLinks.map((link) => (
+      {subnavLinks.map((link) => (
         <a
           href={link.href}
           class={`${baseLinkClasses} ${
             isActive(link.href)
-              ? '-mb-px border-x border-t border-[color:var(--border-subtle)] border-b-transparent bg-[color:var(--bg-app)] text-[color:var(--text-main)] shadow-sm shadow-black/40'
+              ? '-mb-px border-x border-t border-[color:var(--border-subtle)] border-b-transparent bg-[color:var(--bg-app)] text-[color:var(--text-main)] font-semibold shadow-sm shadow-black/40'
               : 'text-[color:var(--text-muted)] hover:text-[color:var(--text-main)] hover:border-slate-600/70 hover:bg-slate-900/40'
           }`}
         >
@@ -43,20 +48,20 @@ const baseLinkClasses =
 
     <button
       type="button"
-      data-navbar-next
+      data-subnav-next
       aria-label="Scroll tabs right"
       class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 text-xs text-[color:var(--text-muted)] transition-opacity opacity-0 pointer-events-none"
     >
       ›
     </button>
   </div>
-</header>
+</div>
 
 <script>
-  const setupNavbarScroll = () => {
-    const nav = document.querySelector('[data-navbar-links]');
-    const prev = document.querySelector('[data-navbar-prev]');
-    const next = document.querySelector('[data-navbar-next]');
+  const setupSubnavScroll = () => {
+    const nav = document.querySelector('[data-subnav-links]');
+    const prev = document.querySelector('[data-subnav-prev]');
+    const next = document.querySelector('[data-subnav-next]');
 
     if (!nav || !prev || !next || nav.dataset.scrollSetup === 'true') return;
     nav.dataset.scrollSetup = 'true';
@@ -67,12 +72,10 @@ const baseLinkClasses =
       const atStart = nav.scrollLeft <= 0;
       const atEnd = nav.scrollLeft >= maxScroll - 1;
 
-      // Dynamic spacing: center when everything fits,
-      // use left-aligned strip when it overflows.
       nav.classList.toggle('justify-center', !scrollable);
       nav.classList.toggle('justify-start', scrollable);
-      nav.classList.toggle('gap-6', !scrollable);
-      nav.classList.toggle('gap-4', scrollable);
+      nav.classList.toggle('gap-5', !scrollable);
+      nav.classList.toggle('gap-3', scrollable);
 
       const showPrev = scrollable && !atStart;
       const showNext = scrollable && !atEnd;
@@ -109,6 +112,6 @@ const baseLinkClasses =
   };
 
   if (typeof window !== 'undefined') {
-    window.addEventListener('load', setupNavbarScroll);
+    window.addEventListener('load', setupSubnavScroll);
   }
 </script>
