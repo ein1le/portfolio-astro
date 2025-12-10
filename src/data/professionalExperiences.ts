@@ -7,6 +7,20 @@ export type ExperienceType =
   | 'Internship'
   | 'Researcher';
 
+export interface ExperienceLink {
+  label: string;
+  url: string;
+  type?: 'GitHub' | 'Website' | 'LinkTree' | 'Award' | 'External' | string;
+}
+
+export interface ExperienceSubrole {
+  role: string;
+  dates?: string;
+  description?: string;
+  skills?: string[];
+  contributors?: string[];
+}
+
 export interface ProfessionalExperience {
   title: string;
   role: string;
@@ -16,8 +30,9 @@ export interface ProfessionalExperience {
   description: string;
   skills: string[];
   logo?: string;
-  subroles?: string[];
+  subroles?: ExperienceSubrole[];
   contributors?: string[];
+  links?: ExperienceLink[];
 }
 
 export const professionalExperiences: ProfessionalExperience[] = [

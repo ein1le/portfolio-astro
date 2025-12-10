@@ -48,7 +48,10 @@ export type IconKey =
   | 'web'
   | 'backend'
   | 'cicd'
-  | 'database';
+  | 'database'
+  | 'linktree'
+  | 'star'
+  | 'external-link';
 
 // For local icons, astro-icon uses the SVG filename (without extension)
 // as the icon name in the "local" set.
@@ -100,6 +103,9 @@ export const iconMap: Record<IconKey, string> = {
   backend: 'backend',
   cicd: 'cicd',
   database: 'database',
+  linktree: 'LinkTree',
+  star: 'Star',
+  'external-link': 'external-link',
 };
 
 export const getIconName = (key: IconKey): string => iconMap[key];

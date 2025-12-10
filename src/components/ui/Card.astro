@@ -1,10 +1,18 @@
 ---
 // Generic Card UI component
 // Reusable container: rounded edges, subtle grey border, transparent background, small shadow.
+
+interface Props {
+  padding?: 'default' | 'compact';
+}
+
+const { padding = 'default' } = Astro.props as Props;
+const verticalPaddingClass =
+  padding === 'compact' ? 'py-4' : 'py-8';
 ---
 
 <div
-  class="h-full w-full rounded-xl border border-slate-500/40 bg-slate-900/70 px-3 py-8 shadow-md shadow-slate-900/50 transition-transform transition-shadow duration-150 ease-out hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/70"
+  class={`h-full w-full rounded-xl border border-slate-500/40 bg-slate-900/70 px-3 ${verticalPaddingClass} shadow-md shadow-slate-900/50 transition-transform transition-shadow duration-150 ease-out hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/70`}
 >
   <slot />
 </div>

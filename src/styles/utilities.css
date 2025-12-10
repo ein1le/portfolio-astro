@@ -65,3 +65,13 @@ details.group[open] .edu-expand {
 .toggle-button[data-state='on'] .toggle-knob {
   transform: translateX(20px);
 }
+
+/* Hide scrollbars while keeping vertical scroll */
+.scroll-y-area {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll-y-area::-webkit-scrollbar {
+  display: none; /* WebKit */
+}

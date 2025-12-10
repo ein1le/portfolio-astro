@@ -10,20 +10,19 @@ export function getInitials(name) {
 
   if (parts.length === 0) return '';
 
-  const first = parts[0];
-  let secondSource;
+  const firstInitial = parts[0].charAt(0).toUpperCase();
 
+  // If there's only a single word, return a single initial
   if (parts.length === 1) {
-    secondSource = parts[0];
-  } else if (parts.length <= 3) {
-    secondSource = parts[1];
-  } else {
-    secondSource = parts[parts.length - 1];
+    return firstInitial;
   }
 
-  const firstInitial = first.charAt(0).toUpperCase();
-  const secondInitial = secondSource ? secondSource.charAt(0).toUpperCase() : '';
+  const secondSource =
+    parts.length <= 3 ? parts[1] : parts[parts.length - 1];
+
+  const secondInitial = secondSource
+    ? secondSource.charAt(0).toUpperCase()
+    : '';
 
   return `${firstInitial}${secondInitial}`.slice(0, 2);
 }
-

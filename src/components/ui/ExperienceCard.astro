@@ -1,8 +1,59 @@
 ---
 // Generic Experience card
 // Inherits from Card and is used by more specific experience cards.
+//
+// Experience data template for copy-paste:
+// {
+//   title: '',
+//   role: '',
+//   dates: '',
+//   location: '',
+//   skills: [],
+//   languages: [],
+//   description: '',
+//   links: [{ label: '', url: '' }],
+//   logo: '',
+//   contributors: [],
+//   subroles: [
+//     {
+//       role: '',
+//       description: '',
+//       dates: '',
+//       skills: [],
+//       links: [{ label: '', url: '' }],
+//       contributors: [],
+//     },
+//   ],
+// }
 
 import Card from './Card.astro';
+import Button from './Button.astro';
+import { Icon } from 'astro-icon/components';
+import { getIconName } from '../../icons/iconMap';
+import { getInitials } from '../../../public/scripts/nameinitials.js';
+
+interface ExperienceLink {
+  label: string;
+  url: string;
+  type?: 'GitHub' | 'Website' | 'LinkTree' | 'Award' | 'External' | string;
+}
+
+interface ExperienceSubrole {
+  role: string;
+  dates?: string;
+  description?: string;
+  skills?: string[];
+  contributors?: string[];
+  links?: ExperienceLink[];
+}
+
+type ExperienceType =
+  | 'Contract'
+  | 'Full-time'
+  | 'Student Role'
+  | 'Internship'
+  | 'Researcher'
+  | string;
 
 interface Props {
   title: string;
@@ -11,8 +62,11 @@ interface Props {
   dates: string;
   description: string;
   logo?: string;
+  type?: ExperienceType;
+  links?: ExperienceLink[];
   skills?: string[];
-  subroles?: string[];
+  languages?: string[];
+  subroles?: ExperienceSubrole[];
   contributors?: string[];
 }
 
@@ -23,14 +77,67 @@ const {
   dates,
   description,
   logo,
+  // type is accepted but no longer rendered as a badge
+  type,
+  links = [],
   skills = [],
+  languages = [],
   subroles = [],
   contributors = [],
 } = Astro.props as Props;
+
+const languageIconKeyMap: Record<string, string> = {
+  AWS: 'cloud',
+  React: 'react',
+  Python: 'python',
+  Wix: 'wix',
+  Firebase: 'firebase',
+  JavaScript: 'javascript',
+};
+
+const getLanguageIconName = (lang: string): string | null => {
+  const key = languageIconKeyMap[lang];
+  return key ? getIconName(key as any) : null;
+};
+
+const getLinkVisuals = (type?: string) => {
+  switch (type) {
+    case 'GitHub':
+      return {
+        buttonClass:
+          'border-black bg-black/70 text-white hover:bg-black hover:border-black',
+        iconName: 'github',
+      };
+    case 'Website':
+      return {
+        buttonClass:
+          'border-sky-400 bg-sky-500/20 text-sky-100 hover:bg-sky-500/35 hover:border-sky-300',
+        iconName: 'web',
+      };
+    case 'LinkTree':
+      return {
+        buttonClass:
+          'border-emerald-400 bg-emerald-500/20 text-emerald-100 hover:bg-emerald-500/35 hover:border-emerald-300',
+        iconName: 'linktree',
+      };
+    case 'Award':
+      return {
+        buttonClass:
+          'border-amber-400 bg-amber-500/20 text-amber-50 hover:bg-amber-500/35 hover:border-amber-300',
+        iconName: 'star',
+      };
+    default:
+      return {
+        buttonClass:
+          'border-purple-400 bg-purple-500/20 text-purple-50 hover:bg-purple-500/35 hover:border-purple-300',
+        iconName: 'external-link',
+      };
+  }
+};
 ---
 
 <Card>
-  <div class="flex flex-col gap-2 text-sm text-[color:var(--text-main)]">
+  <div class="flex flex-col gap-2 px-2 md:px-3 text-sm text-[color:var(--text-main)]">
     <div class="flex flex-wrap items-start gap-3">
       {logo ? (
         <div class="h-12 w-12 shrink-0 overflow-hidden rounded-md border border-purple-400/40 bg-slate-900">
@@ -66,43 +173,169 @@ const {
             <p class="text-[0.78rem] text-[color:var(--text-muted)]">
               {location}
             </p>
-            <slot name="badge" />
           </div>
         </div>
 
-        {subroles.length > 0 && (
-          <ul class="mt-1 list-disc pl-4 text-[0.75rem] text-[color:var(--text-muted)]">
-            {subroles.map((item) => (
-              <li>{item}</li>
+        {skills.length > 0 && (
+          <div class="mt-1 flex flex-wrap gap-2 text-[0.75rem] text-[color:var(--text-muted)]">
+            {skills.map((skill) => (
+              <span class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5">
+                {skill}
+              </span>
             ))}
-          </ul>
+          </div>
+        )}
+
+        {(languages.length > 0 || contributors.length > 0) && (
+          <div class="mt-1 flex flex-wrap items-center justify-between gap-2 text-[0.75rem] text-[color:var(--text-muted)]">
+            {contributors.length > 0 && (
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--text-main)]">
+                  Contributors
+                </span>
+                <div class="flex flex-wrap gap-2">
+                  {contributors.map((name) => (
+                    <span
+                      class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60 text-[0.7rem] font-semibold text-[color:var(--text-main)]"
+                      title={name}
+                      aria-label={name}
+                    >
+                      {getInitials(name)}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {languages.length > 0 && (
+              <div class="flex flex-wrap gap-1 sm:ml-auto sm:justify-end">
+                {languages.map((lang) => {
+                  const iconName = getLanguageIconName(lang);
+
+                  if (iconName) {
+                    return (
+                      <span
+                        class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/40"
+                        aria-label={lang}
+                        title={lang}
+                      >
+                        <Icon
+                          name={iconName}
+                          class="h-3.5 w-3.5 text-[color:var(--text-main)]"
+                        />
+                      </span>
+                    );
+                  }
+
+                  return (
+                    <span class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-1.5 py-0.5 text-[0.65rem]">
+                      {lang}
+                    </span>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+
+        {description && (
+          <p class="mt-1 text-[0.8rem] leading-relaxed text-[color:var(--text-muted)]">
+            {description}
+          </p>
+        )}
+
+        {subroles.length > 0 && (
+          <div class="mt-3 space-y-3">
+            {subroles.map((sub) => (
+              <div class="rounded-md bg-slate-950/40 px-3 py-3">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <p class="text-[0.8rem] font-semibold tracking-[0.1em] uppercase text-[color:var(--text-main)]">
+                    {sub.role}
+                  </p>
+                  {sub.dates && (
+                    <p class="text-[0.72rem] text-[color:var(--text-muted)]">
+                      {sub.dates}
+                    </p>
+                  )}
+                </div>
+
+                {sub.description && (
+                  <p class="mt-1 text-[0.78rem] leading-relaxed text-[color:var(--text-muted)]">
+                    {sub.description}
+                  </p>
+                )}
+
+                {sub.skills && sub.skills.length > 0 && (
+                  <div class="mt-2 flex flex-wrap gap-2 text-[0.72rem] text-[color:var(--text-muted)]">
+                    {sub.skills.map((skill) => (
+                      <span class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {sub.contributors && sub.contributors.length > 0 && (
+                  <div class="mt-2 flex items-center gap-2">
+                    <span class="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--text-main)]">
+                      Contributors
+                    </span>
+                    <div class="flex flex-wrap gap-1.5">
+                      {sub.contributors.map((person) => (
+                        <span
+                          class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60 text-[0.65rem] font-semibold text-[color:var(--text-main)]"
+                          title={person}
+                          aria-label={person}
+                        >
+                          {getInitials(person)}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {sub.links && sub.links.length > 0 && (
+                  <div class="mt-1 flex flex-wrap gap-2 text-[0.72rem] text-[color:var(--text-muted)]">
+                    {sub.links.map((link) => (
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5 hover:border-[color:var(--accent)] hover:text-[color:var(--text-main)]"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </div>
 
-    {description && (
-      <p class="mt-1 text-[0.8rem] leading-relaxed text-[color:var(--text-muted)]">
-        {description}
-      </p>
-    )}
+    {links.length > 0 && (
+      <div class="mt-2 flex flex-wrap gap-2 pt-1 text-[0.75rem] text-[color:var(--text-muted)] sm:justify-end sm:ml-auto">
+        {links.map((link) => {
+          const { buttonClass, iconName } = getLinkVisuals(link.type);
 
-    {skills.length > 0 && (
-      <div class="mt-2 flex flex-wrap gap-2 pt-1 text-[0.75rem] text-[color:var(--text-muted)]">
-        {skills.map((skill) => (
-          <span class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5">
-            {skill}
-          </span>
-        ))}
-      </div>
-    )}
-
-    {contributors.length > 0 && (
-      <div class="mt-2 flex flex-wrap gap-2 pt-1 text-[0.75rem] text-[color:var(--text-muted)]">
-        {contributors.map((person) => (
-          <span class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5">
-            {person}
-          </span>
-        ))}
+          return (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block"
+            >
+              <Button class={`px-3 py-1 text-[0.7rem] ${buttonClass}`}>
+                <span class="flex items-center gap-1.5">
+                  <Icon name={getIconName(iconName as any)} class="h-3.5 w-3.5" />
+                  <span>{link.label}</span>
+                </span>
+              </Button>
+            </a>
+          );
+        })}
       </div>
     )}
   </div>
