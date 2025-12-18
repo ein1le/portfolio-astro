@@ -32,10 +32,33 @@ import { Icon } from 'astro-icon/components';
 import { getIconName } from '../../icons/iconMap';
 import { getInitials } from '../../../public/scripts/nameinitials.js';
 
+// Tool / language logos for academic experiences (bundled as URLs)
+import abaqusLogo from '../../icons/abaqus.png?url';
+import alphaExpressionLogo from '../../icons/alphaexpression.png?url';
+import ansysLogo from '../../icons/ansys.png?url';
+import apacheLogo from '../../icons/apache.png?url';
+import bloombergLogo from '../../icons/bloomberg-media.png?url';
+import digimuLogo from '../../icons/DIGIMU.png?url';
+import fusion360Logo from '../../icons/fusion360.png?url';
+import langchainLogo from '../../icons/langchain.png?url';
+import lovableLogo from '../../icons/lovable.png?url';
+import matlabLogo from '../../icons/matlab.png?url';
+import nvidiaLogo from '../../icons/nvidia.png?url';
+import quantconnectLogo from '../../icons/quantconnect.png?url';
+import starCcmLogo from '../../icons/star-ccm.png?url';
+import streamlitLogo from '../../icons/streamlit.png?url';
+import tensorflowLogo from '../../icons/tensorflow.png?url';
+import websimLogo from '../../icons/websim.jpg?url';
+import wixLogo from '../../icons/wix.png?url';
+import firebaseLogo from '../../icons/firebase-me.png?url';
+import supabaseLogo from '../../icons/supabase.png?url';
+import vbaLogo from '../../icons/VBA.png?url';
+import tableauLogo from '../../icons/tableau.png?url';
+
 interface ExperienceLink {
   label: string;
   url: string;
-  type?: 'GitHub' | 'Website' | 'LinkTree' | 'Award' | 'External' | string;
+  type?: 'GitHub' | 'Website' | 'LinkTree' | 'Award' | 'External' | 'Instagram' | string;
 }
 
 interface ExperienceSubrole {
@@ -58,6 +81,7 @@ type ExperienceType =
 interface Props {
   title: string;
   role: string;
+  organisation?: string;
   location: string;
   dates: string;
   description: string;
@@ -73,6 +97,7 @@ interface Props {
 const {
   title,
   role,
+  organisation,
   location,
   dates,
   description,
@@ -90,9 +115,51 @@ const languageIconKeyMap: Record<string, string> = {
   AWS: 'cloud',
   React: 'react',
   Python: 'python',
-  Wix: 'wix',
-  Firebase: 'firebase',
+  'C++': 'cpp',
+  Supabase: 'database',
+  // These have bespoke raster logos instead of icon font
+  // Wix: 'wix',
+  // Firebase: 'firebase',
   JavaScript: 'javascript',
+};
+
+const languageLogoMap: Record<string, string> = {
+  // Cloud / infra
+  Apache: apacheLogo,
+  Supabase: supabaseLogo,
+
+  // CAD / simulation
+  'Autodesk Fusion360': fusion360Logo,
+  'Star CCM+': starCcmLogo,
+  'Abaqus CAE': abaqusLogo,
+  DIGIMU: digimuLogo,
+  'Ansys Edupack': ansysLogo,
+
+  // Analytics / quant tooling
+  Bloomberg: bloombergLogo,
+  Streamlit: streamlitLogo,
+  QuantConnect: quantconnectLogo,
+
+  // ML / AI stacks
+  TensorFlow: tensorflowLogo,
+  Nvidia: nvidiaLogo,
+  LangChain: langchainLogo,
+  Lovable: lovableLogo,
+
+  // Quant research platforms
+  'Alpha Expression': alphaExpressionLogo,
+  WebSim: websimLogo,
+
+  // Math / programming
+  MATLAB: matlabLogo,
+
+  // Web platforms
+  Wix: wixLogo,
+  Firebase: firebaseLogo,
+
+  // BI / analytics tooling
+  VBA: vbaLogo,
+  Tableau: tableauLogo,
 };
 
 const getLanguageIconName = (lang: string): string | null => {
@@ -111,20 +178,26 @@ const getLinkVisuals = (type?: string) => {
     case 'Website':
       return {
         buttonClass:
-          'border-sky-400 bg-sky-500/20 text-sky-100 hover:bg-sky-500/35 hover:border-sky-300',
+          '!border-sky-400 !bg-sky-500/20 !text-sky-100 hover:!bg-sky-500/35 hover:!border-sky-300',
         iconName: 'web',
       };
     case 'LinkTree':
       return {
         buttonClass:
-          'border-emerald-400 bg-emerald-500/20 text-emerald-100 hover:bg-emerald-500/35 hover:border-emerald-300',
+          '!border-emerald-400 !bg-emerald-500/20 !text-emerald-100 hover:!bg-emerald-500/35 hover:!border-emerald-300',
         iconName: 'linktree',
       };
     case 'Award':
       return {
         buttonClass:
-          'border-amber-400 bg-amber-500/20 text-amber-50 hover:bg-amber-500/35 hover:border-amber-300',
+          '!border-amber-400 !bg-amber-500/20 !text-amber-50 hover:!bg-amber-500/35 hover:!border-amber-300',
         iconName: 'star',
+      };
+    case 'Instagram':
+      return {
+        buttonClass:
+          '!border-pink-400 !bg-pink-500/20 !text-pink-100 hover:!bg-pink-500/35 hover:!border-pink-300',
+        iconName: 'instagram',
       };
     default:
       return {
@@ -158,13 +231,18 @@ const getLinkVisuals = (type?: string) => {
 
       <div class="flex min-w-0 flex-1 flex-col gap-1">
         <div class="flex flex-wrap items-start justify-between gap-2">
-          <div class="min-w-0 max-w-[65%]">
+          <div class="min-w-0 max-w-[65%] space-y-0.5 md:space-y-1">
             <p class="text-[1rem] font-semibold tracking-[0.12em] uppercase break-words">
-              {role}
-            </p>
-            <h2 class="text-[0.9rem] tracking-[0.12em] uppercase break-words text-[color:var(--text-muted)]">
               {title}
+            </p>
+            <h2 class="text-[0.9rem] tracking-[0.12em] uppercase break-words text-[color:var(--text-main)]">
+              {role}
             </h2>
+            {organisation && (
+              <p class="mt-0.5 md:mt-1 text-[0.85rem] font-semibold tracking-[0.12em] uppercase break-words text-[color:var(--accent)]">
+                {organisation}
+              </p>
+            )}
           </div>
           <div class="flex flex-col items-end gap-1 text-right">
             <p class="text-[0.78rem] text-[color:var(--text-muted)]">
@@ -176,41 +254,40 @@ const getLinkVisuals = (type?: string) => {
           </div>
         </div>
 
-        {skills.length > 0 && (
-          <div class="mt-1 flex flex-wrap gap-2 text-[0.75rem] text-[color:var(--text-muted)]">
-            {skills.map((skill) => (
-              <span class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5">
-                {skill}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {(languages.length > 0 || contributors.length > 0) && (
+        {(skills.length > 0 || languages.length > 0) && (
           <div class="mt-1 flex flex-wrap items-center justify-between gap-2 text-[0.75rem] text-[color:var(--text-muted)]">
-            {contributors.length > 0 && (
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--text-main)]">
-                  Contributors
-                </span>
-                <div class="flex flex-wrap gap-2">
-                  {contributors.map((name) => (
-                    <span
-                      class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60 text-[0.7rem] font-semibold text-[color:var(--text-main)]"
-                      title={name}
-                      aria-label={name}
-                    >
-                      {getInitials(name)}
-                    </span>
-                  ))}
-                </div>
+            {skills.length > 0 && (
+              <div class="flex flex-wrap gap-2">
+                {skills.map((skill) => (
+                  <span class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5">
+                    {skill}
+                  </span>
+                ))}
               </div>
             )}
 
             {languages.length > 0 && (
               <div class="flex flex-wrap gap-1 sm:ml-auto sm:justify-end">
                 {languages.map((lang) => {
+                  const logoSrc = languageLogoMap[lang];
                   const iconName = getLanguageIconName(lang);
+
+                  if (logoSrc) {
+                    return (
+                      <span
+                        class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/40"
+                        aria-label={lang}
+                        title={lang}
+                      >
+                        <img
+                          src={logoSrc}
+                          alt={lang}
+                          class="h-4 w-4 object-contain"
+                          loading="lazy"
+                        />
+                      </span>
+                    );
+                  }
 
                   if (iconName) {
                     return (
@@ -235,6 +312,25 @@ const getLinkVisuals = (type?: string) => {
                 })}
               </div>
             )}
+          </div>
+        )}
+
+        {contributors.length > 0 && (
+          <div class="mt-1 flex flex-wrap items-center gap-2 text-[0.75rem] text-[color:var(--text-muted)]">
+            <span class="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--text-main)]">
+              Contributors
+            </span>
+            <div class="flex flex-wrap gap-2">
+              {contributors.map((name) => (
+                <span
+                  class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60 text-[0.7rem] font-semibold text-[color:var(--text-main)]"
+                  title={name}
+                  aria-label={name}
+                >
+                  {getInitials(name)}
+                </span>
+              ))}
+            </div>
           </div>
         )}
 
@@ -295,17 +391,26 @@ const getLinkVisuals = (type?: string) => {
                 )}
 
                 {sub.links && sub.links.length > 0 && (
-                  <div class="mt-1 flex flex-wrap gap-2 text-[0.72rem] text-[color:var(--text-muted)]">
-                    {sub.links.map((link) => (
-                      <a
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5 hover:border-[color:var(--accent)] hover:text-[color:var(--text-main)]"
-                      >
-                        {link.label}
-                      </a>
-                    ))}
+                  <div class="mt-2 flex flex-wrap justify-end gap-2 text-[0.72rem] text-[color:var(--text-muted)]">
+                    {sub.links.map((link) => {
+                      const { buttonClass, iconName } = getLinkVisuals(link.type);
+
+                      return (
+                        <a
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-block"
+                        >
+                          <Button class={`px-2.5 py-1 text-[0.7rem] ${buttonClass}`}>
+                            <span class="flex items-center gap-1.5">
+                              <Icon name={getIconName(iconName as any)} class="h-3 w-3" />
+                              <span>{link.label}</span>
+                            </span>
+                          </Button>
+                        </a>
+                      );
+                    })}
                   </div>
                 )}
               </div>

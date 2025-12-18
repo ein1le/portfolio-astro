@@ -66,9 +66,8 @@ details.group[open] .edu-expand {
   transform: translateX(20px);
 }
 
-/* Hide scrollbars while keeping vertical scroll */
+/* Hide scrollbars (overflow controlled via layout classes) */
 .scroll-y-area {
-  overflow-y: auto;
   scrollbar-width: none; /* Firefox */
 }
 

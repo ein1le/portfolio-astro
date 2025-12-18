@@ -9,6 +9,7 @@ export type IconKey =
   | 'linkedin'
   | 'telegram'
   | 'kaggle'
+  | 'instagram'
   | 'mail'
   | 'envelope'
   | 'map-pin'
@@ -63,6 +64,7 @@ export const iconMap: Record<IconKey, string> = {
   linkedin: 'linkedin',
   telegram: 'telegram',
   kaggle: 'kaggle',
+  instagram: 'instagram',
   mail: 'mail',
   envelope: 'envelope',
   'map-pin': 'map-pin',

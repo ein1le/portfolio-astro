@@ -24,6 +24,7 @@ export interface ExperienceSubrole {
 export interface ProfessionalExperience {
   title: string;
   role: string;
+  organisation?: string;
   dates: string;
   location: string;
   type: ExperienceType;
