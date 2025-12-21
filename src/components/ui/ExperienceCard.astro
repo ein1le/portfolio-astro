@@ -37,6 +37,7 @@ import abaqusLogo from '../../icons/abaqus.png?url';
 import alphaExpressionLogo from '../../icons/alphaexpression.png?url';
 import ansysLogo from '../../icons/ansys.png?url';
 import apacheLogo from '../../icons/apache.png?url';
+import awsLogo from '../../icons/aws.png?url';
 import bloombergLogo from '../../icons/bloomberg-media.png?url';
 import digimuLogo from '../../icons/DIGIMU.png?url';
 import fusion360Logo from '../../icons/fusion360.png?url';
@@ -44,16 +45,17 @@ import langchainLogo from '../../icons/langchain.png?url';
 import lovableLogo from '../../icons/lovable.png?url';
 import matlabLogo from '../../icons/matlab.png?url';
 import nvidiaLogo from '../../icons/nvidia.png?url';
+import opencvLogo from '../../icons/opencv.png?url';
 import quantconnectLogo from '../../icons/quantconnect.png?url';
 import starCcmLogo from '../../icons/star-ccm.png?url';
 import streamlitLogo from '../../icons/streamlit.png?url';
+import supabaseLogo from '../../icons/supabase.png?url';
+import tableauLogo from '../../icons/tableau.png?url';
 import tensorflowLogo from '../../icons/tensorflow.png?url';
+import vbaLogo from '../../icons/VBA.png?url';
 import websimLogo from '../../icons/websim.jpg?url';
 import wixLogo from '../../icons/wix.png?url';
 import firebaseLogo from '../../icons/firebase-me.png?url';
-import supabaseLogo from '../../icons/supabase.png?url';
-import vbaLogo from '../../icons/VBA.png?url';
-import tableauLogo from '../../icons/tableau.png?url';
 
 interface ExperienceLink {
   label: string;
@@ -112,19 +114,21 @@ const {
 } = Astro.props as Props;
 
 const languageIconKeyMap: Record<string, string> = {
-  AWS: 'cloud',
-  React: 'react',
+  // Languages / runtimes
   Python: 'python',
   'C++': 'cpp',
-  Supabase: 'database',
-  // These have bespoke raster logos instead of icon font
-  // Wix: 'wix',
-  // Firebase: 'firebase',
   JavaScript: 'javascript',
+
+  // Frameworks / libraries
+  React: 'react',
+
+  // These have bespoke raster logos instead of icon font
+  // AWS, Supabase, OpenCV, Wix, Firebase all use PNG/JPG logos below.
 };
 
 const languageLogoMap: Record<string, string> = {
   // Cloud / infra
+  AWS: awsLogo,
   Apache: apacheLogo,
   Supabase: supabaseLogo,
 
@@ -145,6 +149,7 @@ const languageLogoMap: Record<string, string> = {
   Nvidia: nvidiaLogo,
   LangChain: langchainLogo,
   Lovable: lovableLogo,
+  OpenCV: opencvLogo,
 
   // Quant research platforms
   'Alpha Expression': alphaExpressionLogo,
@@ -275,14 +280,14 @@ const getLinkVisuals = (type?: string) => {
                   if (logoSrc) {
                     return (
                       <span
-                        class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/40"
+                        class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/40 overflow-hidden"
                         aria-label={lang}
                         title={lang}
                       >
                         <img
                           src={logoSrc}
                           alt={lang}
-                          class="h-4 w-4 object-contain"
+                          class="h-full w-full object-cover"
                           loading="lazy"
                         />
                       </span>

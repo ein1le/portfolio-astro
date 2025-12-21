@@ -61,14 +61,31 @@ const groupIconName = icon ? getIconName(icon) : null;
           const itemIconName = item.icon ? getIconName(item.icon) : null;
 
           return (
-            <span class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60">
-              {itemIconName ? (
-                <Icon name={itemIconName} class="h-5 w-5 text-[color:var(--text-main)]" />
-              ) : (
-                <span class="text-[0.7rem] font-semibold text-[color:var(--text-main)]">
-                  {item.name[0]}
-                </span>
-              )}
+            <span class="group relative inline-flex h-9 w-9 items-center justify-center overflow-visible">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60 overflow-hidden">
+                {item.logo ? (
+                  <img
+                    src={item.logo}
+                    alt={item.name}
+                    class="h-full w-full object-cover transition-transform duration-150 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                ) : itemIconName ? (
+                  <Icon
+                    name={itemIconName}
+                    class="h-5 w-5 text-[color:var(--text-main)] transition-transform duration-150 group-hover:scale-110"
+                  />
+                ) : (
+                  <span class="text-[0.7rem] font-semibold text-[color:var(--text-main)]">
+                    {item.name[0]}
+                  </span>
+                )}
+              </span>
+              <span
+                class="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 scale-95 rounded-full bg-slate-900/95 px-2 py-0.5 text-[0.65rem] font-medium text-[color:var(--text-main)] opacity-0 shadow-sm shadow-black/40 transition-all duration-150 group-hover:opacity-100 group-hover:scale-100"
+              >
+                {item.name}
+              </span>
             </span>
           );
         })}
@@ -80,14 +97,31 @@ const groupIconName = icon ? getIconName(icon) : null;
             const itemIconName = item.icon ? getIconName(item.icon) : null;
 
             return (
-              <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60">
-                {itemIconName ? (
-                  <Icon name={itemIconName} class="h-4 w-4 text-[color:var(--text-main)]" />
-                ) : (
-                  <span class="text-[0.65rem] font-semibold text-[color:var(--text-main)]">
-                    {item.name[0]}
-                  </span>
-                )}
+              <span class="group relative inline-flex h-7 w-7 items-center justify-center overflow-visible">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60 overflow-hidden">
+                  {item.logo ? (
+                    <img
+                      src={item.logo}
+                      alt={item.name}
+                      class="h-full w-full object-cover transition-transform duration-150 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  ) : itemIconName ? (
+                    <Icon
+                      name={itemIconName}
+                      class="h-4 w-4 text-[color:var(--text-main)] transition-transform duration-150 group-hover:scale-110"
+                    />
+                  ) : (
+                    <span class="text-[0.65rem] font-semibold text-[color:var(--text-main)]">
+                      {item.name[0]}
+                    </span>
+                  )}
+                </span>
+                <span
+                  class="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 scale-95 rounded-full bg-slate-900/95 px-2 py-0.5 text-[0.65rem] font-medium text-[color:var(--text-main)] opacity-0 shadow-sm shadow-black/40 transition-all duration-150 group-hover:opacity-100 group-hover:scale-100"
+                >
+                  {item.name}
+                </span>
               </span>
             );
           })}

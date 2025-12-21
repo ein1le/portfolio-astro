@@ -38,7 +38,6 @@ export type IconKey =
   | 'quantlib'
   | 'huggingface'
   | 'spacy'
-  | 'opencv'
   | 'surprise'
   | 'cloud'
   | 'analytics'
@@ -93,7 +92,6 @@ export const iconMap: Record<IconKey, string> = {
   quantlib: 'quantlib',
   huggingface: 'huggingface',
   spacy: 'spacy',
-  opencv: 'opencv',
   surprise: 'surprise',
   cloud: 'cloud',
   analytics: 'analytics',

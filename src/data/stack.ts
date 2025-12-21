@@ -2,10 +2,41 @@
 // Defines logical groups for languages, tools, and platforms used across projects.
 
 import type { IconKey } from '../icons/iconMap';
+import cLogo from '../icons/CLang.png?url';
+import csharpLogo from '../icons/csharp.png?url';
+import bashLogo from '../icons/bash.png?url';
+import matlabLogo from '../icons/matlab.png?url';
+import vbaLogo from '../icons/VBA.png?url';
+import pytorchLogo from '../icons/pytorch.png?url';
+import pytorchLightningLogo from '../icons/pytorch-lightning.png?url';
+import scikitLogo from '../icons/scikit.png?url';
+import scipyLogo from '../icons/scipy.png?url';
+import quantlibLogo from '../icons/quantlib.png?url';
+import quantconnectLogo from '../icons/quantconnect.png?url';
+import opencvLogo from '../icons/opencv.png?url';
+import tensorflowLogo from '../icons/tensorflow.png?url';
+import kerasLogo from '../icons/keras.png?url';
+import langchainLogo from '../icons/langchain.png?url';
+import chromaDbLogo from '../icons/chromadb.png?url';
+import gunicornLogo from '../icons/gunicorn.png?url';
+import huggingFaceLogo from '../icons/hugging-face.png?url';
+import weightsBiasesLogo from '../icons/weights-biases.png?url';
+import langgraphLogo from '../icons/langgraph.png?url';
+import onnxRuntimeLogo from '../icons/onnx-runtime.png?url';
+import modalLogo from '../icons/modal-labs.png?url';
+import claudeLogo from '../icons/claude.png?url';
+import openaiLogo from '../icons/openai.png?url';
+import mlflowLogo from '../icons/mlflow.png?url';
+import pandasLogo from '../icons/pandas.png?url';
+import mysqlLogo from '../icons/mysql.png?url';
+import mongoLogo from '../icons/mongodb.png?url';
+import kafkaLogo from '../icons/apachespark.png?url';
+import seleniumLogo from '../icons/selenium.png?url';
 
 export interface StackElement {
   name: string;
   icon?: IconKey;
+  logo?: string;
   description: string;
 }
 
@@ -39,6 +70,11 @@ export const stackGroups: StackGroup[] = [
         icon: 'r-lang',
         description: 'Used for statistical analysis and visualisation.',
       },
+      {
+        name: 'MATLAB',
+        logo: matlabLogo,
+        description: 'Used for numerical computing and prototyping.',
+      },
     ],
     minor: [
       {
@@ -53,18 +89,22 @@ export const stackGroups: StackGroup[] = [
       },
       {
         name: 'C',
+        logo: cLogo,
         description: 'Used for low-level and embedded systems programming.',
       },
       {
+        name: 'C#',
+        logo: csharpLogo,
+        description: 'Used for Unity game development and desktop applications.',
+      },
+      {
         name: 'Bash',
+        logo: bashLogo,
         description: 'Used for scripting, automation, and tooling.',
       },
       {
-        name: 'MATLAB',
-        description: 'Used for numerical computing and prototyping.',
-      },
-      {
         name: 'VBA',
+        logo: vbaLogo,
         description: 'Used for automating workflows inside Excel and Office.',
       },
     ],
@@ -80,46 +120,46 @@ export const stackGroups: StackGroup[] = [
         description: 'Tabular processing and numerical computing.',
       },
       {
-        name: 'PyTorch Lightning',
-        icon: 'pytorch-lightning',
+        name: 'PyTorch',
+        logo: pytorchLogo,
         description: 'High-level training loops built on top of PyTorch.',
       },
       {
         name: 'TensorFlow',
-        icon: 'tensorflow',
+        logo: tensorflowLogo,
         description: 'Production-ready deep learning framework.',
       },
       {
         name: 'Scikit-learn',
-        icon: 'scikit-learn',
+        logo: scikitLogo,
         description: 'Classical ML toolkit for modelling and evaluation.',
+      },
+      {
+        name: 'Keras',
+        logo: kerasLogo,
+        description: 'High-level neural network API for rapid prototyping.',
       },
     ],
     minor: [
       {
-        name: 'Keras',
-        icon: 'keras',
-        description: 'High-level neural network API for rapid prototyping.',
-      },
-      {
-        name: 'Xarray',
-        icon: 'xarray',
-        description: 'Labeled N-dimensional arrays for scientific computing.',
-      },
-      {
         name: 'tslearn',
-        icon: 'tslearn',
+        // no dedicated logo yet; falls back to first letter
         description: 'Time-series specific machine learning algorithms.',
       },
       {
         name: 'SciPy',
-        icon: 'scipy',
+        logo: scipyLogo,
         description: 'Core scientific computing routines on top of NumPy.',
       },
       {
         name: 'QuantLib',
-        icon: 'quantlib',
+        logo: quantlibLogo,
         description: 'Quantitative finance library for pricing and risk.',
+      },
+      {
+        name: 'QuantConnect',
+        logo: quantconnectLogo,
+        description: 'Cloud-native algorithmic trading research and execution.',
       },
       {
         name: 'spaCy',
@@ -128,12 +168,12 @@ export const stackGroups: StackGroup[] = [
       },
       {
         name: 'OpenCV',
-        icon: 'opencv',
+        logo: opencvLogo,
         description: 'Computer vision primitives and image processing tools.',
       },
       {
         name: 'Surprise',
-        icon: 'surprise',
+        // no dedicated logo yet; falls back to first letter
         description: 'Recommender system algorithms and evaluation utilities.',
       },
     ],
@@ -145,68 +185,61 @@ export const stackGroups: StackGroup[] = [
     major: [
       {
         name: 'LangChain',
-        description: 'Composable framework for building LLM-powered applications and agents.',
+        logo: langchainLogo,
+        description: 'Langchain and LangGraph framework for building LLM-powered applications and agents.',
       },
       {
         name: 'PyTorch Lightning',
-        icon: 'pytorch-lightning',
+        logo: pytorchLightningLogo,
         description: 'Structured training loops and experiment scaffolding on top of PyTorch.',
+      },
+      {
+        name: 'Hugging Face Transformers',
+        logo: huggingFaceLogo,
+        description: 'Pretrained transformer models for NLP and beyond.',
       },
     ],
     minor: [
       {
         name: 'Weights & Biases',
+        logo: weightsBiasesLogo,
         description: 'Experiment tracking, logging, and model performance dashboards.',
       },
       {
-        name: 'LangGraph',
-        description: 'Graph-based orchestration layer for stateful LLM agents.',
-      },
-      {
-        name: 'ChromaDB',
-        description: 'Vector database for semantic search and retrieval-augmented generation.',
+        name: 'Vector Databases',
+        logo: chromaDbLogo,
+        description: 'ChromaDB and Pinecone for embedding storage and similarity search.',
       },
       {
         name: 'ONNX Runtime',
+        logo: onnxRuntimeLogo,
         description: 'Portable runtime for optimised model inference on multiple backends.',
       },
       {
         name: 'Modal',
+        logo: modalLogo,
         description: 'Serverless compute platform for Python and ML workloads.',
       },
       {
-        name: 'Gunicorn',
-        description: 'WSGI HTTP server commonly used to run Python APIs in production.',
+        name: 'Python ASGI/WSGI',
+        logo: gunicornLogo,
+        description: 'Gunicorn and Uvicorn servers for serving ML APIs and applications.',
       },
       {
-        name: 'Uvicorn',
-        description: 'ASGI server used with FastAPI and other async Python frameworks.',
-      },
-      {
-        name: 'Pickle',
-        description: 'Python serialisation format for models and intermediate artefacts.',
-      },
-      {
-        name: 'Claude',
+        name: 'Claude API',
+        logo: claudeLogo,
         description: 'LLM used as a reasoning engine or assistant in applied systems.',
       },
       {
-        name: 'Codex',
+        name: 'OpenAI API',
+        logo: openaiLogo,
         description: 'Code generation and completion models for developer tooling.',
       },
       {
-        name: 'Cursor',
-        description: 'AI-assisted code editor for rapid prototyping and refactoring.',
-      },
-      {
         name: 'MLflow',
+        logo: mlflowLogo,
         description: 'Open-source platform for tracking experiments and managing ML models.',
-      },
-      {
-        name: 'Hugging Face Transformers',
-        icon: 'huggingface',
-        description: 'Pretrained transformer models for NLP and beyond.',
-      },
+      }
     ],
   },
   {
@@ -312,6 +345,10 @@ export const stackGroups: StackGroup[] = [
         name: 'GSAP',
         description: 'Animation library for rich, timeline-based UI motion.',
       },
+      {
+        name: 'Three.js',
+        description: 'Animation library for rich, timeline-based UI motion.',
+      },
     ],
   },
   {
@@ -326,10 +363,6 @@ export const stackGroups: StackGroup[] = [
     ],
     minor: [
       {
-        name: 'Azure & Databricks',
-        description: 'Azure ML and Databricks for managed ML workflows and lakehouse analytics.',
-      },
-      {
         name: 'Google Cloud',
         description: 'GCE, GKE, Firestore, BigQuery, Dataflow, and Vertex AI for scalable data and ML workloads.',
       },
@@ -342,12 +375,12 @@ export const stackGroups: StackGroup[] = [
     major: [
       {
         name: 'Pandas',
-        icon: 'python',
+        logo: pandasLogo,
         description: 'Primary tool for tabular analysis and data munging.',
       },
       {
         name: 'MySQL',
-        icon: 'sql',
+        logo: mysqlLogo,
         description: 'Relational database used for transactional workloads.',
       },
       {
@@ -360,32 +393,30 @@ export const stackGroups: StackGroup[] = [
         description: 'Lakehouse platform that combines data warehousing and data engineering.',
       },
       {
-        name: 'PySpark',
-        icon: 'python',
-        description: 'Distributed data processing on top of Apache Spark.',
+        name: 'Python Webscraping',
+        logo: seleniumLogo,
+        description: 'BeautifulSoup, Selenium, and Scrapy.',
       },
     ],
     minor: [
       {
-        name: 'Apache Kafka',
-        description: 'Streaming platform for event-driven architectures.',
-      },
-      {
-        name: 'Apache Spark',
-        description: 'Cluster-computing framework for large-scale data processing.',
-      },
-      {
-        name: 'Apache Hadoop',
-        description: 'Distributed storage and processing for large data sets.',
+        name: 'Apache',
+        logo: kafkaLogo,
+        description: 'Hadoop, Spark, Scala, and Hive for big data processing and ETL.',
       },
       {
         name: 'MongoDB',
+        logo: mongoLogo,
         description: 'Document-oriented NoSQL database for flexible schemas.',
       },
       {
-        name: 'Microsoft Access',
-        description: 'Desktop database used in smaller or legacy workflows.',
+        name: 'Kubernetes',
+        description: 'Container orchestration platform for managing containerised applications.',
       },
+      {
+        name: 'Redis',
+        description: 'In-memory data structure store for caching and session management.',
+      }
     ],
   },
   {
@@ -411,6 +442,11 @@ export const stackGroups: StackGroup[] = [
       {
         name: 'Terraform',
         description: 'Infrastructure-as-code for cloud resources and environments.',
+      },
+      {
+        name: 'Kafka',
+        logo: kafkaLogo,
+        description: 'Streaming platform for event-driven architectures.',
       },
     ],
   },
@@ -479,17 +515,21 @@ export const stackGroups: StackGroup[] = [
     ],
     minor: [
       {
-        name: 'ROS',
-        description: 'Robot Operating System for robotics middleware and tooling.',
+        name: 'Robotic Simulation',
+        description: 'Robot Operating System, WeBots, and Gazebo.',
       },
       {
-        name: 'Gazebo',
-        description: '3D robotics simulator for testing control and perception.',
+        name: 'Micrcontroller Programming',
+        description: 'Arduino and Raspberry Pi PICO Programming',
       },
       {
         name: 'Star-CCM+',
         description: 'CFD and multiphysics simulation for complex flows.',
       },
+      {
+        name: 'DIGIMU',
+        description: 'Inertial measurement unit for motion tracking and analysis.',
+      }
     ],
   },
 ];
