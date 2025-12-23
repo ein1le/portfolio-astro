@@ -1,5 +1,4 @@
-// Stack / Technologies page data
-// Defines logical groups for languages, tools, and platforms used across projects.
+// eventually add mobile (reactt native, flutter, and swift,a nd cmake)
 
 import type { IconKey } from '../icons/iconMap';
 import cLogo from '../icons/CLang.png?url';
@@ -21,7 +20,6 @@ import chromaDbLogo from '../icons/chromadb.png?url';
 import gunicornLogo from '../icons/gunicorn.png?url';
 import huggingFaceLogo from '../icons/hugging-face.png?url';
 import weightsBiasesLogo from '../icons/weights-biases.png?url';
-import langgraphLogo from '../icons/langgraph.png?url';
 import onnxRuntimeLogo from '../icons/onnx-runtime.png?url';
 import modalLogo from '../icons/modal-labs.png?url';
 import claudeLogo from '../icons/claude.png?url';
@@ -30,8 +28,46 @@ import mlflowLogo from '../icons/mlflow.png?url';
 import pandasLogo from '../icons/pandas.png?url';
 import mysqlLogo from '../icons/mysql.png?url';
 import mongoLogo from '../icons/mongodb.png?url';
-import kafkaLogo from '../icons/apachespark.png?url';
+import kafkaLogo from '../icons/kafka.png?url';
 import seleniumLogo from '../icons/selenium.png?url';
+import awsLogo from '../icons/aws.png?url';
+import gcpLogo from '../icons/google-cloud.png?url';
+import databricksLogo from '../icons/databricks.png?url';
+import kubernetesLogo from '../icons/kubernetes.png?url';
+import redisLogo from '../icons/redis.png?url';
+import fusionLogo from '../icons/fusion360.png?url';
+import abaqusLogo from '../icons/abaqus.png?url';
+import starCcmLogo from '../icons/star-ccm.png?url';
+import digimuLogo from '../icons/DIGIMU.png?url';
+import arduinoLogo from '../icons/arduino.png?url';
+import gitLogo from '../icons/git.png?url';
+import terraformLogo from '../icons/terraform.png?url';
+import dockerLogo from '../icons/docker.png?url';
+import spacyLogo from '../icons/spacy.png?url';
+import gazeboLogo from '../icons/gazebo.png?url';
+import excelLogo from '../icons/excel.png?url';
+import powerBiLogo from '../icons/powerbi.png?url';
+import jupyterLogo from '../icons/jupyter.png?url';
+import streamlitLogo from '../icons/streamlit.png?url';
+import plotlyLogo from '../icons/plotly.png?url';
+import tableauLogo from '../icons/tableau.png?url';
+import matplotlibLogo from '../icons/matplotlib.png?url';
+import figmaLogo from '../icons/figma.png?url';
+import canvaLogo from '../icons/canva.png?url';
+import illustratorLogo from '../icons/illustrator.jpg?url';
+import fastapiLogo from '../icons/fastapi.png?url';
+import djangoLogo from '../icons/django.png?url';
+import graphqlLogo from '../icons/graphql.png?url';
+import restLogo from '../icons/rest.png?url';
+import postmanLogo from '../icons/postman.jpg?url';
+import lambdaLogo from '../icons/lambda.png?url';
+import amplifyLogo from '../icons/amplify.png?url';
+import viteLogo from '../icons/vite.png?url';
+import wixLogo from '../icons/wix.png?url';
+import vercelLogo from '../icons/vercel.svg?url';
+import firebaseLogo from '../icons/firebase-me.png?url';
+import parcelLogo from '../icons/parcel.png?url';
+import threeLogo from '../icons/threejs.png?url';
 
 export interface StackElement {
   name: string;
@@ -78,9 +114,9 @@ export const stackGroups: StackGroup[] = [
     ],
     minor: [
       {
-        name: 'JavaScript',
+        name: 'Web Languages',
         icon: 'javascript',
-        description: 'Used for interactive frontends and tooling.',
+        description: 'TypeScript, HTML, and CSS used for interactive frontends and tooling.',
       },
       {
         name: 'C++',
@@ -143,7 +179,7 @@ export const stackGroups: StackGroup[] = [
     minor: [
       {
         name: 'tslearn',
-        // no dedicated logo yet; falls back to first letter
+        // no dedicated icon asset; uses initial fallback
         description: 'Time-series specific machine learning algorithms.',
       },
       {
@@ -152,19 +188,9 @@ export const stackGroups: StackGroup[] = [
         description: 'Core scientific computing routines on top of NumPy.',
       },
       {
-        name: 'QuantLib',
-        logo: quantlibLogo,
-        description: 'Quantitative finance library for pricing and risk.',
-      },
-      {
-        name: 'QuantConnect',
+        name: 'Python Quant Libraries',
         logo: quantconnectLogo,
-        description: 'Cloud-native algorithmic trading research and execution.',
-      },
-      {
-        name: 'spaCy',
-        icon: 'spacy',
-        description: 'Efficient NLP pipelines for production applications.',
+        description: 'Quantitative finance libraries, including QuantConnect, QuantLib, and yfinance for pricing and risk.',
       },
       {
         name: 'OpenCV',
@@ -187,6 +213,11 @@ export const stackGroups: StackGroup[] = [
         name: 'LangChain',
         logo: langchainLogo,
         description: 'Langchain and LangGraph framework for building LLM-powered applications and agents.',
+      },
+      {
+        name: 'spaCy',
+        logo: spacyLogo,
+        description: 'Efficient NLP pipelines for production applications.',
       },
       {
         name: 'PyTorch Lightning',
@@ -221,11 +252,6 @@ export const stackGroups: StackGroup[] = [
         description: 'Serverless compute platform for Python and ML workloads.',
       },
       {
-        name: 'Python ASGI/WSGI',
-        logo: gunicornLogo,
-        description: 'Gunicorn and Uvicorn servers for serving ML APIs and applications.',
-      },
-      {
         name: 'Claude API',
         logo: claudeLogo,
         description: 'LLM used as a reasoning engine or assistant in applied systems.',
@@ -249,42 +275,49 @@ export const stackGroups: StackGroup[] = [
     major: [
       {
         name: 'FastAPI',
+        logo: fastapiLogo,
         description: 'Python web framework for high-performance async APIs.',
       },
       {
-        name: 'Flask',
-        description: 'Lightweight Python microframework for small to medium services.',
+        name: 'Serverless Frameworks',
+        logo: lambdaLogo,
+        description: 'AWS Lambda and Google Cloud Functions for event-driven compute.',
+      },
+      {
+        name: 'Python ASGI/WSGI',
+        logo: gunicornLogo,
+        description: 'Gunicorn and Uvicorn servers for serving ML APIs and applications.',
       },
     ],
     minor: [
       {
-        name: 'Django',
-        description: 'Batteries-included Python web framework with ORM and admin.',
-      },
-      {
-        name: 'Express.js',
-        description: 'Minimal Node.js framework for building HTTP APIs.',
-      },
-      {
-        name: 'GraphQL',
+        name: 'GraphQL APIs',
+        logo: graphqlLogo,
         description: 'Query language and runtime for flexible API schemas.',
       },
       {
-        name: 'REST',
+        name: 'gRPC APIs',
         description: 'Resource-oriented API design for HTTP services.',
       },
       {
-        name: 'Postman',
-        description: 'Tooling for testing and documenting HTTP APIs.',
+        name: 'REST APIs',
+        logo: restLogo,
+        description: 'Resource-oriented API design for HTTP services.',
       },
       {
-        name: 'CMake',
-        description: 'Cross-platform build system configuration for C/C++ projects.',
+        name: 'Kafka',
+        logo: kafkaLogo,
+        description: 'Streaming platform for event-driven architectures.',
+      },
+      {
+        name: 'Postman',
+        logo: postmanLogo,
+        description: 'Tooling for testing and documenting HTTP APIs.',
       },
       {
         name: 'SQLAlchemy',
         description: 'Python ORM and SQL toolkit for relational databases.',
-      },
+      }
     ],
   },
   {
@@ -294,15 +327,18 @@ export const stackGroups: StackGroup[] = [
     major: [
       {
         name: 'React',
+        icon: 'react',
         description: 'Component-based UI library used across projects.',
       },
       {
         name: 'Next.js',
+        logo: vercelLogo,
         description: 'Full-stack React framework for SSR and app routing.',
       },
       {
-        name: 'HTML',
-        description: 'Markup foundation for all web interfaces.',
+        name: 'Serverless Frameworks',
+        logo: amplifyLogo,
+        description: 'AWS Amplify and Google Cloud Functions for event-driven compute.',
       },
       {
         name: 'Astro',
@@ -310,18 +346,21 @@ export const stackGroups: StackGroup[] = [
         description: 'Content-first framework used for this portfolio.',
       },
       {
-        name: 'TypeScript',
-        icon: 'typescript',
-        description: 'Typed language layer for safer frontend code.',
+        name: 'Django',
+        logo: djangoLogo,
+        description: 'Full-stack Python framework used in earlier projects.',
       },
     ],
     minor: [
+
       {
         name: 'Vite',
+        logo: viteLogo,
         description: 'Lightning-fast dev bundler and build tool.',
       },
       {
         name: 'Parcel',
+        logo: parcelLogo,
         description: 'Zero-config bundler used in earlier projects.',
       },
       {
@@ -330,25 +369,15 @@ export const stackGroups: StackGroup[] = [
         description: 'Utility-first styling system for rapid UI iteration.',
       },
       {
-        name: 'shadcn/ui',
-        description: 'Composable headless UI primitives for React.',
-      },
-      {
-        name: 'Node.js',
-        description: 'JavaScript runtime used for tooling and SSR.',
-      },
-      {
         name: 'Wix Velo',
+        logo: wixLogo,
         description: 'Low-code environment for quick prototypes and landing pages.',
       },
       {
-        name: 'GSAP',
-        description: 'Animation library for rich, timeline-based UI motion.',
-      },
-      {
-        name: 'Three.js',
-        description: 'Animation library for rich, timeline-based UI motion.',
-      },
+        name: 'JavaScript Animation Libraries',
+        logo: threeLogo,
+        description: 'GSAP, Three.js and Framer Motion for rich, interactive web experiences.',
+      }
     ],
   },
   {
@@ -358,12 +387,14 @@ export const stackGroups: StackGroup[] = [
     major: [
       {
         name: 'AWS',
+        logo: awsLogo,
         description: 'Core services including Cognito, DynamoDB, S3, Lambda, API Gateway, EKS, Fargate, and Amplify.',
       },
     ],
     minor: [
       {
         name: 'Google Cloud',
+        logo: gcpLogo,
         description: 'GCE, GKE, Firestore, BigQuery, Dataflow, and Vertex AI for scalable data and ML workloads.',
       },
     ],
@@ -390,6 +421,7 @@ export const stackGroups: StackGroup[] = [
       },
       {
         name: 'Databricks',
+        logo: databricksLogo,
         description: 'Lakehouse platform that combines data warehousing and data engineering.',
       },
       {
@@ -411,10 +443,12 @@ export const stackGroups: StackGroup[] = [
       },
       {
         name: 'Kubernetes',
+        logo: kubernetesLogo,
         description: 'Container orchestration platform for managing containerised applications.',
       },
       {
         name: 'Redis',
+        logo: redisLogo,
         description: 'In-memory data structure store for caching and session management.',
       }
     ],
@@ -426,10 +460,12 @@ export const stackGroups: StackGroup[] = [
     major: [
       {
         name: 'Docker',
+        logo: dockerLogo,
         description: 'Containerisation for reproducible environments and deployments.',
       },
       {
         name: 'Git',
+        logo: gitLogo,
         description: 'Version control for all code and configuration.',
       },
       {
@@ -441,13 +477,9 @@ export const stackGroups: StackGroup[] = [
     minor: [
       {
         name: 'Terraform',
+        logo: terraformLogo,
         description: 'Infrastructure-as-code for cloud resources and environments.',
-      },
-      {
-        name: 'Kafka',
-        logo: kafkaLogo,
-        description: 'Streaming platform for event-driven architectures.',
-      },
+      }
     ],
   },
   {
@@ -457,44 +489,49 @@ export const stackGroups: StackGroup[] = [
     major: [
       {
         name: 'Microsoft Excel',
+        logo: excelLogo,
         description: 'Quick analysis, pivot tables, and reporting.',
       },
       {
-        name: 'Seaborn',
-        description: 'Statistical visualisation library on top of Matplotlib.',
-      },
-      {
         name: 'Power BI',
+        logo: powerBiLogo,
         description: 'Self-service BI for interactive business dashboards.',
       },
       {
         name: 'Jupyter',
+        logo: jupyterLogo,
         description: 'Interactive notebooks for exploration and storytelling.',
       },
       {
-        name: 'Matplotlib',
-        description: 'Low-level plotting library for fine-grained control.',
+        name: 'Figma',
+        logo: figmaLogo,
+        description: 'Collaborative design and prototyping tool.',
+      },
+      {
+        name: 'Python Visualisation',
+        logo: matplotlibLogo,
+        description: 'Matplotlib, Seaborn, and Low-level plotting library for fine-grained control.',
       },
     ],
     minor: [
       {
-        name: 'Streamlit',
-        description: 'Python-first framework for lightweight data apps.',
+        name: 'Python Dashboarding',
+        logo: plotlyLogo,
+        description: 'Dash, Streamlit and Plotly forPython-first framework for lightweight data apps.',
       },
       {
-        name: 'Plotly & Dash',
-        description: 'Interactive web-based visualisations and dashboards.',
-      },
-      {
-        name: 'Figma',
+        name: 'Tableau',
+        logo: tableauLogo,
         description: 'Collaborative design and prototyping tool.',
       },
       {
         name: 'Adobe Illustrator',
+        logo: illustratorLogo,
         description: 'Vector design for polished visuals and diagrams.',
       },
       {
         name: 'Canva',
+        logo: canvaLogo,
         description: 'Fast layout and presentation design for non-technical audiences.',
       },
     ],
@@ -506,28 +543,34 @@ export const stackGroups: StackGroup[] = [
     major: [
       {
         name: 'Autodesk Fusion 360',
+        logo: fusionLogo,
         description: 'CAD and CAM for mechanical design and prototyping.',
       },
       {
         name: 'Abaqus CAE',
+        logo: abaqusLogo,
         description: 'Finite element analysis for structural simulation.',
       },
     ],
     minor: [
       {
         name: 'Robotic Simulation',
+        logo: gazeboLogo,
         description: 'Robot Operating System, WeBots, and Gazebo.',
       },
       {
         name: 'Micrcontroller Programming',
+        logo: arduinoLogo,
         description: 'Arduino and Raspberry Pi PICO Programming',
       },
       {
         name: 'Star-CCM+',
+        logo: starCcmLogo,
         description: 'CFD and multiphysics simulation for complex flows.',
       },
       {
         name: 'DIGIMU',
+        logo: digimuLogo,
         description: 'Inertial measurement unit for motion tracking and analysis.',
       }
     ],

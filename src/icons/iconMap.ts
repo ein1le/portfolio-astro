@@ -37,7 +37,6 @@ export type IconKey =
   | 'scipy'
   | 'quantlib'
   | 'huggingface'
-  | 'spacy'
   | 'surprise'
   | 'cloud'
   | 'analytics'
@@ -91,7 +90,6 @@ export const iconMap: Record<IconKey, string> = {
   scipy: 'scipy',
   quantlib: 'quantlib',
   huggingface: 'huggingface',
-  spacy: 'spacy',
   surprise: 'surprise',
   cloud: 'cloud',
   analytics: 'analytics',
