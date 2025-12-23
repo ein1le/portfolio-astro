@@ -28,9 +28,9 @@
 
 import Card from './Card.astro';
 import Button from './Button.astro';
+import Bubble from './Bubble.astro';
 import { Icon } from 'astro-icon/components';
 import { getIconName } from '../../icons/iconMap';
-import { getInitials } from '../../../public/scripts/nameinitials.js';
 
 // Tool / language logos for academic experiences (bundled as URLs)
 import abaqusLogo from '../../icons/abaqus.png?url';
@@ -277,41 +277,15 @@ const getLinkVisuals = (type?: string) => {
                   const logoSrc = languageLogoMap[lang];
                   const iconName = getLanguageIconName(lang);
 
-                  if (logoSrc) {
-                    return (
-                      <span
-                        class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/40 overflow-hidden"
-                        aria-label={lang}
-                        title={lang}
-                      >
-                        <img
-                          src={logoSrc}
-                          alt={lang}
-                          class="h-full w-full object-cover"
-                          loading="lazy"
-                        />
-                      </span>
-                    );
-                  }
-
-                  if (iconName) {
-                    return (
-                      <span
-                        class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/40"
-                        aria-label={lang}
-                        title={lang}
-                      >
-                        <Icon
-                          name={iconName}
-                          class="h-3.5 w-3.5 text-[color:var(--text-main)]"
-                        />
-                      </span>
-                    );
-                  }
-
                   return (
-                    <span class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-1.5 py-0.5 text-[0.65rem]">
-                      {lang}
+                    <span class="group inline-flex items-center justify-center">
+                      <Bubble
+                        size="md"
+                        logo={logoSrc}
+                        iconName={iconName || undefined}
+                        text={!logoSrc && !iconName ? lang[0] : undefined}
+                        alt={lang}
+                      />
                     </span>
                   );
                 })}
@@ -327,12 +301,8 @@ const getLinkVisuals = (type?: string) => {
             </span>
             <div class="flex flex-wrap gap-2">
               {contributors.map((name) => (
-                <span
-                  class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60 text-[0.7rem] font-semibold text-[color:var(--text-main)]"
-                  title={name}
-                  aria-label={name}
-                >
-                  {getInitials(name)}
+                <span class="group inline-flex items-center justify-center">
+                  <Bubble size="md" name={name} />
                 </span>
               ))}
             </div>
@@ -383,12 +353,8 @@ const getLinkVisuals = (type?: string) => {
                     </span>
                     <div class="flex flex-wrap gap-1.5">
                       {sub.contributors.map((person) => (
-                        <span
-                          class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60 text-[0.65rem] font-semibold text-[color:var(--text-main)]"
-                          title={person}
-                          aria-label={person}
-                        >
-                          {getInitials(person)}
+                        <span class="group inline-flex items-center justify-center">
+                          <Bubble size="sm" name={person} />
                         </span>
                       ))}
                     </div>

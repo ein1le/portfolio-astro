@@ -3,6 +3,7 @@
 // Composed from the generic Card container and used for PDF previews.
 
 import Card from './Card.astro';
+import Bubble from './Bubble.astro';
 import { Icon } from 'astro-icon/components';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
   pdfUrl?: string;
   course?: string;
   authors?: string;
+  contributors?: string[];
   description?: string;
   date?: string;
   copyright?: boolean;
@@ -23,6 +25,7 @@ const {
   description,
   date,
   copyright,
+  contributors = [],
 } = Astro.props;
 ---
 
@@ -38,14 +41,31 @@ const {
   data-pdf-date={date}
 >
   <Card padding="compact">
-    <div class="flex items-start justify-between gap-2 py-1">
-      <span class="block text-[0.72rem] font-medium leading-snug text-[color:var(--text-main)]">
-        {title}
-      </span>
-      {copyright && (
-        <span class="shrink-0 text-[0.6rem] leading-none text-[color:var(--text-muted)]">
-          <Icon name="copyright" class="h-3 w-3" />
+    <div class="flex flex-col gap-1 py-1">
+      <div class="flex items-start justify-between gap-2">
+        <span class="block text-[0.72rem] font-medium leading-snug text-[color:var(--text-main)]">
+          {title}
         </span>
+        {copyright && (
+          <span class="shrink-0 text-[0.6rem] leading-none text-[color:var(--text-muted)]">
+            <Icon name="copyright" class="h-3 w-3" />
+          </span>
+        )}
+      </div>
+
+      {contributors.length > 0 && (
+        <div class="mt-0.5 flex flex-wrap items-center gap-1.5">
+          <span class="text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--text-main)]">
+            Authors
+          </span>
+          <div class="flex flex-wrap gap-1.5">
+            {contributors.map((name) => (
+              <span class="group inline-flex items-center justify-center">
+                <Bubble size="sm" name={name} />
+              </span>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   </Card>

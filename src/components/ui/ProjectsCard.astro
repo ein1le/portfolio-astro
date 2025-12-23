@@ -4,10 +4,10 @@
 
 import Card from './Card.astro';
 import Button from './Button.astro';
+import Bubble from './Bubble.astro';
 import { Icon } from 'astro-icon/components';
 import { getIconName } from '../../icons/iconMap';
 import type { ProjectStatus } from '../../data/projects';
-import { getInitials } from '../../../public/scripts/nameinitials.js';
 
 interface Props {
   image?: string;
@@ -108,26 +108,18 @@ const statusClasses = statusClassMap[status];
                   {languages.map((lang) => {
                     const iconName = getLanguageIconName(lang);
 
-                    if (iconName) {
-                      return (
-                        <span
-                          class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/40"
-                          aria-label={lang}
-                          title={lang}
-                        >
-                          <Icon
-                            name={iconName}
-                            class="h-3.5 w-3.5 text-[color:var(--text-main)]"
-                          />
-                        </span>
-                      );
-                    }
-
                     return (
                       <span
-                        class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5"
+                        class="group inline-flex items-center justify-center"
+                        aria-label={lang}
+                        title={lang}
                       >
-                        {lang}
+                        <Bubble
+                          size="md"
+                          iconName={iconName || undefined}
+                          text={!iconName ? lang[0] : undefined}
+                          alt={lang}
+                        />
                       </span>
                     );
                   })}
@@ -219,12 +211,8 @@ const statusClasses = statusClassMap[status];
               </p>
               <div class="flex flex-wrap gap-2">
                 {contributors.map((name) => (
-                  <span
-                    class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60 text-[0.7rem] font-semibold text-[color:var(--text-main)]"
-                    title={name}
-                    aria-label={name}
-                  >
-                    {getInitials(name)}
+                  <span class="group inline-flex items-center justify-center">
+                    <Bubble size="md" name={name} />
                   </span>
                 ))}
               </div>

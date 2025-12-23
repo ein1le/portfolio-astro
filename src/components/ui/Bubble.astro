@@ -1,0 +1,52 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getInitials } from '../../../public/scripts/nameinitials.js';
+
+interface Props {
+  size?: 'xl' | 'lg' | 'md' | 'sm';
+  logo?: string;
+  iconName?: string;
+  /** Name to derive initials from when used for people. */
+  name?: string;
+  /** Optional explicit text to show inside the bubble. */
+  text?: string;
+  /** Accessible label / alt text override. */
+  alt?: string;
+}
+
+const { size = 'md', logo, iconName, name, text, alt } = Astro.props as Props;
+
+const sizeConfig = {
+  xl: { circle: 'h-11 w-11', icon: 'h-5 w-5', text: 'text-[0.8rem]' },
+  lg: { circle: 'h-9 w-9', icon: 'h-5 w-5', text: 'text-[0.7rem]' },
+  md: { circle: 'h-7 w-7', icon: 'h-4 w-4', text: 'text-[0.7rem]' },
+  sm: { circle: 'h-6 w-6', icon: 'h-3.5 w-3.5', text: 'text-[0.65rem]' },
+}[size];
+
+const contentText = text ?? (name ? getInitials(name) : '');
+const label = alt ?? name ?? contentText;
+---
+
+<span
+  class={`inline-flex items-center justify-center rounded-full border border-slate-500/40 bg-slate-950/60 overflow-hidden ${sizeConfig.circle}`}
+  aria-label={label}
+>
+  {logo ? (
+    <img
+      src={logo}
+      alt={label}
+      loading="lazy"
+      class="h-full w-full object-cover transition-transform duration-150 group-hover:scale-110"
+    />
+  ) : iconName ? (
+    <Icon
+      name={iconName}
+      class={`${sizeConfig.icon} text-[color:var(--text-main)] transition-transform duration-150 group-hover:scale-110`}
+    />
+  ) : (
+    <span class={`${sizeConfig.text} font-semibold text-[color:var(--text-main)]`}>
+      {contentText}
+    </span>
+  )}
+</span>
+
