@@ -3,7 +3,7 @@
 // Composed from the generic Card container and used for PDF previews.
 
 import Card from './Card.astro';
-import Bubble from './Bubble.astro';
+import ContributorBubble from './ContributorBubble.astro';
 import { Icon } from 'astro-icon/components';
 
 interface Props {
@@ -60,9 +60,7 @@ const {
           </span>
           <div class="flex flex-wrap gap-1.5">
             {contributors.map((name) => (
-              <span class="group inline-flex items-center justify-center">
-                <Bubble size="sm" name={name} />
-              </span>
+              <ContributorBubble name={name} size="sm" />
             ))}
           </div>
         </div>

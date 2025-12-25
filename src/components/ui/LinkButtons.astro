@@ -1,0 +1,103 @@
+---
+import Button from './Button.astro';
+import { Icon } from 'astro-icon/components';
+import { getIconName } from '../../icons/iconMap';
+
+interface LinkLike {
+  label: string;
+  url: string;
+  type?: string;
+}
+
+interface Props {
+  link: LinkLike;
+  /** Smaller padding/icon for subrole links */
+  size?: 'sm' | 'md';
+  /** Enable hover image/PDF preview for award links that point to files */
+  enableAwardPreview?: boolean;
+}
+
+const { link, size = 'md', enableAwardPreview = true } = Astro.props as Props;
+
+const getLinkVisuals = (type?: string) => {
+  switch (type) {
+    case 'GitHub':
+      return {
+        buttonClass:
+          'border-black text-white hover:border-white',
+        iconName: 'github',
+      };
+    case 'Website':
+      return {
+        buttonClass:
+          '!border-sky-400 !text-sky-100 hover:!border-sky-300',
+        iconName: 'web',
+      };
+    case 'LinkTree':
+      return {
+        buttonClass:
+          '!border-emerald-400 !text-emerald-100 hover:!border-emerald-300',
+        iconName: 'linktree',
+      };
+    case 'Award':
+      return {
+        buttonClass:
+          '!border-amber-400 !text-amber-50 hover:!border-amber-300',
+        iconName: 'star',
+      };
+    case 'Instagram':
+      return {
+        buttonClass:
+          '!border-pink-400 !text-pink-100 hover:!border-pink-300',
+        iconName: 'instagram',
+      };
+    case 'Youtube':
+      return {
+        buttonClass:
+          '!border-red-500 !text-red-100 hover:!border-red-400',
+        iconName: 'youtube',
+      };
+    default:
+      return {
+        buttonClass:
+          'border-purple-400 text-purple-50 hover:border-purple-300',
+        iconName: 'external-link',
+      };
+  }
+};
+
+const { buttonClass, iconName } = getLinkVisuals(link.type);
+
+const paddingClass =
+  size === 'sm' ? 'px-1.5 py-0.5 text-[0.6rem]' : 'px-2 py-0.5 text-[0.65rem]';
+const iconSizeClass = size === 'sm' ? 'h-2 w-2' : 'h-2.5 w-2.5';
+
+const isHoverAward =
+  enableAwardPreview &&
+  link.type === 'Award' &&
+  typeof link.url === 'string' &&
+  /\.(png|jpe?g|webp|pdf)$/i.test(link.url);
+---
+
+{isHoverAward ? (
+  <Button class={`${paddingClass} ${buttonClass}`} pdfPreviewUrl={link.url}>
+    <span class="flex items-center gap-1.5">
+      <Icon name={getIconName(iconName as any)} class={iconSizeClass} />
+      <span>{link.label}</span>
+    </span>
+  </Button>
+) : (
+  <a
+    href={link.url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-block"
+  >
+    <Button class={`${paddingClass} ${buttonClass}`}>
+      <span class="flex items-center gap-1.5">
+        <Icon name={getIconName(iconName as any)} class={iconSizeClass} />
+        <span>{link.label}</span>
+      </span>
+    </Button>
+  </a>
+)}

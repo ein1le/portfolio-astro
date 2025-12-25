@@ -1,0 +1,20 @@
+---
+import Bubble from './Bubble.astro';
+
+interface Props {
+  name: string;
+  size?: 'md' | 'sm' | 'lg';
+}
+
+const { name, size = 'md' } = Astro.props as Props;
+---
+
+<span class="group relative inline-flex items-center justify-center">
+  <Bubble size={size} name={name} alt={name} />
+  <span
+    class="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 scale-95 rounded-full bg-slate-900/95 px-2 py-0.5 text-[0.65rem] font-medium text-[color:var(--text-main)] opacity-0 shadow-sm shadow-black/40 transition-all duration-150 group-hover:opacity-100 group-hover:scale-100"
+  >
+    {name}
+  </span>
+</span>
+

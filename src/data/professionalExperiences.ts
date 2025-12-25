@@ -10,7 +10,7 @@ export type ExperienceType =
 export interface ExperienceLink {
   label: string;
   url: string;
-  type?: 'GitHub' | 'Website' | 'LinkTree' | 'Award' | 'External' | string;
+  type?: 'GitHub' | 'Website' | 'LinkTree' | 'Award' | 'External' | 'Youtube' | string;
 }
 
 export interface ExperienceSubrole {
@@ -19,6 +19,7 @@ export interface ExperienceSubrole {
   description?: string;
   skills?: string[];
   contributors?: string[];
+   links?: ExperienceLink[];
 }
 
 export interface ProfessionalExperience {
@@ -86,6 +87,53 @@ export const professionalExperiences: ProfessionalExperience[] = [
     description: '',
     skills: [],
     logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQHpcDl5zEb2Og/company-logo_200_200/company-logo_200_200/0/1708951303888/university_of_bristol_logo?e=2147483647&v=beta&t=X5xR60eg6QIHRGmwhI6TaXWYX93qlNqWSIkQZWS9MUQ',
+    subroles: [
+      {
+        role: 'Global Lounge Ambassador',
+        dates: 'Oct 2024 – May 2025',
+        description: 'Placeholder',
+        links: [],
+      },
+      {
+        role: 'Senior PASS Leader',
+        dates: 'Oct 2024 – Apr 2025',
+        description: 'Placeholder',
+        links: [],
+        contributors: ['Akbarbek Musaev'],
+      },
+      {
+        role: 'Student Ambassador Band 3',
+        dates: 'May 2024 – Mar 2025',
+        description: 'Placeholder',
+        links: [],
+      },
+      {
+        role: 'Peer Mentor',
+        dates: 'Sep 2024 – Jan 2025',
+        description: 'Placeholder',
+        links: [],
+      },
+      {
+        role: 'PASS Leader',
+        dates: 'Oct 2022 – Apr 2024',
+        description: 'Placeholder',
+        links: [],
+        contributors: ['Akbarbek Musaev'],
+      },
+      {
+        role: 'Student Ambassador Band 1',
+        dates: 'May 2023 – Mar 2024',
+        description: 'Placeholder',
+        links: [],
+      },
+      {
+        role: 'International Relations Representative (APAC)',
+        dates: 'Aug 2023 – Oct 2023',
+        description: 'SLS Initiative',
+        links: [],
+        contributors: ['Jennie Fan'],
+      },
+    ],
   },
   {
     title: 'KKP Financial Group',

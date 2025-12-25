@@ -2,8 +2,8 @@
 // Plain JS version served from /public so it works in production without bundling.
 
 const PREVIEW_ID = 'pdf-preview';
-const PREVIEW_WIDTH = 220; // px
-const PREVIEW_HEIGHT = 310; // ~ A4 aspect ratio
+const PREVIEW_WIDTH = 260; // px
+const PREVIEW_FALLBACK_HEIGHT = 260; // used before image has a measured height
 const PREVIEW_MARGIN = 12; // distance above cursor
 
 function ensurePreview() {
@@ -15,7 +15,6 @@ function ensurePreview() {
   Object.assign(container.style, {
     position: 'fixed',
     width: `${PREVIEW_WIDTH}px`,
-    height: `${PREVIEW_HEIGHT}px`,
     backgroundColor: '#020617',
     borderRadius: '0.75rem',
     border: '1px solid rgba(148,163,184,0.4)',
@@ -31,8 +30,9 @@ function ensurePreview() {
   img.alt = 'Document preview';
   Object.assign(img.style, {
     width: '100%',
-    height: '100%',
-    objectFit: 'cover',
+    height: 'auto',
+    maxHeight: '360px',
+    objectFit: 'contain',
     display: 'block',
   });
 
@@ -45,7 +45,10 @@ function ensurePreview() {
 function positionPreview(x, y) {
   const container = ensurePreview();
   const width = PREVIEW_WIDTH;
-  const height = PREVIEW_HEIGHT;
+  const height =
+    container.offsetHeight && container.offsetHeight > 0
+      ? container.offsetHeight
+      : PREVIEW_FALLBACK_HEIGHT;
 
   let left = x - width / 2;
   let top = y - height - PREVIEW_MARGIN;
@@ -123,4 +126,3 @@ if (typeof window !== 'undefined') {
     setupPdfPreview();
   }
 }
-

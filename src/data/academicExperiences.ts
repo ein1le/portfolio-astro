@@ -5,7 +5,7 @@ export type AcademicExperienceType = 'Researcher';
 export interface AcademicExperienceLink {
   label: string;
   url: string;
-  type?: 'GitHub' | 'Website' | 'LinkTree' | 'Award' | 'External' | string;
+  type?: 'GitHub' | 'Website' | 'LinkTree' | 'Award' | 'External' | 'Youtube' | string;
 }
 
 export interface AcademicSubrole {
@@ -401,7 +401,7 @@ export const academicExperiences: AcademicExperience[] = [
     logo: 'https://media.licdn.com/dms/image/v2/D4D0BAQFqV_uv2rl2zQ/company-logo_200_200/company-logo_200_200/0/1692831669203/bristol_university_drone_society_logo?e=2147483647&v=beta&t=Ed_60adVQhDkO93foL-cev4PFe7aMQgljg-0oThPOVE',
     links: [
       {
-        label: 'UOB BUDS',
+        label: 'Instagram',
         type: 'Instagram',
         url: 'https://www.instagram.com/uobdronesoc/',
       },
@@ -449,6 +449,28 @@ export const academicExperiences: AcademicExperience[] = [
       'Shradda Sriraman',
       'Stephen Wang',
     ],
+    subroles: [],
+  },
+  {
+    id: 2,
+    title: 'Data Analyst',
+    role: '2023 Committee',
+    organisation: 'Thai Society Innovation Network (TSIN)',
+    dates: 'Apr 2023 - Nov 2023',
+    location: 'Remote, UK',
+    type: 'Researcher',
+    description: 'Placeholder',
+    skills: ['Data Analytics', 'Market Research', 'Data Visualisation'],
+    languages: ['SQL', 'R', 'Power BI'],
+    logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQHcjq6RmOfH7g/company-logo_200_200/B4EZfUpo5iGcAI-/0/1751619375296/thai_society_innovation_network_logo?e=2147483647&v=beta&t=CV5B1H40OjtVa53C--rabkJTL17HsAfEtwcFfPpxqf8',
+    links: [
+      {
+        label: 'TSIN Portal',
+        type: 'Website',
+        url: 'https://tsin-portal.lovable.app',
+      },
+    ],
+    contributors: [],
     subroles: [],
   },
   {

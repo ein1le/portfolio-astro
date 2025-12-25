@@ -317,7 +317,12 @@ export const stackGroups: StackGroup[] = [
       {
         name: 'SQLAlchemy',
         description: 'Python ORM and SQL toolkit for relational databases.',
-      }
+      },
+      {
+        name: 'Finance APIs',
+        logo: quantlibLogo,
+        description: 'APIs for market data including Alpha Vantage and Polygon.io.',
+      },
     ],
   },
   {

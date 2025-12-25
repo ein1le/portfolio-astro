@@ -27,8 +27,9 @@
 // }
 
 import Card from './Card.astro';
-import Button from './Button.astro';
 import Bubble from './Bubble.astro';
+import ContributorBubble from './ContributorBubble.astro';
+import LinkButtons from './LinkButtons.astro';
 import { Icon } from 'astro-icon/components';
 import { getIconName } from '../../icons/iconMap';
 
@@ -172,46 +173,6 @@ const getLanguageIconName = (lang: string): string | null => {
   return key ? getIconName(key as any) : null;
 };
 
-const getLinkVisuals = (type?: string) => {
-  switch (type) {
-    case 'GitHub':
-      return {
-        buttonClass:
-          'border-black bg-black/70 text-white hover:bg-black hover:border-black',
-        iconName: 'github',
-      };
-    case 'Website':
-      return {
-        buttonClass:
-          '!border-sky-400 !bg-sky-500/20 !text-sky-100 hover:!bg-sky-500/35 hover:!border-sky-300',
-        iconName: 'web',
-      };
-    case 'LinkTree':
-      return {
-        buttonClass:
-          '!border-emerald-400 !bg-emerald-500/20 !text-emerald-100 hover:!bg-emerald-500/35 hover:!border-emerald-300',
-        iconName: 'linktree',
-      };
-    case 'Award':
-      return {
-        buttonClass:
-          '!border-amber-400 !bg-amber-500/20 !text-amber-50 hover:!bg-amber-500/35 hover:!border-amber-300',
-        iconName: 'star',
-      };
-    case 'Instagram':
-      return {
-        buttonClass:
-          '!border-pink-400 !bg-pink-500/20 !text-pink-100 hover:!bg-pink-500/35 hover:!border-pink-300',
-        iconName: 'instagram',
-      };
-    default:
-      return {
-        buttonClass:
-          'border-purple-400 bg-purple-500/20 text-purple-50 hover:bg-purple-500/35 hover:border-purple-300',
-        iconName: 'external-link',
-      };
-  }
-};
 ---
 
 <Card>
@@ -278,7 +239,7 @@ const getLinkVisuals = (type?: string) => {
                   const iconName = getLanguageIconName(lang);
 
                   return (
-                    <span class="group inline-flex items-center justify-center">
+                    <span class="group relative inline-flex h-7 w-7 items-center justify-center overflow-visible">
                       <Bubble
                         size="md"
                         logo={logoSrc}
@@ -286,6 +247,11 @@ const getLinkVisuals = (type?: string) => {
                         text={!logoSrc && !iconName ? lang[0] : undefined}
                         alt={lang}
                       />
+                      <span
+                        class="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 scale-95 rounded-full bg-slate-900/95 px-2 py-0.5 text-[0.65rem] font-medium text-[color:var(--text-main)] opacity-0 shadow-sm shadow-black/40 transition-all duration-150 group-hover:opacity-100 group-hover:scale-100"
+                      >
+                        {lang}
+                      </span>
                     </span>
                   );
                 })}
@@ -301,9 +267,7 @@ const getLinkVisuals = (type?: string) => {
             </span>
             <div class="flex flex-wrap gap-2">
               {contributors.map((name) => (
-                <span class="group inline-flex items-center justify-center">
-                  <Bubble size="md" name={name} />
-                </span>
+                <ContributorBubble name={name} size="md" />
               ))}
             </div>
           </div>
@@ -353,9 +317,7 @@ const getLinkVisuals = (type?: string) => {
                     </span>
                     <div class="flex flex-wrap gap-1.5">
                       {sub.contributors.map((person) => (
-                        <span class="group inline-flex items-center justify-center">
-                          <Bubble size="sm" name={person} />
-                        </span>
+                        <ContributorBubble name={person} size="sm" />
                       ))}
                     </div>
                   </div>
@@ -363,25 +325,9 @@ const getLinkVisuals = (type?: string) => {
 
                 {sub.links && sub.links.length > 0 && (
                   <div class="mt-2 flex flex-wrap justify-end gap-2 text-[0.72rem] text-[color:var(--text-muted)]">
-                    {sub.links.map((link) => {
-                      const { buttonClass, iconName } = getLinkVisuals(link.type);
-
-                      return (
-                        <a
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="inline-block"
-                        >
-                          <Button class={`px-2.5 py-1 text-[0.7rem] ${buttonClass}`}>
-                            <span class="flex items-center gap-1.5">
-                              <Icon name={getIconName(iconName as any)} class="h-3 w-3" />
-                              <span>{link.label}</span>
-                            </span>
-                          </Button>
-                        </a>
-                      );
-                    })}
+                    {sub.links.map((link) => (
+                      <LinkButtons link={link} size="sm" />
+                    ))}
                   </div>
                 )}
               </div>
@@ -393,25 +339,9 @@ const getLinkVisuals = (type?: string) => {
 
     {links.length > 0 && (
       <div class="mt-2 flex flex-wrap gap-2 pt-1 text-[0.75rem] text-[color:var(--text-muted)] sm:justify-end sm:ml-auto">
-        {links.map((link) => {
-          const { buttonClass, iconName } = getLinkVisuals(link.type);
-
-          return (
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-block"
-            >
-              <Button class={`px-3 py-1 text-[0.7rem] ${buttonClass}`}>
-                <span class="flex items-center gap-1.5">
-                  <Icon name={getIconName(iconName as any)} class="h-3.5 w-3.5" />
-                  <span>{link.label}</span>
-                </span>
-              </Button>
-            </a>
-          );
-        })}
+        {links.map((link) => (
+          <LinkButtons link={link} size="md" />
+        ))}
       </div>
     )}
   </div>

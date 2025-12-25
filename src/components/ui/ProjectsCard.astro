@@ -5,9 +5,12 @@
 import Card from './Card.astro';
 import Button from './Button.astro';
 import Bubble from './Bubble.astro';
+import ContributorBubble from './ContributorBubble.astro';
 import { Icon } from 'astro-icon/components';
 import { getIconName } from '../../icons/iconMap';
 import type { ProjectStatus } from '../../data/projects';
+import firebaseLogo from '../../icons/firebase-me.png?url';
+import wixLogo from '../../icons/wix.png?url';
 
 interface Props {
   image?: string;
@@ -44,6 +47,8 @@ const organisationSrc =
 
 const languageIconKeyMap: Record<string, string> = {
   Astro: 'astro',
+  JavaScript: 'javascript',
+  JS: 'javascript',
   Tailwind: 'tailwind',
   TailwindCSS: 'tailwind',
   TypeScript: 'typescript',
@@ -54,6 +59,11 @@ const languageIconKeyMap: Record<string, string> = {
   React: 'react',
   Firebase: 'firebase',
   Wix: 'wix',
+};
+
+const languageLogoMap: Record<string, string> = {
+  Firebase: firebaseLogo,
+  Wix: wixLogo,
 };
 
 const getLanguageIconName = (lang: string): string | null => {
@@ -97,33 +107,36 @@ const statusClasses = statusClassMap[status];
                 </p>
               )}
 
-              {status && (
-                <span class={`mt-1 inline-flex w-fit items-center rounded-full px-2 py-0.5 text-[0.7rem] font-semibold tracking-[0.12em] uppercase ${statusClasses}`}>
-                  {status}
-                </span>
-              )}
-
               {languages.length > 0 && (
-                <div class="flex w-full flex-wrap gap-2 pt-1 text-[0.75rem] text-[color:var(--text-muted)]">
+                <div class="mt-2 flex w-full flex-wrap gap-2 text-[0.75rem] text-[color:var(--text-muted)]">
                   {languages.map((lang) => {
-                    const iconName = getLanguageIconName(lang);
+                    const logoSrc = languageLogoMap[lang];
+                    const iconName = logoSrc ? null : getLanguageIconName(lang);
 
                     return (
-                      <span
-                        class="group inline-flex items-center justify-center"
-                        aria-label={lang}
-                        title={lang}
-                      >
+                      <span class="group relative inline-flex h-7 w-7 items-center justify-center overflow-visible">
                         <Bubble
                           size="md"
+                          logo={logoSrc}
                           iconName={iconName || undefined}
-                          text={!iconName ? lang[0] : undefined}
+                          text={!logoSrc && !iconName ? lang[0] : undefined}
                           alt={lang}
                         />
+                        <span
+                          class="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 scale-95 rounded-full bg-slate-900/95 px-2 py-0.5 text-[0.65rem] font-medium text-[color:var(--text-main)] opacity-0 shadow-sm shadow-black/40 transition-all duration-150 group-hover:opacity-100 group-hover:scale-100"
+                        >
+                          {lang}
+                        </span>
                       </span>
                     );
                   })}
                 </div>
+              )}
+
+              {status && (
+                <span class={`mt-2 inline-flex w-fit items-center rounded-full px-2 py-0.5 text-[0.7rem] font-semibold tracking-[0.12em] uppercase ${statusClasses}`}>
+                  {status}
+                </span>
               )}
             </div>
 
@@ -156,7 +169,7 @@ const statusClasses = statusClassMap[status];
           </div>
 
           {(links || demo) && (
-            <div class="mt-auto flex w-full flex-col gap-2 pt-1 sm:flex-row">
+            <div class="mt-auto flex w-full flex-col gap-3 pt-3 sm:flex-row">
               {links && (
                 <a
                   href={links}
@@ -211,9 +224,7 @@ const statusClasses = statusClassMap[status];
               </p>
               <div class="flex flex-wrap gap-2">
                 {contributors.map((name) => (
-                  <span class="group inline-flex items-center justify-center">
-                    <Bubble size="md" name={name} />
-                  </span>
+                  <ContributorBubble name={name} size="md" />
                 ))}
               </div>
             </div>
