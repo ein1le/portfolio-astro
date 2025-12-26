@@ -2,12 +2,9 @@
 // Right sidebar layout component
 // TODO: Implement right sidebar content and behavior
 
-import { Card, ProjectsCard, ToggleButton } from '../ui';
-import { projects } from '../../data/projects';
+import { Card, ToggleButton } from '../ui';
 import GithubCalendarSection from '../../scripts/GitHubCalendarSection.jsx';
 import { Icon } from 'astro-icon/components';
-
-const featuredProject = projects.find((project) => project.id === 0);
 ---
 
 <aside class="md:row-span-2 md:col-start-3 flex items-start justify-center border-l border-[color:var(--border-subtle)] px-5 pt-6">
@@ -28,6 +25,11 @@ const featuredProject = projects.find((project) => project.id === 0);
     </div>
 
     <div class="w-full">
+      <div class="mb-10 flex justify-center">
+        <div class="sidebar-avatar-ring">
+          <div class="h-28 w-28 rounded-full border border-[color:var(--border-subtle)] bg-slate-900/60 shadow-md shadow-slate-900/50" />
+        </div>
+      </div>
       <h2 class="subtitle text-center">
         Status
       </h2>
@@ -62,24 +64,6 @@ const featuredProject = projects.find((project) => project.id === 0);
         </div>
       </Card>
     </div>
-
-
-
-    {featuredProject && (
-      <div class="w-full">
-        <h2 class="subtitle text-center">
-          Featured Project
-        </h2>
-        <div class="px-4">
-          <ProjectsCard
-            title={featuredProject.title}
-            languages={featuredProject.languages}
-            contributors={featuredProject.contributors}
-            image={featuredProject.image}
-          />
-        </div>
-      </div>
-    )}
 
     <hr class="my-2 w-full border-t border-[color:var(--border-subtle)]" />
 

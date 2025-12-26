@@ -3,6 +3,10 @@ import GlobalShell from '../components/layouts/GlobalShell.astro';
 import AppHead from './_app-head.astro';
 import { ProjectsCard } from '../components/ui';
 import { projects } from '../data/projects';
+import { Icon } from 'astro-icon/components';
+import { getIconName } from '../icons/iconMap';
+
+const featuredProject = projects.find((project) => project.id === 0);
 ---
 
 <html lang="en">
@@ -11,8 +15,67 @@ import { projects } from '../data/projects';
   </head>
   <body>
     <GlobalShell>
-      <section class="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 pt-6 md:px-8 md:pt-8">
-        <div class="grid gap-4 justify-center grid-cols-[repeat(auto-fit,minmax(18rem,1fr))]">
+      <section class="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 pt-6 md:px-8 md:pt-8">
+        {featuredProject && (
+          <div class="w-full flex flex-col items-center">
+            <h1 class="subtitle text-center">
+              Featured Project
+            </h1>
+            <div class="mt-2 w-full max-w-xl mx-auto">
+              <ProjectsCard
+                title={featuredProject.title}
+                description={featuredProject.description}
+                information={featuredProject.information}
+                status={featuredProject.status}
+                languages={featuredProject.languages}
+                contributors={featuredProject.contributors}
+                image={featuredProject.image}
+                links={featuredProject.links}
+                demo={featuredProject.demo}
+                organisation={featuredProject.organisation}
+                index={0}
+              />
+            </div>
+          </div>
+        )}
+
+        <div class="w-full max-w-6xl mx-auto mt-4">
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--text-main)]">
+              All projects
+            </h2>
+
+            <div class="flex items-center gap-3">
+              <div class="relative">
+                <input
+                  type="text"
+                  placeholder="Search projects"
+                  class="h-9 w-44 sm:w-60 rounded-full border border-purple-500/70 bg-purple-950/30 px-3 pr-4 text-[0.8rem] text-[color:var(--text-main)] placeholder:text-purple-200/70 outline-none focus:border-purple-300 focus:ring-1 focus:ring-purple-400/70"
+                />
+              </div>
+
+              <button
+                type="button"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-purple-400/70 bg-purple-500/20 text-purple-100 shadow-sm shadow-purple-500/30 hover:bg-purple-500/35 hover:border-purple-300 transition-colors"
+                aria-label="Search projects"
+              >
+                <Icon name={getIconName('search')} class="h-4 w-4" />
+              </button>
+
+              <button
+                type="button"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-purple-400/70 bg-purple-500/10 text-purple-100 shadow-sm shadow-purple-500/20 hover:bg-purple-500/30 hover:border-purple-300 transition-colors"
+                aria-label="Filter projects"
+              >
+                <Icon name={getIconName('filter')} class="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+
+          <hr class="mt-3 border-t border-[color:var(--border-subtle)]" />
+        </div>
+
+        <div class="mt-6 grid gap-4 justify-center grid-cols-[repeat(auto-fit,minmax(18rem,1fr))]">
           {projects.map((project, index) => (
             <ProjectsCard
               title={project.title}

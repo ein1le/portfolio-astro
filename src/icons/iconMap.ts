@@ -51,6 +51,8 @@ export type IconKey =
   | 'linktree'
   | 'star'
   | 'external-link'
+  | 'search'
+  | 'filter'
   | 'youtube';
 
 // For local icons, astro-icon uses the SVG filename (without extension)
@@ -105,6 +107,8 @@ export const iconMap: Record<IconKey, string> = {
   linktree: 'LinkTree',
   star: 'Star',
   'external-link': 'external-link',
+  search: 'search',
+  filter: 'filter',
   youtube: 'youtube-svgrepo-com',
 };
 

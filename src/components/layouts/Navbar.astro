@@ -5,8 +5,16 @@
 import { navbarLinks } from './styles/navbarLinks';
 
 const currentPath = Astro.url.pathname;
-const isActive = (href: string) =>
-  currentPath === href || currentPath.startsWith(href + '/');
+const isActive = (href: string) => {
+  // Special case: "Experiences" tab points to the Professional page,
+  // but should appear active for any /experiences/* route.
+  if (href === '/experiences/professional') {
+    const base = '/experiences';
+    return currentPath === base || currentPath.startsWith(base + '/');
+  }
+
+  return currentPath === href || currentPath.startsWith(href + '/');
+};
 const baseLinkClasses =
   'inline-flex items-center rounded-t-2xl px-5 py-2 border text-[0.8rem] tracking-[0.14em] uppercase transition-colors duration-150 border-transparent';
 ---
@@ -23,7 +31,7 @@ const baseLinkClasses =
     </button>
 
     <nav
-      class="navbar-strip flex flex-1 px-4 text-[0.8rem] tracking-[0.14em] uppercase text-[color:var(--text-muted)] overflow-x-auto whitespace-nowrap"
+      class="navbar-strip flex flex-1 px-4 justify-center gap-6 text-[0.8rem] tracking-[0.14em] uppercase text-[color:var(--text-muted)] overflow-x-auto whitespace-nowrap"
       aria-label="Primary"
       data-navbar-links
     >
@@ -32,11 +40,13 @@ const baseLinkClasses =
           href={link.href}
           class={`${baseLinkClasses} ${
             isActive(link.href)
-              ? '-mb-px border-x border-t border-[color:var(--border-subtle)] border-b-transparent bg-[color:var(--bg-app)] text-[color:var(--text-main)] shadow-sm shadow-black/40'
+              ? '-mb-px border-x border-t border-[color:var(--border-subtle)] border-b-transparent bg-[color:var(--bg-app)] text-[color:var(--text-main)] font-semibold underline underline-offset-4 decoration-[color:var(--accent)]'
               : 'text-[color:var(--text-muted)] hover:text-[color:var(--text-main)] hover:border-slate-600/70 hover:bg-slate-900/40'
           }`}
         >
-          {link.label}
+          <span class={isActive(link.href) ? 'navbar-tab-label-active' : ''}>
+            {link.label}
+          </span>
         </a>
       ))}
     </nav>
@@ -66,13 +76,6 @@ const baseLinkClasses =
       const scrollable = maxScroll > 1;
       const atStart = nav.scrollLeft <= 0;
       const atEnd = nav.scrollLeft >= maxScroll - 1;
-
-      // Dynamic spacing: center when everything fits,
-      // use left-aligned strip when it overflows.
-      nav.classList.toggle('justify-center', !scrollable);
-      nav.classList.toggle('justify-start', scrollable);
-      nav.classList.toggle('gap-6', !scrollable);
-      nav.classList.toggle('gap-4', scrollable);
 
       const showPrev = scrollable && !atStart;
       const showNext = scrollable && !atEnd;
