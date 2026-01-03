@@ -12,8 +12,8 @@ interface Props {
   group: string;
   description: string;
   icon?: string;
-  major: StackElement[];
-  minor: StackElement[];
+  major?: StackElement[];
+  minor?: StackElement[];
   index?: number;
 }
 
@@ -21,8 +21,8 @@ const {
   group,
   description,
   icon,
-  major,
-  minor,
+  major = [],
+  minor = [],
   index = 0,
 } = Astro.props as Props;
 
@@ -39,7 +39,7 @@ const groupIconName = icon ? getIconName(icon) : null;
         <div class="flex items-start gap-3">
           {groupIconName && (
             <span class="mt-0.5 inline-flex shrink-0 items-center justify-center">
-              <Bubble size="xl" iconName={groupIconName} alt={group} />
+              <Bubble size="xxl" iconName={groupIconName} alt={group} />
             </span>
           )}
           <div class="min-w-0">
@@ -63,9 +63,9 @@ const groupIconName = icon ? getIconName(icon) : null;
             const itemIconName = item.icon ? getIconName(item.icon) : null;
 
             return (
-              <span class="group relative inline-flex h-9 w-9 items-center justify-center overflow-visible">
+              <span class="group relative inline-flex h-11 w-11 items-center justify-center overflow-visible">
                 <Bubble
-                  size="lg"
+                  size="xl"
                   logo={item.logo}
                   iconName={itemIconName}
                   text={item.logo || itemIconName ? undefined : item.name[0]}
@@ -87,9 +87,9 @@ const groupIconName = icon ? getIconName(icon) : null;
               const itemIconName = item.icon ? getIconName(item.icon) : null;
 
               return (
-                <span class="group relative inline-flex h-7 w-7 items-center justify-center overflow-visible">
+                <span class="group relative inline-flex h-9 w-9 items-center justify-center overflow-visible">
                   <Bubble
-                    size="md"
+                    size="lg"
                     logo={item.logo}
                     iconName={itemIconName}
                     text={item.logo || itemIconName ? undefined : item.name[0]}
@@ -153,5 +153,6 @@ const groupIconName = icon ? getIconName(icon) : null;
     max-height: 1000px;
     opacity: 1;
     transform: translateY(0);
+    overflow: visible;
   }
 </style>

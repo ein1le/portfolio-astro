@@ -21,12 +21,10 @@ import gunicornLogo from '../icons/gunicorn.png?url';
 import huggingFaceLogo from '../icons/hugging-face.png?url';
 import weightsBiasesLogo from '../icons/weights-biases.png?url';
 import onnxRuntimeLogo from '../icons/onnx-runtime.png?url';
-import modalLogo from '../icons/modal-labs.png?url';
-import claudeLogo from '../icons/claude.png?url';
+import vertexAiLogo from '../icons/vertexai.png?url';
 import openaiLogo from '../icons/openai.png?url';
-import mlflowLogo from '../icons/mlflow.png?url';
+import mlflowLogo from '../icons/mlflow.svg?url';
 import pandasLogo from '../icons/pandas.png?url';
-import mysqlLogo from '../icons/mysql.png?url';
 import mongoLogo from '../icons/mongodb.png?url';
 import kafkaLogo from '../icons/kafka.png?url';
 import seleniumLogo from '../icons/selenium.png?url';
@@ -68,6 +66,12 @@ import vercelLogo from '../icons/vercel.svg?url';
 import firebaseLogo from '../icons/firebase-me.png?url';
 import parcelLogo from '../icons/parcel.png?url';
 import threeLogo from '../icons/threejs.png?url';
+import gradioLogo from '../icons/gradio.png?url';
+import dynamodbLogo from '../icons/dynamodb.png?url';
+import postgresqlLogo from '../icons/postgresql.png?url';
+import celeryLogo from '../icons/Celery_logo.png?url';
+import optunaLogo from '../icons/optuna.png?url';
+import ecrLogo from '../icons/ecr.png?url';
 
 export interface StackElement {
   name: string;
@@ -176,17 +180,27 @@ export const stackGroups: StackGroup[] = [
         description: 'High-level neural network API for rapid prototyping.',
       },
     ],
-    minor: [
-      {
-        name: 'tslearn',
-        // no dedicated icon asset; uses initial fallback
-        description: 'Time-series specific machine learning algorithms.',
-      },
-      {
-        name: 'SciPy',
-        logo: scipyLogo,
-        description: 'Core scientific computing routines on top of NumPy.',
-      },
+      minor: [
+        {
+          name: 'tslearn',
+          // no dedicated icon asset; uses initial fallback
+          description: 'Time-series specific machine learning algorithms.',
+        },
+        {
+          name: 'SciPy',
+          logo: scipyLogo,
+          description: 'Core scientific computing routines on top of NumPy.',
+        },
+        {
+          name: 'Python Optimisation Libraries',
+          logo: optunaLogo,
+          description: 'Including Optuna and PYCVX',
+        },
+        {
+          name: 'Celery',
+          logo: celeryLogo,
+          description: 'Distributed task queue used with brokers like Redis for background workloads.',
+        },
       {
         name: 'Python Quant Libraries',
         logo: quantconnectLogo,
@@ -230,42 +244,42 @@ export const stackGroups: StackGroup[] = [
         description: 'Pretrained transformer models for NLP and beyond.',
       },
     ],
-    minor: [
-      {
-        name: 'Weights & Biases',
-        logo: weightsBiasesLogo,
-        description: 'Experiment tracking, logging, and model performance dashboards.',
+      minor: [
+        {
+          name: 'Weights & Biases',
+          logo: weightsBiasesLogo,
+          description: 'Experiment tracking, logging, and model performance dashboards.',
       },
       {
         name: 'Vector Databases',
         logo: chromaDbLogo,
         description: 'ChromaDB and Pinecone for embedding storage and similarity search.',
       },
-      {
-        name: 'ONNX Runtime',
-        logo: onnxRuntimeLogo,
-        description: 'Portable runtime for optimised model inference on multiple backends.',
-      },
-      {
-        name: 'Modal',
-        logo: modalLogo,
-        description: 'Serverless compute platform for Python and ML workloads.',
-      },
-      {
-        name: 'Claude API',
-        logo: claudeLogo,
-        description: 'LLM used as a reasoning engine or assistant in applied systems.',
-      },
-      {
-        name: 'OpenAI API',
-        logo: openaiLogo,
-        description: 'Code generation and completion models for developer tooling.',
-      },
-      {
-        name: 'MLflow',
-        logo: mlflowLogo,
-        description: 'Open-source platform for tracking experiments and managing ML models.',
-      }
+        {
+          name: 'ONNX Runtime',
+          logo: onnxRuntimeLogo,
+          description: 'Portable runtime for optimised model inference on multiple backends.',
+        },
+        {
+          name: 'Cloud End-to-End ML Platforms',
+          logo: vertexAiLogo,
+          description: 'Managed ML platforms such as Google Cloud Vertex AI for training, orchestration, and deployment.',
+        },
+        {
+          name: 'LLM APIs',
+          logo: openaiLogo,
+          description: 'Hosted LLM APIs (e.g. OpenAI) used for reasoning, generation, and assistant-style workflows.',
+        },
+        {
+          name: 'Gradio',
+          logo: gradioLogo,
+          description: 'Python tools for quickly building interactive ML demos and dashboards.',
+        },
+        {
+          name: 'MLflow',
+          logo: mlflowLogo,
+          description: 'Open-source platform for tracking experiments and managing ML models.',
+        }
     ],
   },
   {
@@ -289,26 +303,31 @@ export const stackGroups: StackGroup[] = [
         description: 'Gunicorn and Uvicorn servers for serving ML APIs and applications.',
       },
     ],
-    minor: [
-      {
-        name: 'GraphQL APIs',
-        logo: graphqlLogo,
-        description: 'Query language and runtime for flexible API schemas.',
+      minor: [
+        {
+          name: 'GraphQL',
+          logo: graphqlLogo,
+          description: 'Query language and runtime for flexible API schemas.',
       },
       {
-        name: 'gRPC APIs',
+        name: 'gRPC',
         description: 'Resource-oriented API design for HTTP services.',
       },
       {
-        name: 'REST APIs',
+        name: 'REST',
         logo: restLogo,
         description: 'Resource-oriented API design for HTTP services.',
       },
-      {
-        name: 'Kafka',
-        logo: kafkaLogo,
-        description: 'Streaming platform for event-driven architectures.',
-      },
+        {
+          name: 'Kafka',
+          logo: kafkaLogo,
+          description: 'Streaming platform for event-driven architectures.',
+        },
+        {
+          name: 'Python Webscraping',
+          logo: seleniumLogo,
+          description: 'BeautifulSoup, Selenium, and Scrapy.',
+        },
       {
         name: 'Postman',
         logo: postmanLogo,
@@ -415,41 +434,31 @@ export const stackGroups: StackGroup[] = [
         description: 'Primary tool for tabular analysis and data munging.',
       },
       {
-        name: 'MySQL',
-        logo: mysqlLogo,
-        description: 'Relational database used for transactional workloads.',
+        name: 'SQL Databases',
+        logo: postgresqlLogo,
+        description: 'Relational databases used for analytics and robust schema support, including MySQL and PostgreSQL.',
       },
-      {
-        name: 'PostgreSQL',
-        icon: 'sql',
-        description: 'Relational database used for analytics and robust schema support.',
-      },
-      {
-        name: 'Databricks',
-        logo: databricksLogo,
-        description: 'Lakehouse platform that combines data warehousing and data engineering.',
-      },
-      {
-        name: 'Python Webscraping',
-        logo: seleniumLogo,
-        description: 'BeautifulSoup, Selenium, and Scrapy.',
-      },
-    ],
-    minor: [
-      {
-        name: 'Apache',
-        logo: kafkaLogo,
+        {
+          name: 'Databricks',
+          logo: databricksLogo,
+          description: 'Lakehouse platform that combines data warehousing and data engineering.',
+        },
+        {
+          name: 'Cloud Databases',
+          logo: dynamodbLogo,
+          description: 'Managed cloud databases including DynamoDB, AWS EC2 and S3.',
+        },
+      ],
+      minor: [
+        {
+          name: 'Apache',
+          logo: kafkaLogo,
         description: 'Hadoop, Spark, Scala, and Hive for big data processing and ETL.',
       },
       {
         name: 'MongoDB',
         logo: mongoLogo,
         description: 'Document-oriented NoSQL database for flexible schemas.',
-      },
-      {
-        name: 'Kubernetes',
-        logo: kubernetesLogo,
-        description: 'Container orchestration platform for managing containerised applications.',
       },
       {
         name: 'Redis',
@@ -477,6 +486,16 @@ export const stackGroups: StackGroup[] = [
         name: 'GitHub',
         icon: 'github',
         description: 'Hosting, collaboration, and CI pipelines via GitHub Actions.',
+      },
+      {
+        name: 'Kubernetes',
+        logo: kubernetesLogo,
+        description: 'Container orchestration platform for managing containerised applications.',
+      },
+      {
+        name: 'Cloud Registry',
+        logo: ecrLogo,
+        description: 'Container registry infrastructure using AWS ECR for storing and managing images.',
       },
     ],
     minor: [

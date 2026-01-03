@@ -11,9 +11,16 @@ import { stackGroups } from '../data/stack';
   </head>
   <body>
     <GlobalShell>
-      <section class="mx-auto flex w-full flex-col gap-6 px-6 pt-6 md:px-8 md:pt-8">
-        <StackGrid groups={stackGroups} />
-      </section>
+      <div class="flex flex-col md:flex-1 md:min-h-0">
+        <div class="relative md:flex-1 md:min-h-0">
+          <div class="pointer-events-none absolute inset-x-0 top-0 z-10 h-10 bg-gradient-to-b from-[color:var(--bg-app)] to-transparent hidden md:block"></div>
+          <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-10 bg-gradient-to-t from-[color:var(--bg-app)] to-transparent hidden md:block"></div>
+
+          <section class="scroll-y-area mx-auto flex w-full max-w-none flex-col gap-6 px-6 pt-6 md:h-full md:overflow-y-auto md:px-8 md:pt-8">
+            <StackGrid groups={stackGroups} />
+          </section>
+        </div>
+      </div>
     </GlobalShell>
   </body>
 </html>
