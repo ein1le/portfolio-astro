@@ -10,7 +10,6 @@ import pytorchLogo from '../icons/pytorch.png?url';
 import pytorchLightningLogo from '../icons/pytorch-lightning.png?url';
 import scikitLogo from '../icons/scikit.png?url';
 import scipyLogo from '../icons/scipy.png?url';
-import quantlibLogo from '../icons/quantlib.png?url';
 import quantconnectLogo from '../icons/quantconnect.png?url';
 import opencvLogo from '../icons/opencv.png?url';
 import tensorflowLogo from '../icons/tensorflow.png?url';
@@ -72,6 +71,10 @@ import postgresqlLogo from '../icons/postgresql.png?url';
 import celeryLogo from '../icons/Celery_logo.png?url';
 import optunaLogo from '../icons/optuna.png?url';
 import ecrLogo from '../icons/ecr.png?url';
+import ec2Logo from '../icons/ec2.png?url';
+import alphavantageLogo from '../icons/alphavantage.jpg?url';
+import grpcLogo from '../icons/grpc.png?url';
+import apacheLogo from '../icons/apache.png?url';
 
 export interface StackElement {
   name: string;
@@ -302,6 +305,11 @@ export const stackGroups: StackGroup[] = [
         logo: gunicornLogo,
         description: 'Gunicorn and Uvicorn servers for serving ML APIs and applications.',
       },
+      {
+        name: 'Containerized Frameworks',
+        logo: ec2Logo,
+        description: 'Containerised frameworks and services for running workloads on AWS EC2 and related infrastructure.',
+      },
     ],
       minor: [
         {
@@ -311,6 +319,7 @@ export const stackGroups: StackGroup[] = [
       },
       {
         name: 'gRPC',
+        logo: grpcLogo,
         description: 'Resource-oriented API design for HTTP services.',
       },
       {
@@ -339,7 +348,7 @@ export const stackGroups: StackGroup[] = [
       },
       {
         name: 'Finance APIs',
-        logo: quantlibLogo,
+        logo: alphavantageLogo,
         description: 'APIs for market data including Alpha Vantage and Polygon.io.',
       },
     ],
@@ -452,7 +461,7 @@ export const stackGroups: StackGroup[] = [
       minor: [
         {
           name: 'Apache',
-          logo: kafkaLogo,
+          logo: apacheLogo,
         description: 'Hadoop, Spark, Scala, and Hive for big data processing and ETL.',
       },
       {

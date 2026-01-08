@@ -14,6 +14,19 @@ function ensureOverlay() {
   overlay.className =
     'fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm';
 
+  // Fallback inline styles so the overlay behaves like
+  // a centered popup even if utility classes are not available.
+  Object.assign(overlay.style, {
+    position: 'fixed',
+    inset: '0',
+    zIndex: '9999',
+    display: 'none',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(15, 23, 42, 0.8)',
+    backdropFilter: 'blur(6px)',
+  });
+
   overlay.innerHTML = `
     <div class="relative w-[92vw] max-w-4xl h-[82vh] rounded-xl border border-[color:var(--border-subtle)] bg-slate-950/95 shadow-2xl flex flex-col overflow-hidden">
       <header class="flex items-start justify-between gap-3 border-b border-[color:var(--border-subtle)] bg-slate-900/90 px-4 py-2.5">
@@ -70,17 +83,70 @@ function ensureOverlay() {
     </div>
   `;
 
+  // Apply inline sizing/layout to the shell and frame so the
+  // popup has a fixed max width and usable viewport height even
+  // without Tailwind utilities.
+  const shell = overlay.firstElementChild;
+  if (shell instanceof HTMLElement) {
+    Object.assign(shell.style, {
+      width: '92vw',
+      maxWidth: '64rem',
+      height: '82vh',
+      borderRadius: '0.75rem',
+      border: '1px solid rgba(148,163,184,0.55)',
+      backgroundColor: 'rgba(2,6,23,0.96)',
+      boxShadow: '0 18px 40px rgba(15,23,42,0.9)',
+      display: 'flex',
+      flexDirection: 'column',
+      overflow: 'hidden',
+    });
+
+    const main = shell.querySelector('main');
+    if (main instanceof HTMLElement) {
+      Object.assign(main.style, {
+        flex: '1 1 auto',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.5rem',
+        padding: '0.5rem 0.75rem 0.75rem',
+      });
+    }
+
+    const frameShell = shell.querySelector('.frame-shell');
+    if (frameShell instanceof HTMLElement) {
+      Object.assign(frameShell.style, {
+        flex: '1 1 auto',
+        overflow: 'hidden',
+        borderRadius: '0.6rem',
+        border: '1px solid rgba(30,64,175,0.55)',
+        backgroundColor: 'rgba(15,23,42,0.9)',
+      });
+    }
+
+    const frame = shell.querySelector('#pdf-frame');
+    if (frame instanceof HTMLIFrameElement) {
+      Object.assign(frame.style, {
+        width: '100%',
+        height: '100%',
+        border: 'none',
+        display: 'block',
+      });
+    }
+  }
+
   document.body.appendChild(overlay);
 
   overlay.addEventListener('click', (event) => {
     if (event.target === overlay) {
       overlay.classList.add('hidden');
+      overlay.style.display = 'none';
     }
   });
 
   const closeButton = overlay.querySelector('[data-pdf-close]');
   closeButton && closeButton.addEventListener('click', () => {
     overlay.classList.add('hidden');
+    overlay.style.display = 'none';
   });
 
   return overlay;
@@ -132,6 +198,7 @@ function openPdf(url, meta = {}) {
   }
 
   overlay.classList.remove('hidden');
+  overlay.style.display = 'flex';
 }
 
 function setupPdfLinks() {
@@ -162,4 +229,3 @@ if (typeof window !== 'undefined') {
     setupPdfLinks();
   }
 }
-

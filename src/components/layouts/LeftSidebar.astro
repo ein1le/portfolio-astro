@@ -2,6 +2,7 @@
 import { Button, Card, ContactButton, Textbox } from '../ui';
 import { Icon } from 'astro-icon/components';
 import { contacts } from '../../data/contacts';
+import cvPdf from '../../assets/CV_Wishawin_Lertnawapan.pdf?url';
 ---
 
 <aside class="md:row-span-2 md:col-start-1 flex items-start justify-center border-r border-[color:var(--border-subtle)] pl-0 pr-5 pb-10 md:px-5 md:pb-10 pt-10">
@@ -49,25 +50,27 @@ import { contacts } from '../../data/contacts';
     </div>
 
     <div class="mt-6 w-full flex justify-center">
-      <Button class="px-8 py-3 text-sm">
-        <span class="flex items-center gap-2 px-2">
-          <span>CV</span>
-          <svg
-            viewBox="0 0 20 20"
-            aria-hidden="true"
-            class="h-3.5 w-3.5"
-          >
-            <path
-              d="M10 4v9m0 0-3.5-3.5M10 13l3.5-3.5M4 15.5h12"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.4"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </span>
-      </Button>
+      <a href={cvPdf} download class="inline-block" aria-label="Download CV">
+        <Button class="px-8 py-3 text-sm">
+          <span class="flex items-center gap-2 px-2">
+            <span>CV</span>
+            <svg
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              class="h-3.5 w-3.5"
+            >
+              <path
+                d="M10 4v9m0 0-3.5-3.5M10 13l3.5-3.5M4 15.5h12"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+        </Button>
+      </a>
     </div>
 
     <div class="mt-3 w-full">
