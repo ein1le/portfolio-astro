@@ -5,9 +5,33 @@ import ExperiencesSubnav from '../../components/layouts/ExperiencesSubnav.astro'
 import ExperienceCard from '../../components/ui/ExperienceCard.astro';
 import { academicExperiences } from '../../data/academicExperiences';
 
-const sortedAcademicExperiences = [...academicExperiences].sort(
-  (a, b) => b.id - a.id,
-);
+const priorityOrder = [
+  'Quantitative Engineer',
+  'Chief Information Officer',
+  'Project Advisor',
+  'Director of Technology',
+  'BRAINยฎ Researcher',
+];
+
+const getPriority = (title: string) => {
+  const idx = priorityOrder.indexOf(title);
+  return idx === -1 ? Number.MAX_SAFE_INTEGER : idx;
+};
+
+const sortedAcademicExperiences = academicExperiences
+  .map((exp, index) => ({ exp, index }))
+  .sort((a, b) => {
+    const pa = getPriority(a.exp.title);
+    const pb = getPriority(b.exp.title);
+
+    if (pa !== pb) {
+      return pa - pb;
+    }
+
+    // Preserve original order for experiences with the same priority
+    return a.index - b.index;
+  })
+  .map(({ exp }) => exp);
 ---
 
 <html lang="en">

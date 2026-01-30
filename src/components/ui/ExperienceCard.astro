@@ -57,6 +57,7 @@ import vbaLogo from '../../icons/VBA.png?url';
 import websimLogo from '../../icons/websim.jpg?url';
 import wixLogo from '../../icons/wix.png?url';
 import firebaseLogo from '../../icons/firebase-me.png?url';
+import powerBiLogo from '../../icons/powerbi.png?url';
 
 interface ExperienceLink {
   label: string;
@@ -119,6 +120,7 @@ const languageIconKeyMap: Record<string, string> = {
   Python: 'python',
   'C++': 'cpp',
   JavaScript: 'javascript',
+  R: 'r-lang',
 
   // Frameworks / libraries
   React: 'react',
@@ -166,6 +168,7 @@ const languageLogoMap: Record<string, string> = {
   // BI / analytics tooling
   VBA: vbaLogo,
   Tableau: tableauLogo,
+  'Power BI': powerBiLogo,
 };
 
 const getLanguageIconName = (lang: string): string | null => {
