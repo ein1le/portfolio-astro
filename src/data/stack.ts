@@ -63,6 +63,7 @@ import viteLogo from '../icons/vite.png?url';
 import wixLogo from '../icons/wix.png?url';
 import vercelLogo from '../icons/vercel.svg?url';
 import firebaseLogo from '../icons/firebase-me.png?url';
+import supabaseLogo from '../icons/supabase.png?url';
 import parcelLogo from '../icons/parcel.png?url';
 import threeLogo from '../icons/threejs.png?url';
 import gradioLogo from '../icons/gradio.png?url';
@@ -473,6 +474,16 @@ export const stackGroups: StackGroup[] = [
         name: 'Redis',
         logo: redisLogo,
         description: 'In-memory data structure store for caching and session management.',
+      },
+      {
+        name: 'Firebase',
+        logo: firebaseLogo,
+        description: 'Realtime NoSQL database and backend services for web and mobile apps.',
+      },
+      {
+        name: 'Supabase',
+        logo: supabaseLogo,
+        description: 'Open-source Firebase alternative built on PostgreSQL.',
       }
     ],
   },

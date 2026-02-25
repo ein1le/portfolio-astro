@@ -29,6 +29,7 @@ export interface EducationEntry {
 import wquLogo from '../assets/education/WQU.jpeg';
 import bristolLogo from '../assets/education/Bristol.png';
 import harrowLogo from '../assets/education/Harrow.jpg';
+import imperialLogo from '../assets/education/Imperial.png';
 
 // Transcripts
 import wquTranscript from '../assets/education/WQU_Transcript.pdf';
@@ -46,17 +47,28 @@ import ddpmMergedPdf from '../assets/education/pdfs/DDPM_2143062_Merged.pdf';
 import group7SummativePdf from '../assets/education/pdfs/Group7_Merged_Summative.pdf';
 import materialsLabPdf from '../assets/education/pdfs/Materials_Lab.pdf';
 import stpMergedPdf from '../assets/education/pdfs/STP_LocaVision.pdf';
+import mscfe600GwpPdf from '../assets/education/pdfs/MScFE600_GWP.pdf';
 
 export const educationEntries: EducationEntry[] = [
   {
-    title: 'Incoming',
-    subheader: 'MSc Data Science and Machine Learning',
-    date: 'Sep 2026 - Jul 2027',
+    title: 'Imperial College London',
+    subheader: 'MSc Business Analytics and AI',
+    date: 'Aug 2026 - Dec 2027',
     location: 'London, UK',
     grade:
-      'Applications pending at Imperial, LSE, and UCL for Sept 2026 intake',
-    image: "",
-    modules: {},
+      '',
+    image: imperialLogo,
+    modules: {
+      'Core Modules': [
+        'Data Structures and Algorithms',
+        'Data Wrangling and Visualisation',
+        'Deep Learning and Generative AI',
+        'Fundamentals of Database Technologies',
+        'Machine Learning',
+        'Maths & Statistics Foundations for Data Analytics',
+        'Statistics and Econometrics'
+      ]
+    },
     publications: [],
     awards: [],
   },
@@ -70,11 +82,21 @@ export const educationEntries: EducationEntry[] = [
     modules: {
       'Year 1': [
         'MScFE560 25/10 Financial Markets',
-        'MScFE600 25/12 Financial Data' 
+        'MScFE600 25/12 Financial Data',
+        'MScFE610 25/12 Financial Econometrics',
       ]
     },
-    publications: [],
-    awards: [],
+    publications: [
+      {
+        title: 'Assessing Alternative ETF Data',
+        course: 'MScFE 600 Module 6 Group Work Project',
+        authors: 'Bukunmi Enoch Akinyemi, Abdul-Jabbar Abbas',
+        description: 'Final group submission as part of the MScFE 600 Financial Data Module. The report analysed trend prediction in emerging market ETFs using technical indicators and feature selection. The study uses binary classification models and statistically evaluated an optimized subset of five indicators for predictive performance, validated using cross-validation.The report also explores a practical extension on using social media data as alternative financial data, including sentiment analysis methods.',
+        date: 'February 4, 2026',
+        pdfUrl: mscfe600GwpPdf,
+      },
+    ],
+    awards: ['Foundations of Financial Engineering Credential'],
     transcriptUrls: [wquTranscript],
   },
   {
@@ -220,6 +242,7 @@ export const educationEntries: EducationEntry[] = [
     awards: [
       'Bristol PLUS Award',
       'Bristol Skills Accelerator',
+      'Innovation and Enterprise',
       'Think Big Scholarship',
     ],
     transcriptUrls: [bristolTranscript],

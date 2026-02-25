@@ -63,6 +63,8 @@ const baseLinkClasses =
 </header>
 
 <script>
+  const SCROLL_KEY = 'global-shell-scroll-y';
+
   const setupNavbarScroll = () => {
     const nav = document.querySelector('[data-navbar-links]');
     const prev = document.querySelector('[data-navbar-prev]');
@@ -107,6 +109,19 @@ const baseLinkClasses =
     next.addEventListener('click', () => scrollByStep(1));
     nav.addEventListener('scroll', updateButtons);
     window.addEventListener('resize', updateButtons);
+
+    // Remember the current scroll position before navigating
+    // so the next page can restore it (especially useful in stacked view).
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        const y = window.scrollY || document.documentElement.scrollTop || 0;
+        try {
+          window.sessionStorage.setItem(SCROLL_KEY, String(y));
+        } catch {
+          // ignore storage errors
+        }
+      });
+    });
 
     updateButtons();
   };

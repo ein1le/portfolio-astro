@@ -1,5 +1,7 @@
 // Professional experiences data for the Experiences > Professional view.
 
+import qhopLogo from '../icons/qhop.svg?url';
+
 export type ExperienceType =
   | 'Contract'
   | 'Full-time'
@@ -38,6 +40,16 @@ export interface ProfessionalExperience {
 }
 
 export const professionalExperiences: ProfessionalExperience[] = [
+    {
+    title: 'QHop',
+    role: 'Fullstack Developer',
+    dates: 'Feb 2026 – Present',
+    location: 'Remote, Thailand',
+    type: 'Contract',
+    description: '',
+    skills: [],
+    logo: qhopLogo,
+  },
   {
     title: 'NexusKCG',
     role: 'ML Platform Engineer',
@@ -51,7 +63,7 @@ export const professionalExperiences: ProfessionalExperience[] = [
   {
     title: 'University of Bristol Intelligent Systems Laboratory' ,
     role: 'Graduate Researcher, Bristol ISL',
-    dates: 'Jun 2025 – Present',
+    dates: 'Jun 2025 – Dec 2025',
     location: 'Bristol, UK',
     type: 'Researcher',
     description: '',

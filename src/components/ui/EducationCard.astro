@@ -7,6 +7,10 @@ import Card from './Card.astro';
 import PublicationCard from './PublicationCard.astro';
 import { Icon } from 'astro-icon/components';
 import type { EducationPublication } from '../../data/education';
+import wquFfePreview from '../../assets/education/WQU-FFE.png?url';
+import bristolPlusPreview from '../../assets/education/PLUS.pdf?url';
+import bristolSkillsPreview from '../../assets/education/skills_accelerator.pdf?url';
+import bristolInnovationPreview from '../../assets/education/innovation_enterprise.pdf?url';
 
 interface Props {
   title: string;
@@ -41,6 +45,18 @@ const hasStructuredContent =
   moduleGroups.length > 0 || awards.length > 0 || publications.length > 0;
 const hasExpandableContent =
   hasStructuredContent;
+
+const awardPreviewMap: Record<string, string> = {
+  'Foundations of Financial Engineering Credential': wquFfePreview,
+  'Bristol PLUS Award': bristolPlusPreview,
+  'Bristol Skills Accelerator': bristolSkillsPreview,
+  'Innovation and Enterprise': bristolInnovationPreview,
+};
+
+const awardLinkMap: Record<string, string> = {
+  'Foundations of Financial Engineering Credential':
+    'https://www.credly.com/earner/earned/badge/6d7b72a2-e1ef-47d2-9d1f-27c56d27eedd',
+};
 ---
 
 <Card>
@@ -101,11 +117,32 @@ const hasExpandableContent =
                 Awards
               </h3>
               <div class="flex flex-wrap gap-2">
-                {awards.map((award) => (
-                  <Button class="px-3 py-1 text-[0.75rem] font-semibold normal-case tracking-normal">
-                    {award}
-                  </Button>
-                ))}
+                {awards.map((award) => {
+                  const previewUrl = awardPreviewMap[award];
+                  const linkUrl = awardLinkMap[award];
+
+                  const button = (
+                    <Button
+                      class="px-3 py-1 text-[0.75rem] font-semibold normal-case tracking-normal"
+                      pdfPreviewUrl={previewUrl}
+                    >
+                      {award}
+                    </Button>
+                  );
+
+                  return linkUrl ? (
+                    <a
+                      href={linkUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      class="inline-block"
+                    >
+                      {button}
+                    </a>
+                  ) : (
+                    button
+                  );
+                })}
               </div>
             </div>
           </div>

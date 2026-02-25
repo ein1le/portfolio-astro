@@ -81,7 +81,7 @@ export const academicExperiences: AcademicExperience[] = [
     title: 'Director of Technology',
     role: '27th Executive Committee',
     organisation: 'United Kingdom Singapore Students Association ',
-    dates: 'March 2025 - Present',
+    dates: 'March 2025 - Apr 2026',
     location: 'Remote, UK',
     type: 'Researcher',
     description: "Serving as Director of Technology for the United Kingdom Singaporean Students' Council, overseeing all digital infrastructure for the largest Singaporean student body in the UK. Extended the existing system with custom authorization logic, adding OAuth 2.0 SSO, persistent sessions, and RBAC enforced at the middleware and endpoint level within the existing Wix CMS.",
@@ -91,7 +91,7 @@ export const academicExperiences: AcademicExperience[] = [
     subroles: [
       {
         role: 'Director of Technology',
-        dates: 'Aug 2025 - Present',
+        dates: 'Aug 2025 - Apr 2026',
         description: '',
         skills: [],
         contributors: ['Jaslyn Leong'],
