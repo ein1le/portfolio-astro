@@ -48,6 +48,7 @@ import group7SummativePdf from '../assets/education/pdfs/Group7_Merged_Summative
 import materialsLabPdf from '../assets/education/pdfs/Materials_Lab.pdf';
 import stpMergedPdf from '../assets/education/pdfs/STP_LocaVision.pdf';
 import mscfe600GwpPdf from '../assets/education/pdfs/MScFE600_GWP.pdf';
+import mscfe610Gwp1Pdf from '../assets/education/pdfs/MScFE610_GWP1.pdf';
 
 export const educationEntries: EducationEntry[] = [
   {
@@ -76,7 +77,7 @@ export const educationEntries: EducationEntry[] = [
     title: 'WorldQuant University',
     subheader: 'MScFE Financial Engineering',
     date: 'Sep 2025 - Sep 2027',
-    location: 'Online, UK',
+    location: 'Online, USA',
     grade: '',
     image: wquLogo,
     modules: {
@@ -94,6 +95,14 @@ export const educationEntries: EducationEntry[] = [
         description: 'Final group submission as part of the MScFE 600 Financial Data Module. The report analysed trend prediction in emerging market ETFs using technical indicators and feature selection. The study uses binary classification models and statistically evaluated an optimized subset of five indicators for predictive performance, validated using cross-validation.The report also explores a practical extension on using social media data as alternative financial data, including sentiment analysis methods.',
         date: 'February 4, 2026',
         pdfUrl: mscfe600GwpPdf,
+      },
+      {
+        title: 'Econometric Regression',
+        course: 'MScFE 610 Group Work Project 1',
+        authors: 'Alogala Anyuzgi, Shrivathsa Sridharan',
+        description: 'Group report for MScFE 610 covering core econometric regression diagnostics and model behavior. Addresses several problems in the outline, and performs omitted-variable bias analytically, validating the effect with simulations across different sample sizes, then compares outlier sensitivity across OLS variants. The project also performs feature-subset model selection using RMSE, AIC, and BIC to justify a parsimonious OLS specification.',
+        date: 'April 5, 2026',
+        pdfUrl: mscfe610Gwp1Pdf,
       },
     ],
     awards: ['Foundations of Financial Engineering Credential'],

@@ -36,6 +36,44 @@ export interface AcademicExperience {
 
 export const academicExperiences: AcademicExperience[] = [
   {
+    id: 19,
+    title: 'AI Performance Engineering Fellow',
+    role: '',
+    organisation: 'Nebius Academy',
+    dates: 'Mar 2026 - Present',
+    location: 'London, UK',
+    type: 'Researcher',
+    description: '',
+    skills: ['LLM Architectures', 'Agentic AI', 'Performance Engineering'],
+    languages: [],
+    logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQGHUEXQhf1tuA/company-logo_200_200/company-logo_200_200/0/1696427125072/nebius_logo?e=1775692800&v=beta&t=xfnhzaJ3xmVIoaSDkQZAyWnYYxvz0DlStS_vff6bcfY',
+    links: [],
+    contributors: [],
+    subroles: [],
+  },
+  {
+    id: 19,
+    title: 'Trainee',
+    role: 'Quantitative Analyst',
+    organisation: 'D+A Stategies',
+    dates: 'Mar 2026 - Present',
+    location: 'Remote, Italy',
+    type: 'Researcher',
+    description: '',
+    skills: ['Algorithmic Trading', 'Quantitatiive Research', 'Financial Markets'],
+    languages: [],
+    logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQFfBVrQzJAIKg/company-logo_200_200/B4EZUbCpHBHgAI-/0/1739915433414/d_a_strategies_gbr_logo?e=1775692800&v=beta&t=TffjbhmtsO2bdlk_0qNPWrcKMD7hQDozrbhCWEgoQ1c',
+    links: [
+      {
+        label : "D+A Strategies",
+        type: 'Website',
+        url: "http://da-strategies.com/"
+      }
+    ],
+    contributors: [],
+    subroles: [],
+  },
+  {
     id: 9,
     title: 'Chief Information Officer',
     role: '125th Executive Committee',
@@ -81,7 +119,7 @@ export const academicExperiences: AcademicExperience[] = [
     title: 'Director of Technology',
     role: '27th Executive Committee',
     organisation: 'United Kingdom Singapore Students Association ',
-    dates: 'March 2025 - Apr 2026',
+    dates: 'March 2025 - Present',
     location: 'Remote, UK',
     type: 'Researcher',
     description: "Serving as Director of Technology for the United Kingdom Singaporean Students' Council, overseeing all digital infrastructure for the largest Singaporean student body in the UK. Extended the existing system with custom authorization logic, adding OAuth 2.0 SSO, persistent sessions, and RBAC enforced at the middleware and endpoint level within the existing Wix CMS.",
@@ -89,6 +127,14 @@ export const academicExperiences: AcademicExperience[] = [
     languages: ['Wix', 'Firebase', 'JavaScript'],
     logo: 'https://media.licdn.com/dms/image/v2/C4D0BAQF2MgYLpb3WzA/company-logo_200_200/company-logo_200_200/0/1631314042684?e=2147483647&v=beta&t=bCjRLHMizG7JdJGfruT2lsE6leT6jMuLQM45NTWfcnw',
     subroles: [
+      {
+        role: 'UKSSC28th Advisory Board',
+        dates: 'Apr 2025 - Present',
+        description: '',
+        skills: [],
+        contributors: [],
+        links: [],
+      },   
       {
         role: 'Director of Technology',
         dates: 'Aug 2025 - Apr 2026',
@@ -264,8 +310,8 @@ export const academicExperiences: AcademicExperience[] = [
   },
   {
     id: 3,
-    title: 'Project Advisor',
-    role: '24/25 Data Science Cycles',
+    title: 'Head of Data Science Operations',
+    role: '26/27 Executive Committee',
     organisation: '180 Degrees Consulting',
     dates: 'Sep 2024 - Present',
     location: 'Bristol, UK',
@@ -281,18 +327,26 @@ export const academicExperiences: AcademicExperience[] = [
         url: 'https://www.180dc.org/branches/bristol/',
       },
     ],
-    contributors: ['Maddie Man', 'Walter Kwong'],
+    contributors: ['Maddie Man', 'Walter Kwong','Araya Wonklaw','Orlando Alexander'],
     subroles: [
       {
-        role: 'ScrubMarine Project Mentor',
-        dates: 'Feb 2026 - Present',
-        description: 'Project in progress with 180DC Lancaster',
+        role: 'Head of Data Science Operations',
+        dates: 'April 2026 - Present',
+        description: '',
         skills: [],
-        contributors: ['Izaac Ip'],
+        contributors: [''],
         links: [],
       },
       {
-        role: 'Pledgeball Analytics Project Advisor',
+        role: '25/26 Spring Cycle Strategy Alumni Mentor',
+        dates: 'Feb 2026 - Present',
+        description: 'Project in progress with 180DC Lancaster',
+        skills: [],
+        contributors: ['Izaac Ip','Orlando Alexander'],
+        links: [],
+      },
+      {
+        role: '24/25 Spring Cycle Database Project Advisor',
         dates: 'Jan 2025 - May 2025',
         description: 'Created a Tableau visualization and presented data exploration findings to Pledgeball, a sports charity focused on tackling climate change through harnessing the influence of football communities. Findings were focused on comprehension and expansion strategies based on historical football club engagement.',
         skills: [],
@@ -300,7 +354,7 @@ export const academicExperiences: AcademicExperience[] = [
         links: [],
       },
       {
-        role: 'Weston Housing Action Project Advisor',
+        role: '24/25 Spring Cycle Analytics Project Advisor',
         dates: 'Jan 2025 - May 2025',
         description: 'Weston Housing Action (WHAT) is a cooperative that provides housing support to communites in Weston. Implemented a VBA-based relational database system to serve as a record-keeping tool in support of their Charity Commission application, with an integrated data entry GUI and public-facing query system.',
         skills: [],
@@ -308,7 +362,7 @@ export const academicExperiences: AcademicExperience[] = [
         links: [],
       },
       {
-        role: 'RENS Charity Consultant',
+        role: '24/25 Autumn Cycle Data Science Consultant',
         dates: 'Sep 2024 - Jan 2025',
         description: 'Performed data cleaning and conducted EDA for Racial Equality North Sommerset (RENS) to inform of their community impact. Proposed methodologies for future data collection from clients, in the form of recurrent presentations, and a written documentation. Used ripple mapping and clustering to segment types of cients served.',
         skills: [],

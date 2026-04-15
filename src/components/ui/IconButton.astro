@@ -1,0 +1,54 @@
+---
+// IconButton component
+// Visually aligned with the primary Button, but optimised for
+// clickable logo / icon links (renders as an <a> element).
+
+interface Props {
+  href: string;
+  logo?: string;
+  alt?: string;
+  size?: 'md' | 'lg';
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  href,
+  logo,
+  alt = 'Icon button',
+  size = 'lg',
+  class: extraClass = '',
+  ...attrs
+} = Astro.props as Props;
+
+const sizeClass =
+  size === 'md'
+    ? 'h-14 w-14'
+    : 'h-20 w-20';
+
+// Base styling mirrors the primary Button (border, colors, transitions),
+// adapted for circular icon-only usage.
+const baseClass =
+  'group inline-flex items-center justify-center rounded-full border border-purple-400/60 bg-transparent text-xs font-medium uppercase tracking-[0.14em] text-[color:var(--text-main)] transition-transform transition-colors duration-150 hover:border-purple-300 hover:bg-purple-500/15 hover:-translate-y-[1px] active:translate-y-0';
+
+const className = `${baseClass} ${sizeClass} ${extraClass}`.trim();
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noreferrer"
+  class={className}
+  aria-label={alt}
+  {...attrs}
+>
+  {logo && (
+    <img
+      src={logo}
+      alt={alt}
+      loading="lazy"
+      class="h-full w-full object-contain transition-transform duration-150 group-hover:scale-110"
+    />
+  )}
+  <slot />
+</a>

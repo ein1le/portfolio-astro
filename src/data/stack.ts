@@ -76,12 +76,16 @@ import ec2Logo from '../icons/ec2.png?url';
 import alphavantageLogo from '../icons/alphavantage.jpg?url';
 import grpcLogo from '../icons/grpc.png?url';
 import apacheLogo from '../icons/apache.png?url';
+import awsClfLogo from '../assets/stack/certs/aws-clf-c02.png?url';
+import awsAifLogo from '../assets/stack/certs/aws-aif-c01.png?url';
 
 export interface StackElement {
   name: string;
+  date?: string;
   icon?: IconKey;
   logo?: string;
   description: string;
+  link?: string;
 }
 
 export interface StackGroup {
@@ -91,6 +95,24 @@ export interface StackGroup {
   major: StackElement[];
   minor: StackElement[];
 }
+
+//certifications
+export const certifications: StackElement[] = [
+  {
+    name: 'AWS Certified Cloud Practitioner (CLF-C02)',
+    date: 'Feb 2026 to Feb 2029',
+    logo: awsClfLogo,
+    description: '',
+    link: 'https://www.credly.com/badges/fc836965-9b40-4c95-8e4d-fc4a240adfa7',
+  },
+  {
+    name: 'AWS Certified AI Practitioner (AIF-C01)',
+    date: 'Mar 2026 to Mar 2029',
+    logo: awsAifLogo,
+    description: '',
+    link: 'https://www.credly.com/badges/3ccb32a0-7692-4362-aeb6-1439e7ffe8be',
+  },
+];
 
 // Placeholder stack groups – adjust descriptions and elements as needed.
 export const stackGroups: StackGroup[] = [

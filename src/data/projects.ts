@@ -30,7 +30,7 @@ export const projects: ProjectEntry[] = [
       'A revamped developer portfolio built with Astro and Tailwind, designed with a responsive a three-panel layout and modular repository content for cleaner aesthetics and readability.',
     status: 'Ongoing',
     languages: ['Astro', 'TailwindCSS', 'TypeScript', 'Vercel'],
-    contributors: "",
+    contributors: [],
     image: '/E.png',
     links: 'https://github.com/ein1le/portfolio-astro',
     demo: 'https://ein1le-devfolio-astro.vercel.app/',
@@ -56,7 +56,7 @@ export const projects: ProjectEntry[] = [
       'First iteration of my personal developer portfolio, built with React and hosted on Vercel. Was used to learn React and understand frontend development principles, but lacked performance and readability for website visitors.',
     status: 'Archived',
     languages: ['React', 'TypeScript', 'Vercel', 'TailwindCSS'],
-    contributors: "",
+    contributors: [],
     image: undefined,
     links: "https://github.com/ein1le/my_portfolio"
   }

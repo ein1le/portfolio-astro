@@ -1,0 +1,102 @@
+---
+import Card from './Card.astro';
+import { Icon } from 'astro-icon/components';
+import { getIconName } from '../../icons/iconMap';
+
+interface DanceLink {
+  label: string;
+  url: string;
+  type?: string;
+}
+
+interface Props {
+  name: string;
+  subtitle: string;
+  date: string;
+  logo: string;
+  description: string;
+  links: DanceLink[];
+}
+
+const { name, subtitle, date, logo, description, links = [] } = Astro.props as Props;
+
+const getLinkVisuals = (type?: string) => {
+  switch (type) {
+    case 'Youtube':
+      return {
+        icon: 'youtube' as const,
+        className:
+          'border-red-500/70 text-red-100 hover:border-red-400 hover:bg-red-500/15',
+      };
+    case 'Instagram':
+      return {
+        icon: 'instagram' as const,
+        className:
+          'border-pink-400/70 text-pink-100 hover:border-pink-300 hover:bg-pink-500/15',
+      };
+    default:
+      return {
+        icon: 'external-link' as const,
+        className:
+          'border-purple-400/70 text-purple-100 hover:border-purple-300 hover:bg-purple-500/15',
+      };
+  }
+};
+---
+
+<Card padding="none">
+  <div class="group relative h-full min-w-0 overflow-hidden rounded-xl">
+    {logo && (
+      <img
+        src={logo}
+        alt={`${name} logo`}
+        loading="lazy"
+        class="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-10"
+      />
+    )}
+
+    {!logo && (
+      <div class="absolute inset-0 bg-slate-900/70"></div>
+    )}
+
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30"></div>
+
+    <div class="pointer-events-none absolute inset-0 flex items-center justify-center px-3 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+      <p class="text-xs leading-relaxed text-[color:var(--text-main)]">
+        {description}
+      </p>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col p-4">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <h3 class="subtitle m-0 text-left">
+            {name}
+          </h3>
+          <p class="mt-1 text-[0.68rem] text-[color:var(--text-muted)]">{subtitle}</p>
+        </div>
+        <p class="text-[0.68rem] text-[color:var(--text-muted)] whitespace-nowrap">{date}</p>
+      </div>
+
+      {links.length > 0 && (
+        <div class="mt-auto flex flex-wrap justify-end gap-2">
+          {links.map((link) => {
+            const visuals = getLinkVisuals(link.type);
+            return (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.label}
+                title={link.label}
+                class={`inline-flex h-8 w-8 items-center justify-center rounded-full border bg-slate-950/60 transition-colors duration-150 ${visuals.className}`}
+              >
+                <Icon name={getIconName(visuals.icon)} class="h-3.5 w-3.5" />
+              </a>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  </div>
+</Card>
