@@ -2,7 +2,6 @@
 
 import type { IconKey } from '../icons/iconMap';
 import cLogo from '../icons/CLang.png?url';
-import csharpLogo from '../icons/csharp.png?url';
 import bashLogo from '../icons/bash.png?url';
 import matlabLogo from '../icons/matlab.png?url';
 import vbaLogo from '../icons/VBA.png?url';
@@ -157,11 +156,6 @@ export const stackGroups: StackGroup[] = [
         name: 'C',
         logo: cLogo,
         description: 'Used for low-level and embedded systems programming.',
-      },
-      {
-        name: 'C#',
-        logo: csharpLogo,
-        description: 'Used for Unity game development and desktop applications.',
       },
       {
         name: 'Bash',

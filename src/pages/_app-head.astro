@@ -1,8 +1,11 @@
 ---
 // Shared document head for all pages
+import { ClientRouter } from 'astro:transitions';
+
 const title = 'Ein Devfolio';
 ---
 
+<ClientRouter />
 <title>{title}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Ein's developer portfolio – data science, machine learning, and software engineering." />

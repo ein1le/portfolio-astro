@@ -53,6 +53,7 @@ import streamlitLogo from '../../icons/streamlit.png?url';
 import supabaseLogo from '../../icons/supabase.png?url';
 import tableauLogo from '../../icons/tableau.png?url';
 import tensorflowLogo from '../../icons/tensorflow.png?url';
+import terraformLogo from '../../icons/terraform.png?url';
 import vbaLogo from '../../icons/VBA.png?url';
 import websimLogo from '../../icons/websim.jpg?url';
 import wixLogo from '../../icons/wix.png?url';
@@ -134,6 +135,7 @@ const languageLogoMap: Record<string, string> = {
   AWS: awsLogo,
   Apache: apacheLogo,
   Supabase: supabaseLogo,
+  Terraform: terraformLogo,
 
   // CAD / simulation
   'Autodesk Fusion360': fusion360Logo,
@@ -179,7 +181,7 @@ const getLanguageIconName = (lang: string): string | null => {
 ---
 
 <Card>
-  <div class="flex flex-col gap-2 px-2 md:px-3 text-sm text-[color:var(--text-main)]">
+  <div class="flex flex-col gap-2 px-2 md:px-3 text-base text-[color:var(--text-main)]">
     <div class="flex flex-wrap items-start gap-3">
       {logo ? (
         <div class="h-12 w-12 shrink-0 overflow-hidden rounded-md border border-purple-400/40 bg-slate-900">
@@ -192,7 +194,7 @@ const getLanguageIconName = (lang: string): string | null => {
         </div>
       ) : title === 'YSG Group Co.' ? (
         <div class="h-12 w-12 shrink-0 rounded-md border border-purple-400/40 bg-white flex items-center justify-center">
-          <span class="text-[0.8rem] font-semibold tracking-[0.16em] text-slate-900">
+          <span class="text-[0.9rem] font-semibold tracking-[0.16em] text-slate-900">
             YSG
           </span>
         </div>
@@ -201,30 +203,30 @@ const getLanguageIconName = (lang: string): string | null => {
       <div class="flex min-w-0 flex-1 flex-col gap-1">
         <div class="flex flex-wrap items-start justify-between gap-2">
           <div class="min-w-0 max-w-[65%] space-y-0.5 md:space-y-1">
-            <p class="text-[1rem] font-semibold tracking-[0.12em] uppercase break-words">
+            <p class="text-[1.125rem] font-semibold tracking-[0.12em] uppercase break-words">
               {title}
             </p>
-            <h2 class="text-[0.9rem] tracking-[0.12em] uppercase break-words text-[color:var(--text-main)]">
+            <h2 class="text-[1rem] tracking-[0.12em] uppercase break-words text-[color:var(--text-main)]">
               {role}
             </h2>
             {organisation && (
-              <p class="mt-0.5 md:mt-1 text-[0.85rem] font-semibold tracking-[0.12em] uppercase break-words text-[color:var(--accent)]">
+              <p class="mt-0.5 md:mt-1 text-[0.95rem] font-semibold tracking-[0.12em] uppercase break-words text-[color:var(--accent)]">
                 {organisation}
               </p>
             )}
           </div>
           <div class="flex flex-col items-end gap-1 text-right">
-            <p class="text-[0.78rem] text-[color:var(--text-muted)]">
+            <p class="text-[0.875rem] text-[color:var(--text-muted)]">
               {dates}
             </p>
-            <p class="text-[0.78rem] text-[color:var(--text-muted)]">
+            <p class="text-[0.875rem] text-[color:var(--text-muted)]">
               {location}
             </p>
           </div>
         </div>
 
         {(skills.length > 0 || languages.length > 0) && (
-          <div class="mt-1 flex flex-wrap items-center justify-between gap-2 text-[0.75rem] text-[color:var(--text-muted)]">
+          <div class="mt-1 flex flex-wrap items-center justify-between gap-2 text-[0.85rem] text-[color:var(--text-muted)]">
             {skills.length > 0 && (
               <div class="flex flex-wrap gap-2">
                 {skills.map((skill) => (
@@ -251,7 +253,7 @@ const getLanguageIconName = (lang: string): string | null => {
                         alt={lang}
                       />
                       <span
-                        class="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 scale-95 rounded-full bg-slate-900/95 px-2 py-0.5 text-[0.65rem] font-medium text-[color:var(--text-main)] opacity-0 shadow-sm shadow-black/40 transition-all duration-150 group-hover:opacity-100 group-hover:scale-100"
+                        class="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 scale-95 rounded-full bg-slate-900/95 px-2 py-0.5 text-[0.75rem] font-medium text-[color:var(--text-main)] opacity-0 shadow-sm shadow-black/40 transition-all duration-150 group-hover:opacity-100 group-hover:scale-100"
                       >
                         {lang}
                       </span>
@@ -264,8 +266,8 @@ const getLanguageIconName = (lang: string): string | null => {
         )}
 
         {contributors.length > 0 && (
-          <div class="mt-1 flex flex-wrap items-center gap-2 text-[0.75rem] text-[color:var(--text-muted)]">
-            <span class="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--text-main)]">
+          <div class="mt-1 flex flex-wrap items-center gap-2 text-[0.85rem] text-[color:var(--text-muted)]">
+            <span class="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--text-main)]">
               Contributors
             </span>
             <div class="flex flex-wrap gap-2">
@@ -277,7 +279,7 @@ const getLanguageIconName = (lang: string): string | null => {
         )}
 
         {description && (
-          <p class="mt-1 text-[0.8rem] leading-relaxed text-[color:var(--text-muted)]">
+          <p class="mt-1 text-[0.9rem] leading-relaxed text-[color:var(--text-muted)]">
             {description}
           </p>
         )}
@@ -287,24 +289,24 @@ const getLanguageIconName = (lang: string): string | null => {
             {subroles.map((sub) => (
               <div class="rounded-md bg-slate-950/40 px-3 py-3">
                 <div class="flex flex-wrap items-baseline justify-between gap-2">
-                  <p class="text-[0.8rem] font-semibold tracking-[0.1em] uppercase text-[color:var(--text-main)]">
+                  <p class="text-[0.9rem] font-semibold tracking-[0.1em] uppercase text-[color:var(--text-main)]">
                     {sub.role}
                   </p>
                   {sub.dates && (
-                    <p class="text-[0.72rem] text-[color:var(--text-muted)]">
+                    <p class="text-[0.8rem] text-[color:var(--text-muted)]">
                       {sub.dates}
                     </p>
                   )}
                 </div>
 
                 {sub.description && (
-                  <p class="mt-1 text-[0.78rem] leading-relaxed text-[color:var(--text-muted)]">
+                  <p class="mt-1 text-[0.875rem] leading-relaxed text-[color:var(--text-muted)]">
                     {sub.description}
                   </p>
                 )}
 
                 {sub.skills && sub.skills.length > 0 && (
-                  <div class="mt-2 flex flex-wrap gap-2 text-[0.72rem] text-[color:var(--text-muted)]">
+                  <div class="mt-2 flex flex-wrap gap-2 text-[0.8rem] text-[color:var(--text-muted)]">
                     {sub.skills.map((skill) => (
                       <span class="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-950/40 px-2 py-0.5">
                         {skill}
@@ -315,7 +317,7 @@ const getLanguageIconName = (lang: string): string | null => {
 
                 {sub.contributors && sub.contributors.length > 0 && (
                   <div class="mt-2 flex items-center gap-2">
-                    <span class="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--text-main)]">
+                    <span class="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--text-main)]">
                       Contributors
                     </span>
                     <div class="flex flex-wrap gap-1.5">
@@ -327,7 +329,7 @@ const getLanguageIconName = (lang: string): string | null => {
                 )}
 
                 {sub.links && sub.links.length > 0 && (
-                  <div class="mt-2 flex flex-wrap justify-end gap-2 text-[0.72rem] text-[color:var(--text-muted)]">
+                  <div class="mt-2 flex flex-wrap justify-end gap-2 text-[0.8rem] text-[color:var(--text-muted)]">
                     {sub.links.map((link) => (
                       <LinkButtons link={link} size="sm" />
                     ))}
@@ -341,7 +343,7 @@ const getLanguageIconName = (lang: string): string | null => {
     </div>
 
     {links.length > 0 && (
-      <div class="mt-2 flex flex-wrap gap-2 pt-1 text-[0.75rem] text-[color:var(--text-muted)] sm:justify-end sm:ml-auto">
+      <div class="mt-2 flex flex-wrap gap-2 pt-1 text-[0.85rem] text-[color:var(--text-muted)] sm:justify-end sm:ml-auto">
         {links.map((link) => (
           <LinkButtons link={link} size="md" />
         ))}

@@ -12,4 +12,3 @@ export { default as PublicationCard } from './PublicationCard.astro';
 export { default as StackCard } from './StackCard.astro';
 export { default as StackGrid } from './StackGrid.astro';
 export { default as IconButton } from './IconButton.astro';
-export { default as ToggleButton } from './ToggleButton.astro';

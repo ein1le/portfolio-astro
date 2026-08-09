@@ -41,6 +41,26 @@ export interface ExtracurrExperience {
 
 export const extracurrExperiences: ExtracurrExperience[] = [
   {
+    title: 'Director of Choreography',
+    role: '26/27 Executive Committee',
+    organisation: 'T Stage',
+    dates: 'Jun 2026 - Present',
+    location: 'London, UK',
+    description: 'Committee member on the artistic team for T Stage, a Thai musical production jointly organised by UAL, UCL, and Imperial College London. Choreographed eight songs for a live production attended by 200+ audience members, coordinating rehearsals with the wider creative team.',
+    skills: [],
+    languages: [],
+    logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQHPLVpCR_LIXg/company-logo_200_200/B4EZ0iKB5hG0AI-/0/1774394548679?e=1787788800&v=beta&t=vUhl3_MARmqLv6mFbtIBO4GO0RU24w29G8Bw5N0yCug',
+    links: [
+      {
+        label: 'Instagram',
+        url: 'https://www.instagram.com/tstage.musical/',
+        type: 'Instagram',
+      },
+    ],
+    contributors: [],
+    subroles: [],
+  },
+  {
     title: 'General Secretary',
     role: '24/25 Executive Committee',
     organisation: 'Malaysian and Singaporean Students Association (MSSA)',
@@ -228,6 +248,65 @@ export const extracurrExperiences: ExtracurrExperience[] = [
           }
         ],
         contributors: ['Olivia Ng', 'Lorraine Lam', 'Mindy Liew'],
+      },
+    ],
+  },
+  {
+    title: 'University of Bristol',
+    role: 'Various positions',
+    dates: 'Aug 2022 – May 2025',
+    location: 'Bristol, UK',
+    description: '',
+    skills: [],
+    languages: [],
+    logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQHpcDl5zEb2Og/company-logo_200_200/company-logo_200_200/0/1708951303888/university_of_bristol_logo?e=2147483647&v=beta&t=X5xR60eg6QIHRGmwhI6TaXWYX93qlNqWSIkQZWS9MUQ',
+    links: [],
+    contributors: [],
+    subroles: [
+      {
+        role: 'Global Lounge Ambassador',
+        dates: 'Oct 2024 – May 2025',
+        description: 'Ambassador for the Global Lounge, the University multicultural centre. Organised various global celebratory events and supported with setting up Language Cafe activities.',
+        links: [],
+      },
+      {
+        role: 'Senior PASS Leader',
+        dates: 'Oct 2024 – Apr 2025',
+        description: 'Oversaw and coordinated with all 6 PASS leaders in the School of EEME, liaised with peer support coordinators and academic staff, and led training sessions for new PASS leaders.',
+        links: [],
+        contributors: ['Akbarbek Musaev'],
+      },
+      {
+        role: 'Student Ambassador Band 3',
+        dates: 'May 2024 – Mar 2025',
+        description: 'Responsible for leading teams of stewards, ensuring smooth running of major events including Open Days with up to 30,000 visitors annually.',
+        links: [],
+      },
+      {
+        role: 'Peer Mentor',
+        dates: 'Sep 2024 – Jan 2025',
+        description: 'Provided academic and pastoral support to a group of first-year students in the School of EEME. Held one-on-one meetings to assist with general guidance and transitioning to university life.',
+        links: [],
+      },
+      {
+        role: 'PASS Leader',
+        dates: 'Oct 2022 – Apr 2024',
+        description: 'Peer-assisted study session leader for first-year engineering students. Led weekly lectures, created resources, provided academic and exam support to students in the School of EEME.',
+        links: [],
+        contributors: ['Akbarbek Musaev'],
+      },
+      {
+        role: 'Student Ambassador Band 1',
+        dates: 'May 2023 – Mar 2024',
+        description: 'Ambassador for the University of Bristol. Involved in various Open days, Offer Holder Tours, and more.',
+        links: [],
+      },
+      {
+        role: 'International Relations Representative (APAC)',
+        dates: 'Aug 2023 – Oct 2023',
+        description: 'Represented one of 9 students in APAC for the Sea Lecture Series (SLS) Initiative by the Bristol SEA Office. Travelled to various schools in the ASEAN region to deliver lectures for outreach.',
+        links: [],
+        contributors: ['Jennie Fan'],
       },
     ],
   },

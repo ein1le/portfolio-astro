@@ -5,6 +5,9 @@ import kmdcLogo from '../assets/extra/KMDC.jpg?url';
 import elevateLogo from '../assets/extra/elevate.jpg?url';
 import dcorpsLogo from '../assets/extra/dcorps.jpg?url';
 import bhouseLogo from '../assets/extra/bhouse.jpg?url';
+import hydrogenLogo from '../assets/extra/hydrogen.jpg?url';
+import reinesLogo from '../assets/extra/reines.jpg?url';
+import city44Logo from '../assets/extra/44city.jpg?url';
 
 export interface DanceLink {
   label: string;
@@ -43,7 +46,7 @@ export const danceExperiences: DanceExperience[] = [
   },
   {
     name: 'DCorps',
-    subtitle: 'London Dance Crew',
+    subtitle: 'London Dance Company',
     date: 'Nov 2025 - Present',
     logo: dcorpsLogo,
     description: '',
@@ -76,7 +79,7 @@ export const danceExperiences: DanceExperience[] = [
   },
   {
     name: 'Astris',
-    subtitle: 'KPOP dance Crew',
+    subtitle: 'KPOP Dance Crew',
     date: 'May 2026 - Present',
     logo: '',
     description: '',
@@ -136,5 +139,37 @@ export const danceExperiences: DanceExperience[] = [
         url: 'https://www.instagram.com/uobelevatestudio/',
       },
     ],
+  },
+  {
+    name: 'Hydrogen',
+    subtitle: 'London Dance Company',
+    date: 'Jan 2027',
+    logo: hydrogenLogo,
+    description: '',
+    links: [],
+  },
+  {
+    name: 'Reines',
+    subtitle: 'KPOP Dance Crew',
+    date: 'May 2026 - Present',
+    logo: reinesLogo,
+    description: '',
+    links: [],
+  },
+  {
+    name: '44 City',
+    subtitle: 'KPOP Dance Crew',
+    date: 'Jul 2026 - Present',
+    logo: city44Logo,
+    description: '',
+    links: [],
+  },
+  {
+    name: 'T Stage',
+    subtitle: 'Thai Musical Production',
+    date: 'Jun 2026 - Present',
+    logo: '',
+    description: '',
+    links: [],
   },
 ];

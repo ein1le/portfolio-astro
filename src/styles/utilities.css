@@ -57,15 +57,6 @@ details.group[open] .edu-expand {
   z-index: 40;
 }
 
-/* Toggle button knob positions */
-.toggle-button .toggle-knob {
-  transform: translateX(2px);
-}
-
-.toggle-button[data-state='on'] .toggle-knob {
-  transform: translateX(20px);
-}
-
 /* Hide scrollbars (overflow controlled via layout classes) */
 .scroll-y-area {
   scrollbar-width: none; /* Firefox */

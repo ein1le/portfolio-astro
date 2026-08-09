@@ -33,10 +33,10 @@ import cvPdf from '../../assets/CV_Wishawin_Lertnawapan.pdf?url';
     </div>
 
     <p class="sidebar-paragraph text-center">
-      Recent engineering graduate, seeking client-facing data roles. Semi-professional dancer and choreographer. Does a little bit of everything to keep life interesting!
+      Business Analytics student and recent Engineering graduate, seeking client-facing applied data roles. Semi-professional dancer and choreographer. Does a little bit of everything to keep life interesting!
     </p>
 
-    <div class="mt-2 grid w-full grid-cols-2 gap-2">
+    <div class="mt-2 flex w-full flex-col gap-2">
       {contacts
         .filter((contact) => contact.title !== 'Email' && contact.title !== 'Phone')
         .map((contact) => (

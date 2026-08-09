@@ -19,8 +19,6 @@ export type IconKey =
   | 'copyright'
   | 'astro'
   | 'tailwind'
-  | 'mobile'
-  | 'desktop'
   | 'javascript'
   | 'react'
   | 'firebase'
@@ -75,8 +73,6 @@ export const iconMap: Record<IconKey, string> = {
   copyright: 'copyright',
   astro: 'logos:astro-icon',
   tailwind: 'logos:tailwindcss-icon',
-  mobile: 'mobile',
-  desktop: 'desktop',
   javascript: 'logos:javascript',
   react: 'logos:react',
   firebase: 'logos:firebase',

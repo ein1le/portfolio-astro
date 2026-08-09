@@ -49,6 +49,7 @@ import materialsLabPdf from '../assets/education/pdfs/Materials_Lab.pdf';
 import stpMergedPdf from '../assets/education/pdfs/STP_LocaVision.pdf';
 import mscfe600GwpPdf from '../assets/education/pdfs/MScFE600_GWP.pdf';
 import mscfe610Gwp1Pdf from '../assets/education/pdfs/MScFE610_GWP1.pdf';
+import mscfe610Gwp1_2Pdf from '../assets/education/pdfs/MScFE610 GWP1_2.pdf';
 
 export const educationEntries: EducationEntry[] = [
   {
@@ -98,11 +99,19 @@ export const educationEntries: EducationEntry[] = [
       },
       {
         title: 'Econometric Regression',
-        course: 'MScFE 610 Group Work Project 1',
+        course: 'MScFE 610 Module 4 Group Work Project',
         authors: 'Alogala Anyuzgi, Shrivathsa Sridharan',
         description: 'Group report for MScFE 610 covering core econometric regression diagnostics and model behavior. Addresses several problems in the outline, and performs omitted-variable bias analytically, validating the effect with simulations across different sample sizes, then compares outlier sensitivity across OLS variants. The project also performs feature-subset model selection using RMSE, AIC, and BIC to justify a parsimonious OLS specification.',
         date: 'April 5, 2026',
         pdfUrl: mscfe610Gwp1Pdf,
+      },
+      {
+        title: 'Financial Econometrics: Regression and Time-Series Analysis',
+        course: 'MScFE 610 Module 7 Group Work Project',
+        authors: 'Fanying Yang, Babatunde Olorunfemi John',
+        description: 'Group report for MScFE 610 applying econometric theory to omitted-variable bias, outlier sensitivity, and model selection. It combines mathematical derivations, simulations, and regression diagnostics, then analyses wage determinants, non-stationary time series, cointegration, and autoregressive processes. The project uses ADF and Johansen tests alongside AIC and BIC to evaluate parsimonious models and long-run relationships.',
+        date: '1st July 2026',
+        pdfUrl: mscfe610Gwp1_2Pdf,
       },
     ],
     awards: ['Foundations of Financial Engineering Credential'],

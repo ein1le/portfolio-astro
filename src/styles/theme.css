@@ -12,13 +12,3 @@
   --radius-sm: 8px;
 }
 
-:root.theme-light {
-  --bg-app: #dac9ff;
-  --bg-elevated: #dac9ff;
-  --border-subtle: rgba(11, 2, 33, 0.15);
-  --accent: #5b2bbf;
-  --accent-soft: rgba(91, 43, 191, 0.12);
-  --text-main: #0b0221;
-  --text-muted: #3b2f66;
-}
-

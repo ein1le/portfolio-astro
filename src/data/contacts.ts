@@ -44,7 +44,7 @@ export const contacts: Contact[] = [
   },
   {
     title: 'Kaggle',
-    subtitle: 'wishawinlertnawapan',
+    subtitle: 'wishawin',
     link: 'https://kaggle.com/wishawinlertnawapan',
     img: '',
     icon: 'kaggle',
