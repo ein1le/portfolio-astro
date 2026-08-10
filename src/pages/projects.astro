@@ -6,7 +6,6 @@ import { projects } from '../data/projects';
 import { Icon } from 'astro-icon/components';
 import { getIconName } from '../icons/iconMap';
 
-const featuredProject = projects.find((project) => project.id === 0);
 ---
 
 <html lang="en">
@@ -16,30 +15,7 @@ const featuredProject = projects.find((project) => project.id === 0);
   <body>
     <GlobalShell>
       <section class="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 pt-6 md:px-8 md:pt-8">
-        {featuredProject && (
-          <div class="w-full flex flex-col items-center">
-            <h1 class="subtitle text-center">
-              Featured Project
-            </h1>
-            <div class="mt-2 w-full max-w-xl mx-auto">
-              <ProjectsCard
-                title={featuredProject.title}
-                description={featuredProject.description}
-                information={featuredProject.information}
-                status={featuredProject.status}
-                languages={featuredProject.languages}
-                contributors={featuredProject.contributors}
-                image={featuredProject.image}
-                links={featuredProject.links}
-                demo={featuredProject.demo}
-                organisation={featuredProject.organisation}
-                index={0}
-              />
-            </div>
-          </div>
-        )}
-
-        <div class="w-full max-w-6xl mx-auto mt-4">
+        <div class="w-full max-w-6xl mx-auto">
           <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--text-main)]">
               All projects

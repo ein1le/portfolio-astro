@@ -36,7 +36,18 @@ function ensurePreview() {
     display: 'block',
   });
 
+  const frame = document.createElement('iframe');
+  frame.id = 'pdf-preview-frame';
+  frame.title = 'Document preview';
+  Object.assign(frame.style, {
+    width: '100%',
+    height: '360px',
+    border: 'none',
+    display: 'none',
+  });
+
   container.appendChild(img);
+  container.appendChild(frame);
   document.body.appendChild(container);
 
   return container;
@@ -66,8 +77,22 @@ function positionPreview(x, y) {
 function showPreview(url, x, y) {
   const container = ensurePreview();
   const img = container.querySelector('#pdf-preview-image');
-  if (img && img.src !== url) {
-    img.src = url;
+  const frame = container.querySelector('#pdf-preview-frame');
+  const isPdf = /\.pdf(?:$|[?#])/i.test(url);
+
+  if (img instanceof HTMLImageElement) {
+    img.style.display = isPdf ? 'none' : 'block';
+    if (!isPdf && img.dataset.previewUrl !== url) {
+      img.src = url;
+      img.dataset.previewUrl = url;
+    }
+  }
+  if (frame instanceof HTMLIFrameElement) {
+    frame.style.display = isPdf ? 'block' : 'none';
+    if (isPdf && frame.dataset.previewUrl !== url) {
+      frame.src = url;
+      frame.dataset.previewUrl = url;
+    }
   }
   positionPreview(x, y);
   container.style.display = 'block';
@@ -81,42 +106,32 @@ function hidePreview() {
 }
 
 function setupPdfPreview() {
-  const triggers = document.querySelectorAll('[data-pdf-preview-url]');
-  if (!triggers.length) return;
+  if (window.__pdfPreviewSetup) return;
+  window.__pdfPreviewSetup = true;
 
-  triggers.forEach((trigger) => {
-    const getUrl = () => trigger.getAttribute('data-pdf-preview-url');
+  const getTrigger = (target) =>
+    target instanceof Element ? target.closest('[data-pdf-preview-url]') : null;
 
-    trigger.addEventListener('mousemove', (event) => {
-      const url = getUrl();
-      if (!url) return;
-      showPreview(url, event.clientX, event.clientY);
-    });
+  const showFromEvent = (event) => {
+    const trigger = getTrigger(event.target);
+    const url = trigger?.getAttribute('data-pdf-preview-url');
+    if (url) showPreview(url, event.clientX, event.clientY);
+  };
 
-    trigger.addEventListener('mouseenter', (event) => {
-      const url = getUrl();
-      if (!url) return;
-      const e = event;
-      showPreview(url, e.clientX, e.clientY);
-    });
-
-    trigger.addEventListener('mouseleave', () => {
-      hidePreview();
-    });
-
-    trigger.addEventListener('focus', () => {
-      const url = getUrl();
-      if (!url) return;
-      const rect = trigger.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const topY = rect.top;
-      showPreview(url, centerX, topY);
-    });
-
-    trigger.addEventListener('blur', () => {
-      hidePreview();
-    });
+  document.addEventListener('mousemove', showFromEvent);
+  document.addEventListener('mouseover', showFromEvent);
+  document.addEventListener('mouseout', (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger && !trigger.contains(event.relatedTarget)) hidePreview();
   });
+  document.addEventListener('focusin', (event) => {
+    const trigger = getTrigger(event.target);
+    const url = trigger?.getAttribute('data-pdf-preview-url');
+    if (!url || !trigger) return;
+    const rect = trigger.getBoundingClientRect();
+    showPreview(url, rect.left + rect.width / 2, rect.top);
+  });
+  document.addEventListener('focusout', hidePreview);
 }
 
 if (typeof window !== 'undefined') {

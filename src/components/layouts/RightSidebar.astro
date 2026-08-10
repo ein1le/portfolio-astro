@@ -2,18 +2,17 @@
 // Right sidebar layout component
 // TODO: Implement right sidebar content and behavior
 
-import { Card } from '../ui';
+import { Card, ProjectsCard } from '../ui';
 import GithubCalendarSection from '../../scripts/GitHubCalendarSection.jsx';
+import LeetCodeCalendarSection from '../../scripts/LeetCodeCalendarSection.jsx';
+import { projects } from '../../data/projects';
+
+const featuredProject = projects[0];
 ---
 
 <aside class="md:row-span-2 md:col-start-3 flex items-start justify-center border-l border-[color:var(--border-subtle)] px-5 pt-6">
-  <div class="sidebar-content flex w-full max-w-xs flex-col gap-5">
+  <div class="sidebar-content flex w-full max-w-xs flex-col gap-6">
     <div class="w-full">
-      <div class="mb-10 flex justify-center">
-        <div class="sidebar-avatar-ring">
-          <div class="h-28 w-28 rounded-full border border-[color:var(--border-subtle)] bg-slate-900/60 shadow-md shadow-slate-900/50" />
-        </div>
-      </div>
       <h2 class="subtitle text-center">
         Status
       </h2>
@@ -42,29 +41,47 @@ import GithubCalendarSection from '../../scripts/GitHubCalendarSection.jsx';
               {' '}full-time, internships, or collaborations
             </p>
             <p class="pt-1">
-              I'm open to analyst and engineering roles that involve data, particularly in the financial and technology sectors; including quantitative finance, product analytics, and AI/ML engineering.
+              I'm open to software engineering and consulting roles that involve data, particularly in the financial and technology sectors; including technology in finance, software solutions, or applied data science that work with both the technical and client-facing sides of the business.
             </p>
           </div>
         </div>
       </Card>
     </div>
 
-    <hr class="my-2 w-full border-t border-[color:var(--border-subtle)]" />
+      <hr class="my-3 w-full border-t border-[color:var(--border-subtle)]" />
 
-    <div class="w-full">
-      <h2 class="subtitle text-center">
-        Activity
-      </h2>
-      <div class="mb-3 space-y-1 sidebar-paragraph">
-        <p class="sidebar-paragraph">
-          Currently, I actively lead infrastructure and analytics initiatives for SS125 and the UKSSC, each representing the largest student-run organisations for Thai and Singaporean students in the UK, respectively. 
-        </p>
-        <p class="sidebar-paragraph">
-          Balancing this with applications and upskilling where I can, I'm currently woking towards the AWS Machine Learning Associate Exam. I also work on NexusKCG, a consulting startup.
-        </p>
+      <div class="w-full">
+        <h2 class="subtitle text-center">
+          Featured Project
+        </h2>
+      {featuredProject && (
+        <div class="mb-4">
+          <ProjectsCard
+            title={featuredProject.title}
+            description={featuredProject.description}
+            information={featuredProject.information}
+            status={featuredProject.status}
+            languages={featuredProject.languages}
+            contributors={featuredProject.contributors}
+            image={featuredProject.image}
+            links={featuredProject.links}
+            demo={featuredProject.demo}
+            organisation={featuredProject.organisation}
+            index={0}
+          />
+        </div>
+      )}
       </div>
+
+      <div class="w-full">
+        <h2 class="subtitle text-center">
+          Activity
+        </h2>
       <div class="rounded-lg border border-[color:var(--border-subtle)] bg-slate-950/60 px-2 py-2">
         <GithubCalendarSection client:only="react" />
+      </div>
+      <div class="mt-3 rounded-lg border border-[color:var(--border-subtle)] bg-slate-950/60 px-2 py-2">
+        <LeetCodeCalendarSection client:only="react" />
       </div>
     </div>
   </div>

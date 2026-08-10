@@ -14,6 +14,8 @@ import opencvLogo from '../icons/opencv.png?url';
 import tensorflowLogo from '../icons/tensorflow.png?url';
 import kerasLogo from '../icons/keras.png?url';
 import langchainLogo from '../icons/langchain.png?url';
+import n8nLogo from '../icons/n8n.png?url';
+import mcpLogo from '../icons/mcp.png?url';
 import chromaDbLogo from '../icons/chromadb.png?url';
 import gunicornLogo from '../icons/gunicorn.png?url';
 import huggingFaceLogo from '../icons/hugging-face.png?url';
@@ -75,6 +77,9 @@ import ec2Logo from '../icons/ec2.png?url';
 import alphavantageLogo from '../icons/alphavantage.jpg?url';
 import grpcLogo from '../icons/grpc.png?url';
 import apacheLogo from '../icons/apache.png?url';
+import cloudwatchLogo from '../icons/cloudwatch.png?url';
+import prometheusLogo from '../icons/prometheus.webp?url';
+import grafanaLogo from '../icons/grafana.jpg?url';
 import awsClfLogo from '../assets/stack/certs/aws-clf-c02.png?url';
 import awsAifLogo from '../assets/stack/certs/aws-aif-c01.png?url';
 
@@ -265,6 +270,16 @@ export const stackGroups: StackGroup[] = [
       },
     ],
       minor: [
+        {
+          name: 'n8n',
+          logo: n8nLogo,
+          description: 'Workflow automation platform for connecting AI tools, services, and data sources.',
+        },
+        {
+          name: 'Model Context Protocol (MCP)',
+          logo: mcpLogo,
+          description: 'Open protocol for connecting AI assistants to external tools and contextual data.',
+        },
         {
           name: 'Weights & Biases',
           logo: weightsBiasesLogo,
@@ -533,12 +548,27 @@ export const stackGroups: StackGroup[] = [
         logo: ecrLogo,
         description: 'Container registry infrastructure using AWS ECR for storing and managing images.',
       },
+      {
+        name: 'Amazon CloudWatch',
+        logo: cloudwatchLogo,
+        description: 'AWS monitoring and observability for cloud applications and infrastructure.',
+      },
     ],
     minor: [
       {
         name: 'Terraform',
         logo: terraformLogo,
         description: 'Infrastructure-as-code for cloud resources and environments.',
+      },
+      {
+        name: 'Prometheus',
+        logo: prometheusLogo,
+        description: 'Open-source monitoring and alerting toolkit for collecting application and infrastructure metrics.',
+      },
+      {
+        name: 'Grafana',
+        logo: grafanaLogo,
+        description: 'Observability dashboards for visualising and analysing metrics.',
       }
     ],
   },

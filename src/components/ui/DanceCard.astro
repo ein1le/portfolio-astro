@@ -34,6 +34,12 @@ const getLinkVisuals = (type?: string) => {
         className:
           'border-pink-400/70 text-pink-100 hover:border-pink-300 hover:bg-pink-500/15',
       };
+    case 'Website':
+      return {
+        icon: 'web' as const,
+        className:
+          'border-sky-400/70 text-sky-100 hover:border-sky-300 hover:bg-sky-500/15',
+      };
     default:
       return {
         icon: 'external-link' as const,

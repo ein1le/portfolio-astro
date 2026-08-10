@@ -49,4 +49,11 @@ export const contacts: Contact[] = [
     img: '',
     icon: 'kaggle',
   },
+  {
+    title: 'LeetCode',
+    subtitle: 'ein_le',
+    link: 'https://leetcode.com/u/ein_le/',
+    img: '',
+    icon: 'coding-language',
+  },
 ];

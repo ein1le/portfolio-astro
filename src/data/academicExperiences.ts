@@ -1,5 +1,7 @@
 // Academic experiences data for the Experiences > Academic view.
 
+import llmNebiusBadge from '../icons/llm-nebius.png?url';
+
 export type AcademicExperienceType = 'Researcher';
 
 export interface AcademicExperienceLink {
@@ -81,9 +83,15 @@ export const academicExperiences: AcademicExperience[] = [
     type: 'Researcher',
     description: '',
     skills: ['LLM Architectures', 'Agentic AI', 'Performance Engineering'],
-    languages: [],
+    languages: ['n8n', 'MCP', 'LangChain'],
     logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQGq1CsuIGw9_w/company-logo_200_200/B4EZ9.OrKmIcAE-/0/1784529204073/nebius_academy_logo?e=1787788800&v=beta&t=6myTgx3z8ScsqqmMtTdCze_QGXs3pC8ZVF6Bi9Nf1r0',
-    links: [],
+    links: [
+      {
+        label: 'LLM Architectures Badge',
+        url: llmNebiusBadge,
+        type: 'Award',
+      },
+    ],
     contributors: [],
     subroles: [],
   },
@@ -353,7 +361,7 @@ export const academicExperiences: AcademicExperience[] = [
     dates: 'Sep 2024 - Present',
     location: 'Bristol, UK',
     type: 'Researcher',
-    description: 'Led the Data Science function, coordinating delivery across 16 consulting projects and developing data-science solutions for nonprofit organisations. Oversaw project scoping, consultant allocation, and recruitment for 60+ consultants, while supporting the data science function in improving recruitment pipelines.',
+    description: '',
     skills: ['Business Intelligence', 'Database Engineering', 'Agile Project Management'],
     languages: ['VBA', 'R', 'Tableau'],
     logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQFhdigFNPnE_Q/company-logo_200_200/company-logo_200_200/0/1689965358745?e=2147483647&v=beta&t=7SjXC89btQQf_mlZS3FGe-jQ_FqL3oRcPDGDdiqqhvc',
@@ -364,14 +372,13 @@ export const academicExperiences: AcademicExperience[] = [
         url: 'https://www.180dc.org/branches/bristol/',
       },
     ],
-    contributors: ['Jaslyn Leong', 'Radhika Mitra', 'Laura Ocana', 'Stella Chan'],
     subroles: [
       {
         role: 'Head of Data Science Operations',
         dates: 'April 2026 - Present',
-        description: '',
+        description: 'Led the Data Science function, coordinating delivery across 16 consulting projects and developing data-science solutions for nonprofit organisations. Oversaw project scoping, consultant allocation, and recruitment for 60+ consultants, while supporting the data science function in improving recruitment pipelines.',
         skills: [],
-        contributors: [''],
+        contributors: ['Jaslyn Leong', 'Radhika Mitra', 'Laura Ocana', 'Stella Chan'],
         links: [],
       },
       {
@@ -379,7 +386,23 @@ export const academicExperiences: AcademicExperience[] = [
         description: 'Assisted Bristol Together, developed an impact-demographics survey alongside an Apps Script-based database registrar to track beneficiary outcomes. This created a structured way to measure the organisation’s impact in helping 100+ released offenders secure stable housing.',
         skills: [],
         contributors: ['Viktor Lindholm', 'Charlotte Chung', 'Claire Ahn', 'Musa Khumulov', 'Rory Allen'],
-        links: [],
+        links: [
+          {
+            label: 'Looker Studio',
+            url: 'https://datastudio.google.com/u/0/reporting/d4a1714b-7772-4454-9d44-80de8925e184/page/0Hu4F',
+            type: 'Website',
+          },
+          {
+            label: 'Notion',
+            url: 'https://app.notion.com/p/180-Degrees-Consulting-x-Bristol-Togheter-390640a3324280c8ac37c62b4088d661',
+            type: 'Website',
+          },
+          {
+            label: 'Client',
+            url: 'https://bristoltogether.co.uk',
+            type: 'Website',
+          },
+        ],
       },
       {
         role: '25/26 Spring - Alumni Mentor',
@@ -387,7 +410,23 @@ export const academicExperiences: AcademicExperience[] = [
         description: 'Partnered with Scurbmarine and 180 DC Lancaster University on a data science consulting project, modelled shipping and maritime vessel operations valued up to £70,000. The work focused on feature engineering commercial factors to identify practical opportunities for carbon reduction.',
         skills: [],
         contributors: ['Viktor Lindholm', 'Laura Ocana', 'Nathan Fairclough', 'Jasmine', 'Kate'],
-        links: [],
+        links: [
+          {
+            label: 'GitHub',
+            url: 'https://github.com/n473CL0/shippy/blob/main/shippy/tests/test_creation.py',
+            type: 'GitHub',
+          },
+          {
+            label: 'Notion',
+            url: 'https://app.notion.com/p/Spring-180DC-ScrubMarine-2fde98d3e31e807a87b2d2d357a5a770',
+            type: 'Website',
+          },
+          {
+            label: 'Client',
+            url: 'https://www.scrubmarine.com',
+            type: 'Website',
+          },
+        ],
       },
       {
         role: '24/25 Spring Cycle - Project Advisor',
@@ -395,7 +434,18 @@ export const academicExperiences: AcademicExperience[] = [
         description: 'Created a Tableau visualization and presented data exploration findings to Pledgeball, a sports charity focused on tackling climate change through harnessing the influence of football communities. Findings were focused on comprehension and expansion strategies based on historical football club engagement.',
         skills: [],
         contributors: ['Freya Morris', 'Anjani Upadhyay', 'Bo Cresser', 'Srosh Akbari', 'Eirshad Fahim'],
-        links: [],
+        links: [
+          {
+            label: 'Dashboard',
+            url: 'https://public.tableau.com/app/profile/anjani.upadhyay1452/viz/Deliverable1_17424686442650/PledgeSubmissionsAnalysisDashboard',
+            type: 'External',
+          },
+          {
+            label: 'Client',
+            url: 'https://pledgeball.org',
+            type: 'Website',
+          },
+        ],
       },
       {
         role: '24/25 Spring Cycle -  Project Advisor',
@@ -403,7 +453,13 @@ export const academicExperiences: AcademicExperience[] = [
         description: 'Weston Housing Action (WHAT) is a cooperative that provides housing support to communites in Weston. Implemented a VBA-based relational database system to serve as a record-keeping tool in support of their Charity Commission application, with an integrated data entry GUI and public-facing query system.',
         skills: [],
         contributors: ['Janhavi Sanap', 'Lim Jing', 'Araya Wonklaw', 'Izzac Ip'],
-        links: [],
+        links: [
+          {
+            label: 'Client',
+            url: 'https://www.facebook.com/WestonHousingAcTion/',
+            type: 'Website',
+          },
+        ],
       },
       {
         role: '24/25 Autumn Cycle - Data Science Consultant',
@@ -411,7 +467,13 @@ export const academicExperiences: AcademicExperience[] = [
         description: 'Performed data cleaning and conducted EDA for Racial Equality North Sommerset (RENS) to inform of their community impact. Proposed methodologies for future data collection from clients, in the form of recurrent presentations, and a written documentation. Used ripple mapping and clustering to segment types of cients served.',
         skills: [],
         contributors: ['Jing Lim', 'Tan Wen Hans', 'Mannan Srivastava'],
-        links: [],
+        links: [
+          {
+            label: 'Client',
+            url: 'https://rens.org.uk',
+            type: 'Website',
+          },
+        ],
       },
     ],
   },

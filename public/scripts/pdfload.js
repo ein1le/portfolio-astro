@@ -202,23 +202,29 @@ function openPdf(url, meta = {}) {
 }
 
 function setupPdfLinks() {
-  const triggers = document.querySelectorAll('[data-pdf-load]');
-  triggers.forEach((trigger) => {
-    trigger.addEventListener('click', (event) => {
-      event.preventDefault();
+  if (window.__pdfLoadSetup) return;
+  window.__pdfLoadSetup = true;
 
-      const url = trigger.getAttribute('data-pdf-url');
-      if (!url) return;
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
 
-      const meta = {
-        title: trigger.getAttribute('data-pdf-title'),
-        course: trigger.getAttribute('data-pdf-course'),
-        authors: trigger.getAttribute('data-pdf-authors'),
-        description: trigger.getAttribute('data-pdf-description'),
-        date: trigger.getAttribute('data-pdf-date'),
-      };
-      openPdf(url, meta);
-    });
+    const trigger = target.closest('[data-pdf-load]');
+    if (!trigger) return;
+
+    event.preventDefault();
+
+    const url = trigger.getAttribute('data-pdf-url');
+    if (!url) return;
+
+    const meta = {
+      title: trigger.getAttribute('data-pdf-title'),
+      course: trigger.getAttribute('data-pdf-course'),
+      authors: trigger.getAttribute('data-pdf-authors'),
+      description: trigger.getAttribute('data-pdf-description'),
+      date: trigger.getAttribute('data-pdf-date'),
+    };
+    openPdf(url, meta);
   });
 }
 

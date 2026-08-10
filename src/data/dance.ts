@@ -83,7 +83,13 @@ export const danceExperiences: DanceExperience[] = [
     date: 'May 2026 - Present',
     logo: '',
     description: '',
-    links: [],
+    links: [
+      {
+        label: 'Instagram',
+        type: 'Instagram',
+        url: 'https://www.instagram.com/astris_official/',
+      },
+    ],
   },
   {
     name: 'Bristol MSNight',
@@ -105,7 +111,13 @@ export const danceExperiences: DanceExperience[] = [
     date: 'Aug 2019 - May 2021',
     logo: '',
     description: '',
-    links: [],
+    links: [
+      {
+        label: 'Website',
+        type: 'Website',
+        url: 'https://www.facebook.com/harrowbangkok/videos/from-its-beginnings-in-2007-to-today-lol-dance-team-has-grown-into-harrow-bangko/1853229272750122/',
+      },
+    ],
   },
   {
     name: 'B House Studio',
@@ -146,7 +158,13 @@ export const danceExperiences: DanceExperience[] = [
     date: 'Jan 2027',
     logo: hydrogenLogo,
     description: '',
-    links: [],
+    links: [
+      {
+        label: 'Instagram',
+        type: 'Instagram',
+        url: 'https://www.instagram.com/hydrogenuk_/',
+      },
+    ],
   },
   {
     name: 'Reines',
@@ -154,7 +172,13 @@ export const danceExperiences: DanceExperience[] = [
     date: 'May 2026 - Present',
     logo: reinesLogo,
     description: '',
-    links: [],
+    links: [
+      {
+        label: 'Instagram',
+        type: 'Instagram',
+        url: 'https://www.instagram.com/_reines.official_/',
+      },
+    ],
   },
   {
     name: '44 City',
@@ -162,7 +186,13 @@ export const danceExperiences: DanceExperience[] = [
     date: 'Jul 2026 - Present',
     logo: city44Logo,
     description: '',
-    links: [],
+    links: [
+      {
+        label: 'Instagram',
+        type: 'Instagram',
+        url: 'https://www.instagram.com/_44city/',
+      },
+    ],
   },
   {
     name: 'T Stage',
@@ -170,6 +200,12 @@ export const danceExperiences: DanceExperience[] = [
     date: 'Jun 2026 - Present',
     logo: '',
     description: '',
-    links: [],
+    links: [
+      {
+        label: 'Instagram',
+        type: 'Instagram',
+        url: 'https://www.instagram.com/tstage.musical/',
+      },
+    ],
   },
 ];

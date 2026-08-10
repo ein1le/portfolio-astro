@@ -87,6 +87,7 @@ const isHoverAward =
     </span>
   </Button>
 ) : (
+  link.url ? (
   <a
     href={link.url}
     target="_blank"
@@ -100,4 +101,12 @@ const isHoverAward =
       </span>
     </Button>
   </a>
+  ) : (
+    <Button class={`${paddingClass} ${buttonClass}`}>
+      <span class="flex items-center gap-1.5">
+        <Icon name={getIconName(iconName as any)} class={iconSizeClass} />
+        <span>{link.label}</span>
+      </span>
+    </Button>
+  )
 )}

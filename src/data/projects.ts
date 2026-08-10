@@ -5,6 +5,9 @@ import mssaLogo from '../assets/extra/MSSA.jpg';
 import uksscLogo from '../assets/extra/ukssc.png';
 import orchidLogo from '../assets/projects/orchid.svg';
 
+const samaggiLogo =
+  'https://media.licdn.com/dms/image/v2/D560BAQEnTdiqjmoy2Q/company-logo_200_200/B56ZYPStEjHQAI-/0/1744013284616/samaggi_samagom_logo?e=2147483647&v=beta&t=lhdOV0RiPzPBxLll2Pme17qpbZjVeT1z9eo81wRhaTU';
+
 export type ProjectStatus = 'In development' | 'Ongoing' | 'Completed' | 'Archived';
 
 export interface ProjectEntry {
@@ -23,19 +26,6 @@ export interface ProjectEntry {
 
 export const projects: ProjectEntry[] = [
   {
-    id: 0,
-    title: 'Portfolio',
-    description: 'Astro-based personal developer portfolio.',
-    information:
-      'A revamped developer portfolio built with Astro and Tailwind, designed with a responsive a three-panel layout and modular repository content for cleaner aesthetics and readability.',
-    status: 'Ongoing',
-    languages: ['Astro', 'TailwindCSS', 'TypeScript', 'Vercel'],
-    contributors: [],
-    image: '/E.png',
-    links: 'https://github.com/ein1le/portfolio-astro',
-    demo: 'https://ein1le-devfolio-astro.vercel.app/',
-  },
-  {
     id: 1,
     title: 'Project Orchid',
     description: 'CRM and digital infrastructure overhaul for the UKSSC.',
@@ -49,15 +39,47 @@ export const projects: ProjectEntry[] = [
     demo: 'https://theukssc.co.uk',
   },
   {
-    id: 4,
-    title: 'Legacy Portfolio',
-    description: 'Original personal developer portfolio',
-    information:
-      'First iteration of my personal developer portfolio, built with React and hosted on Vercel. Was used to learn React and understand frontend development principles, but lacked performance and readability for website visitors.',
-    status: 'Archived',
-    languages: ['React', 'TypeScript', 'Vercel', 'TailwindCSS'],
+    id: 5,
+    title: 'Samaggi SSO',
+    description: '',
+    information: '',
+    status: 'Ongoing',
+    languages: [],
     contributors: [],
-    image: undefined,
-    links: "https://github.com/ein1le/my_portfolio"
+    organisation: samaggiLogo,
+    demo: 'https://staff-portal.samaggisamagom.com/sign-in',
+  },
+  {
+    id: 6,
+    title: 'Samaggi Games Scoreboard',
+    description: '',
+    information: '',
+    status: 'Ongoing',
+    languages: [],
+    contributors: [],
+    organisation: samaggiLogo,
+    demo: 'https://games-signup.samaggisamagom.com',
+  },
+  {
+    id: 7,
+    title: 'Samaggi CFAS',
+    description: '',
+    information: '',
+    status: 'Ongoing',
+    languages: [],
+    contributors: [],
+    organisation: samaggiLogo,
+    demo: 'https://sacc.samaggisamagom.com/cfas/hub/sign-in?nav=%2Fcfas%2Fhub%2Fhome',
+  },
+  {
+    id: 8,
+    title: 'Samaggi Postix',
+    description: '',
+    information: '',
+    status: 'Ongoing',
+    languages: [],
+    contributors: [],
+    organisation: samaggiLogo,
+    demo: 'https://tickets.samaggisamagom.com',
   }
 ];
