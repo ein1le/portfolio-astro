@@ -65,3 +65,38 @@ details.group[open] .edu-expand {
 .scroll-y-area::-webkit-scrollbar {
   display: none; /* WebKit */
 }
+
+.experience-card-animate {
+  animation: experience-card-enter 0.45s ease-out forwards;
+  opacity: 0;
+  transform: translateY(0.75rem);
+}
+
+@keyframes experience-card-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.experience-subtab-animate {
+  animation: experience-subtab-enter 0.35s ease-out forwards;
+  opacity: 0;
+  transform: translateY(0.5rem);
+}
+
+@keyframes experience-subtab-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-card-animate,
+  .experience-subtab-animate {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

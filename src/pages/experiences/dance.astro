@@ -59,8 +59,11 @@ const orderedDanceExperiences = [...danceExperiences].sort((a, b) => {
 
           <section class="scroll-y-area mx-auto flex w-full flex-col gap-4 px-6 pt-4 pb-6 md:h-full md:overflow-y-auto md:px-8 md:pt-6">
             <div class="dance-grid">
-              {orderedDanceExperiences.map((card) => (
-                <div class={`dance-item ${cardSpanOverride[card.name] ?? 'span-12'}`}>
+              {orderedDanceExperiences.map((card, index) => (
+                <div
+                  class={`dance-item experience-card-animate ${cardSpanOverride[card.name] ?? 'span-12'}`}
+                  style={`animation-delay: ${index * 90}ms;`}
+                >
                   <DanceCard
                     name={card.name}
                     subtitle={card.subtitle}

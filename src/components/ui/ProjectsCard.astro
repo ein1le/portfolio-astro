@@ -24,6 +24,7 @@ interface Props {
   demo?: string;
   index?: number;
   organisation?: any;
+  showLinks?: boolean;
 }
 
 const {
@@ -38,6 +39,7 @@ const {
   demo,
   index = 0,
   organisation,
+  showLinks = true,
 } = Astro.props;
 
 const imageSrc =
@@ -168,7 +170,7 @@ const statusClasses = statusClassMap[status];
             )}
           </div>
 
-          {(links || demo) && (
+          {showLinks && (links || demo) && (
             <div class="mt-auto flex w-full flex-col gap-3 pt-3 sm:flex-row">
               {links && (
                 <a

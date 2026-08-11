@@ -16,22 +16,22 @@ const isActive = (href: string) => {
   return currentPath === href || currentPath.startsWith(href + '/');
 };
 const baseLinkClasses =
-  'inline-flex items-center rounded-t-2xl px-6 py-3 border text-[0.9rem] tracking-[0.14em] uppercase transition-colors duration-150 border-transparent';
+  'inline-flex w-full items-center justify-center rounded-t-2xl px-6 py-3 border text-[0.9rem] tracking-[0.14em] uppercase transition-colors duration-150 border-transparent md:w-auto md:justify-start';
 ---
 
-<header class="md:col-start-2 md:row-start-1 px-8 pt-5 pb-0 bg-gradient-to-r from-slate-900/95 to-slate-900/85 border-b border-transparent backdrop-blur-xl">
+<header class="md:col-start-2 md:row-start-1 px-3 pt-5 pb-0 md:px-8 bg-gradient-to-r from-slate-900/95 to-slate-900/85 border-b border-transparent backdrop-blur-xl">
   <div class="flex items-center justify-center gap-4">
     <button
       type="button"
       data-navbar-prev
       aria-label="Scroll tabs left"
-      class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 text-sm text-[color:var(--text-muted)] transition-opacity opacity-0 pointer-events-none"
+      class="hidden h-8 w-8 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 text-sm text-[color:var(--text-muted)] transition-opacity opacity-0 pointer-events-none md:inline-flex"
     >
       ‹
     </button>
 
     <nav
-      class="navbar-strip flex flex-1 px-4 justify-center gap-6 text-[0.9rem] tracking-[0.14em] uppercase text-[color:var(--text-muted)] overflow-x-auto whitespace-nowrap"
+      class="navbar-strip flex min-w-0 flex-1 flex-col items-stretch justify-center gap-1 px-1 text-[0.9rem] tracking-[0.14em] uppercase text-[color:var(--text-muted)] md:flex-row md:items-center md:flex-nowrap md:gap-6 md:px-4 md:overflow-x-auto md:whitespace-nowrap"
       aria-label="Primary"
       data-navbar-links
     >
@@ -55,7 +55,7 @@ const baseLinkClasses =
       type="button"
       data-navbar-next
       aria-label="Scroll tabs right"
-      class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 text-sm text-[color:var(--text-muted)] transition-opacity opacity-0 pointer-events-none"
+      class="hidden h-8 w-8 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 text-sm text-[color:var(--text-muted)] transition-opacity opacity-0 pointer-events-none md:inline-flex"
     >
       ›
     </button>

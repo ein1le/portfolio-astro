@@ -2,7 +2,7 @@
 // Right sidebar layout component
 // TODO: Implement right sidebar content and behavior
 
-import { Card, ProjectsCard } from '../ui';
+import { Button, Card, ProjectsCard } from '../ui';
 import GithubCalendarSection from '../../scripts/GitHubCalendarSection.jsx';
 import LeetCodeCalendarSection from '../../scripts/LeetCodeCalendarSection.jsx';
 import { projects } from '../../data/projects';
@@ -10,7 +10,7 @@ import { projects } from '../../data/projects';
 const featuredProject = projects[0];
 ---
 
-<aside class="md:row-span-2 md:col-start-3 flex items-start justify-center border-l border-[color:var(--border-subtle)] px-5 pt-6">
+<aside class="md:row-span-2 md:col-start-3 flex items-start justify-center border-l border-[color:var(--border-subtle)] px-5 pt-6 md:items-center">
   <div class="sidebar-content flex w-full max-w-xs flex-col gap-6">
     <div class="w-full">
       <h2 class="subtitle text-center">
@@ -56,19 +56,26 @@ const featuredProject = projects[0];
         </h2>
       {featuredProject && (
         <div class="mb-4">
-          <ProjectsCard
-            title={featuredProject.title}
-            description={featuredProject.description}
-            information={featuredProject.information}
-            status={featuredProject.status}
-            languages={featuredProject.languages}
-            contributors={featuredProject.contributors}
-            image={featuredProject.image}
-            links={featuredProject.links}
-            demo={featuredProject.demo}
-            organisation={featuredProject.organisation}
-            index={0}
-          />
+          <Button
+            href="/projects"
+            aria-label="View all projects"
+            class="w-full !rounded-xl !p-0 text-left shadow-[0_0_18px_rgba(168,85,247,0.25)] hover:shadow-[0_0_24px_rgba(168,85,247,0.4)]"
+          >
+            <ProjectsCard
+              title={featuredProject.title}
+              description={featuredProject.description}
+              information={featuredProject.information}
+              status={featuredProject.status}
+              languages={featuredProject.languages}
+              contributors={featuredProject.contributors}
+              image={featuredProject.image}
+              links={featuredProject.links}
+              demo={featuredProject.demo}
+              organisation={featuredProject.organisation}
+              index={0}
+              showLinks={false}
+            />
+          </Button>
         </div>
       )}
       </div>

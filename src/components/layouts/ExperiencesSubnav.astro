@@ -6,7 +6,7 @@ const currentPath = Astro.url.pathname;
 const isActive = (href: string) =>
   currentPath === href || currentPath.startsWith(href + '/');
 const baseLinkClasses =
-  'inline-flex items-center rounded-t-2xl px-5 py-2 border text-[0.8rem] tracking-[0.14em] uppercase transition-colors duration-150 border-transparent';
+  'inline-flex w-full items-center justify-center rounded-t-2xl px-5 py-2 border text-[0.8rem] tracking-[0.14em] uppercase transition-colors duration-150 border-transparent md:w-auto md:justify-start';
 
 const subnavLinks = [
   { href: '/experiences/professional', label: 'Professional' },
@@ -17,30 +17,31 @@ const subnavLinks = [
 ];
 ---
 
-<div class="px-8 pt-1 pb-0 bg-gradient-to-r from-slate-900/95 to-slate-900/85 border-b border-transparent backdrop-blur-xl">
+<div class="px-3 pt-1 pb-0 md:px-8 bg-gradient-to-r from-slate-900/95 to-slate-900/85 border-b border-transparent backdrop-blur-xl">
   <div class="flex items-center justify-center gap-3">
     <button
       type="button"
       data-subnav-prev
       aria-label="Scroll tabs left"
-      class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 text-xs text-[color:var(--text-muted)] transition-opacity opacity-0 pointer-events-none"
+      class="hidden h-7 w-7 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 text-xs text-[color:var(--text-muted)] transition-opacity opacity-0 pointer-events-none md:inline-flex"
     >
       ‹
     </button>
 
     <nav
-      class="navbar-strip flex flex-1 px-4 text-[0.8rem] tracking-[0.14em] uppercase text-[color:var(--text-muted)] overflow-x-auto whitespace-nowrap"
+      class="navbar-strip flex min-w-0 flex-1 flex-col items-stretch justify-center gap-1 px-1 text-[0.8rem] tracking-[0.14em] uppercase text-[color:var(--text-muted)] md:flex-row md:items-center md:flex-nowrap md:gap-3 md:px-4 md:overflow-x-auto md:whitespace-nowrap"
       aria-label="Experiences subsections"
       data-subnav-links
     >
-      {subnavLinks.map((link) => (
+      {subnavLinks.map((link, index) => (
         <a
           href={link.href}
-          class={`${baseLinkClasses} ${
+          class={`experience-subtab-animate ${baseLinkClasses} ${
             isActive(link.href)
               ? '-mb-px border-x border-t border-[color:var(--border-subtle)] border-b-transparent bg-[color:var(--bg-app)] text-[color:var(--text-main)] font-semibold shadow-sm shadow-black/40'
               : 'text-[color:var(--text-muted)] hover:text-[color:var(--text-main)] hover:border-slate-600/70 hover:bg-slate-900/40'
           }`}
+          style={`animation-delay: ${index * 80}ms;`}
         >
           {link.label}
         </a>
@@ -51,7 +52,7 @@ const subnavLinks = [
       type="button"
       data-subnav-next
       aria-label="Scroll tabs right"
-      class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 text-xs text-[color:var(--text-muted)] transition-opacity opacity-0 pointer-events-none"
+      class="hidden h-7 w-7 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-slate-900/70 text-xs text-[color:var(--text-muted)] transition-opacity opacity-0 pointer-events-none md:inline-flex"
     >
       ›
     </button>
@@ -68,15 +69,16 @@ const subnavLinks = [
     nav.dataset.scrollSetup = 'true';
 
     const updateButtons = () => {
+      const isDesktop = window.matchMedia('(min-width: 768px)').matches;
       const maxScroll = nav.scrollWidth - nav.clientWidth;
-      const scrollable = maxScroll > 1;
+      const scrollable = isDesktop && maxScroll > 1;
       const atStart = nav.scrollLeft <= 0;
       const atEnd = nav.scrollLeft >= maxScroll - 1;
 
       nav.classList.toggle('justify-center', !scrollable);
       nav.classList.toggle('justify-start', scrollable);
-      nav.classList.toggle('gap-5', !scrollable);
-      nav.classList.toggle('gap-3', scrollable);
+      nav.classList.toggle('gap-5', isDesktop && !scrollable);
+      nav.classList.toggle('gap-3', isDesktop && scrollable);
 
       const showPrev = scrollable && !atStart;
       const showNext = scrollable && !atEnd;

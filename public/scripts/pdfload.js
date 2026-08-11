@@ -153,6 +153,14 @@ function ensureOverlay() {
 }
 
 function openPdf(url, meta = {}) {
+  // Mobile browsers commonly render only the first page of a PDF inside an
+  // iframe and do not expose reliable touch scrolling. Use the native viewer
+  // instead, while retaining the in-page preview on larger screens.
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    window.open(url, '_blank', 'noopener,noreferrer');
+    return;
+  }
+
   const overlay = ensureOverlay();
   const frame = overlay.querySelector('#pdf-frame');
   const titleEl = overlay.querySelector('#pdf-title');

@@ -52,8 +52,8 @@ const sortedAcademicExperiences = academicExperiences
               <div class="absolute left-[1.25rem] top-0 bottom-0 border-l-2 border-purple-500/70"></div>
 
               <div class="space-y-6 pb-8">
-                {sortedAcademicExperiences.map((exp) => (
-                  <div class="relative flex gap-6">
+                {sortedAcademicExperiences.map((exp, index) => (
+                  <div class="experience-card-animate relative flex gap-6" style={`animation-delay: ${index * 90}ms;`}>
                     <div class="flex w-10 items-center justify-center">
                       <div class="relative">
                         <span class="inline-flex h-4 w-4 items-center justify-center rounded-full border-2 border-purple-400 bg-[color:var(--bg-app)] shadow-sm shadow-purple-500/40"></span>
