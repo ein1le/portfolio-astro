@@ -3,6 +3,16 @@ import GlobalShell from '../components/layouts/GlobalShell.astro';
 import AppHead from './_app-head.astro';
 import { EducationCard } from '../components/ui';
 import { educationEntries } from '../data/education';
+
+const educationCardOrder = [
+  'Imperial College London',
+  'University of Bristol (H300)',
+  'WorldQuant University',
+  'Harrow International School Bangkok',
+];
+const orderedEducationEntries = [...educationEntries].sort((a, b) =>
+  educationCardOrder.indexOf(a.title) - educationCardOrder.indexOf(b.title),
+);
 ---
 
 <html lang="en">
@@ -17,7 +27,7 @@ import { educationEntries } from '../data/education';
           <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-10 bg-gradient-to-t from-[color:var(--bg-app)] to-transparent hidden md:block"></div>
 
           <section class="scroll-y-area mx-auto flex w-full max-w-none flex-col gap-4 px-3 pt-4 md:h-full md:overflow-y-auto md:px-4 md:pt-6">
-            {educationEntries.map((entry, index) => (
+            {orderedEducationEntries.map((entry, index) => (
               <div class="edu-card" style={`animation-delay: ${index * 90}ms;`}>
                 <EducationCard
                   title={entry.subheader}
