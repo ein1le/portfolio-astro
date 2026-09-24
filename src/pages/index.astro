@@ -1,6 +1,7 @@
 ---
-import GlobalShell from '../components/layouts/GlobalShell.astro';
-import AppHead from './_app-head.astro';
+import GlobalShell from "../components/layouts/GlobalShell.astro";
+import AppHead from "./_app-head.astro";
+import profilePhoto from "../assets/pfp.jpg";
 ---
 
 <html lang="en">
@@ -9,55 +10,70 @@ import AppHead from './_app-head.astro';
   </head>
   <body>
     <GlobalShell>
-  <div
-    id="home-main-hover"
-    class="home-main-hover flex flex-1 items-center justify-center px-6 pb-16 md:px-8 md:pb-0"
-  >
-    <div class="flex w-full max-w-2xl flex-col items-center gap-6 text-center">
-      <img
-        src="https://media.licdn.com/dms/image/v2/D4E03AQHBhCcjqmoj8A/profile-displayphoto-scale_100_100/B4EZgNqT7NGcAc-/0/1752575852724?e=1787788800&v=beta&t=TYcAUBpaMPeo3Uum81IM59iQKEautl0rzeWIw7v4eTM"
-        alt="Wishawin Lertnawapan"
-        class="h-32 w-32 rounded-full border border-purple-400/70 bg-slate-900/60 object-cover shadow-[0_0_24px_rgba(192,132,252,0.7)]"
-      />
+      <div
+        id="home-main-hover"
+        class="home-main-hover flex flex-1 items-center justify-center px-6 pb-16 md:px-8 md:pb-0"
+      >
+        <div
+          class="flex w-full max-w-2xl flex-col items-center gap-6 text-center"
+        >
+          <img
+            src={profilePhoto.src}
+            alt="Wishawin Lertnawapan"
+            class="h-32 w-32 rounded-full border border-purple-400/70 bg-slate-900/60 object-cover shadow-[0_0_24px_rgba(192,132,252,0.7)]"
+          />
 
-      <h1 class="w-full text-2xl font-extrabold tracking-[0.12em] uppercase text-[color:var(--text-main)] break-words md:text-4xl md:tracking-[0.2em]">
-        Wishawin Lertnawapan
-      </h1>
+          
 
-      <div class="home-typewriter w-full mt-3 md:mt-4 space-y-3 text-sm leading-relaxed text-[color:var(--text-muted)] md:text-base">
-        <p>
-          Hi there! My name is Ein, I'm a recent <span class="font-semibold text-[color:var(--text-main)]">Integrated Masters' engineering graduate</span> from the <span class="font-semibold text-[color:var(--text-main)]">University of Bristol</span>, currently based in London. With this background, I plan to pursue my interests at the intersection of <span class="font-semibold text-[color:var(--text-main)]"> Data Science and Machine Learning, Cloud-Native Solutions</span>, and <span class="font-semibold text-[color:var(--text-main)]">Forward-Deployed Consulting</span>. I enjoy working on projects that involve leveraging data at all stages of the product cycle.
-        </p>
-        <p>
-          Currently, I'm pursuing a <span class="font-semibold text-[color:var(--text-main)]">Postgraduate Degree in Business Analytics and AI</span> at <span class="font-semibold text-[color:var(--text-main)]">Imperial College London</span>, while working towards credentials in
-          <a
-            href="https://www.wqu.edu/mscfe"
-            target="_blank"
-            rel="noreferrer"
-            class="font-semibold text-[color:var(--accent)]"
+          <div
+            class="home-typewriter w-full mt-3 space-y-6 text-sm leading-relaxed text-[color:var(--text-muted)] md:mt-4 md:text-base"
           >
-            Financial Engineering
-          </a>
-          at WQU and
-          <a
-            href="https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/"
-            target="_blank"
-            rel="noreferrer"
-            class="font-semibold text-[color:var(--accent)]"
-          >
-            AWS
-          </a>, driven by the slightly impossible task of wanting to learn everything (and caffeine &#9749;).
-        </p>
-        <p>
-          I thrive where I can work simultaneously with both data scientists and business analytics teams directly &mdash; bridging <span class="font-semibold text-[color:var(--text-main)]">technical decision-making and getting involved with models, while also communicating insights</span> effectively to help clients perform at their best. Through project-based work in academia and work experiences, I continue to explore various domains including full-stack development, AI Engineering, and quantitative finance that supplement my skills.
-        </p>
-        <p>
-          Thanks for stopping by &#128075;
-        </p>
+            <p class="italic text-base text-[color:var(--text-main)] md:text-lg">
+              "If you can't explain it simply, you don't understand it well enough."
+            </p>
+            <p>
+              That's the idea that has framed my journey and where I am today. Through engineering, data, and consultancies, I've realised that I am strongest in the space between disciplines - someone who can navigate complex technical systems enough to build them, while also being able to translate that work into something useful for people to achieve their goals.
+            </p>
+            <p>
+              My name is Ein, and I'm a <span
+                class="font-semibold text-[color:var(--text-main)]"
+                >MSc Business Analytics and AI</span
+              > candidate at <span class="font-semibold text-[color:var(--text-main)]"
+                >Imperial College London</span.  I'm focused on pursuing my interests at the intersection of <span
+                class="font-semibold text-[color:var(--text-main)]"
+              >
+                Data Science and Machine Learning, Cloud-Native Solutions, and Technical Consulting. I enjoy working on projects that involve visibility end-to-end.
+            </p>
+            <p>
+              Currently, I'm also working towards credentials in
+
+              <a
+                href="https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/"
+                target="_blank"
+                rel="noreferrer"
+                class="font-semibold text-[color:var(--accent)]"
+              >
+                AWS
+              </a>.
+            </p>
+            <p>
+              In the advent of AI, I believe in the value of breadth and the ability to context switch between technical depth and business context.
+              I thrive where I can work simultaneously with both data scientists
+              and product teams directly - bridging <span
+                class="font-semibold text-[color:var(--text-main)]"
+                >technical decision-making and getting involved with models,
+                while also communicating insights</span
+              > effectively to help clients perform at their best. To broaden my understanding,
+              I'm always engaged in project-based
+              work in academia and work experiences across full-stack development, AI Engineering, and quantitative
+              finance to supplement my skills.
+            </p>
+            <p>Thanks for stopping by &#128075;</p>
+          </div>
+        </div>
       </div>
-    </div>
-    </GlobalShell>
 
-    <script type="module" src="/scripts/homeEffects.js"></script>
+      <script type="module" src="/scripts/homeEffects.js"></script>
+    </GlobalShell>
   </body>
 </html>

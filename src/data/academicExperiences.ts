@@ -1,6 +1,7 @@
 // Academic experiences data for the Experiences > Academic view.
 
 import llmNebiusBadge from '../icons/llm-nebius.png?url';
+import qteLogo from '../assets/extra/qte.jpg?url';
 
 export type AcademicExperienceType = 'Researcher';
 
@@ -48,7 +49,7 @@ export const academicExperiences: AcademicExperience[] = [
     description: "Developer for the Technology team of Queen's Tower Exchange, a student-run simulated financial exchange supporting over 250 students and 323 tradable securities. Overseeing the design and development of its trading infrastructure on the cloud and deployment via IaC. Building a cloud-native AWS architecture using ECS and Fargate, with services for order matching, simulated market data, and execution workflows, while coordinating with a seven-person engineering team to build an exchange.",
     skills: ['Distributed Cloud Systems', 'Data Pipelines', 'Exchange Infrastructure'],
     languages: ['AWS', 'Python', 'Terraform'],
-    logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQHuR8-BLVlitQ/company-logo_200_200/B4EZ5aHogsKYAI-/0/1779628411193?e=1787788800&v=beta&t=lDHUE4TW4mbVHo8vOABu1Q3lsygFecivjGt7e60xvQI',
+    logo: qteLogo,
     links: [
       {
         label: 'QTE Imperial',
@@ -211,38 +212,6 @@ export const academicExperiences: AcademicExperience[] = [
       'Teng Shin Yeo',
       'Timothy Low',
     ],
-  },
-  {
-    id: 12,
-    title: 'Quantitative Engineer',
-    role: '25/26 Executive Committee',
-    organisation: 'London Finance and Business Union',
-    dates: 'Oct 2025 - Present',
-    location: 'London, UK',
-    type: 'Researcher',
-    description: "Quantitative Engineer for the UK's largest student finance society, supporting over 12,000 students. Built a backend system to stream real-time market data, enabling internal quantitative analysts to simulate internal research and trading workflows for the society's investment portfolio. Contributed to the architecture and implementation of the society's SERN stack-based website.",
-    skills: ['Data Pipelines', 'Market data Ingestion', 'Fullstack Development'],
-    languages: ['Supabase', 'Apache', 'Python'],
-    logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQFEZG5BwmfKwA/company-logo_200_200/company-logo_200_200/0/1725562588537?e=2147483647&v=beta&t=s-E7GfO8qPXOMj0iYHbUsy2FuHVgFvRe5fyEtR5FOnU',
-    subroles: [],
-    links: [
-      {
-        label: 'LinkTree',
-        type: 'LinkTree',
-        url: 'https://linktr.ee/london.fbu',
-      },
-      {
-        label: 'FBU London',
-        type: 'Website',
-        url: 'https://www.fbulondon.co.uk/',
-      },
-      {
-        label: 'GitHub',
-        type: 'GitHub',
-        url: 'https://github.com/ein1le/fbu-cms',
-      },
-    ],
-    contributors: [],
   },
   {
     id: 8,

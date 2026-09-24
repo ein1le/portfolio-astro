@@ -8,6 +8,7 @@ import mssaGotm from '../assets/extra/MSSA_GOTM.png?url';
 import goldaccreditation from '../assets/extra/Gold_Accreditation_Kitemark_2025.png?url';
 import courseRepAward from '../assets/extra/CourseRep.png?url';
 import harrowLogo from '../assets/education/Harrow.jpg?url';
+import imperialLogo from '../assets/education/Imperial.png?url';
 
 
 export interface ExtracurrExperienceLink {
@@ -40,6 +41,27 @@ export interface ExtracurrExperience {
 }
 
 export const extracurrExperiences: ExtracurrExperience[] = [
+  {
+    title: 'Imperial College London',
+    role: 'Various Positions',
+    dates: 'Aug 2026 - Aug 2027',
+    location: 'London, UK',
+    description: '',
+    skills: [],
+    languages: [],
+    logo: imperialLogo,
+    links: [],
+    contributors: [],
+    subroles: [
+      {
+        role: 'MSc Student Ambassador',
+        dates: 'Sep 2026 - Aug 2027',
+        description: '',
+        links: [],
+        contributors: [],
+      },
+    ],
+  },
   {
     title: 'Director of Choreography',
     role: '26/27 Executive Committee',
