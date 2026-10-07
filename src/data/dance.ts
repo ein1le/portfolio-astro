@@ -195,16 +195,16 @@ export const danceExperiences: DanceExperience[] = [
     ],
   },
   {
-    name: 'T Stage',
-    subtitle: 'Thai Musical Production',
-    date: 'Jun 2026 - Present',
+    name: 'Imperial MNight',
+    subtitle: 'Student Production',
+    date: 'Oct 2026 - Mar 2027',
     logo: '',
     description: '',
     links: [
       {
         label: 'Instagram',
         type: 'Instagram',
-        url: 'https://www.instagram.com/tstage.musical/',
+        url: 'https://www.instagram.com/icu.ms/',
       },
     ],
   },

@@ -74,6 +74,7 @@ interface ExperienceSubrole {
   description?: string;
   skills?: string[];
   contributors?: string[];
+  accentRole?: boolean;
   links?: ExperienceLink[];
 }
 
@@ -99,6 +100,7 @@ interface Props {
   languages?: string[];
   subroles?: ExperienceSubrole[];
   contributors?: string[];
+  organisationFirst?: boolean;
 }
 
 const {
@@ -116,6 +118,7 @@ const {
   languages = [],
   subroles = [],
   contributors = [],
+  organisationFirst = false,
 } = Astro.props as Props;
 
 const languageIconKeyMap: Record<string, string> = {
@@ -210,10 +213,15 @@ const getLanguageIconName = (lang: string): string | null => {
             <p class="text-[1.125rem] font-semibold tracking-[0.12em] uppercase break-words">
               {title}
             </p>
+            {organisation && organisationFirst && (
+              <p class="mt-0.5 md:mt-1 text-[0.95rem] font-semibold tracking-[0.12em] uppercase break-words text-[color:var(--accent)]">
+                {organisation}
+              </p>
+            )}
             <h2 class="text-[1rem] tracking-[0.12em] uppercase break-words text-[color:var(--text-main)]">
               {role}
             </h2>
-            {organisation && (
+            {organisation && !organisationFirst && (
               <p class="mt-0.5 md:mt-1 text-[0.95rem] font-semibold tracking-[0.12em] uppercase break-words text-[color:var(--accent)]">
                 {organisation}
               </p>

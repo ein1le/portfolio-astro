@@ -1,5 +1,7 @@
 // Professional experiences data for the Experiences > Professional view.
 
+import tiktokLogo from '../icons/TikTok.png?url';
+
 export type ExperienceType =
   | 'Contract'
   | 'Full-time'
@@ -39,8 +41,20 @@ export interface ProfessionalExperience {
 
 export const professionalExperiences: ProfessionalExperience[] = [
   {
+    title: 'TikTok',
+    role: 'Data Analyst Intern',
+    organisation: 'TikTok LIVE Strategy & Operations',
+    dates: 'Jan 2027 - Jun 2027',
+    location: 'London, UK',
+    type: 'Internship',
+    description: '',
+    skills: [],
+    logo: tiktokLogo,
+  },
+  {
     title: '180 Degrees Consulting',
     role: 'Global Data and Insights Specialist',
+    organisation: 'Global IT & Digital Arm',
     dates: 'Jul 2026 - Present',
     location: 'Remote, UK',
     type: 'Student Role',
@@ -51,6 +65,7 @@ export const professionalExperiences: ProfessionalExperience[] = [
   {
     title: 'NexusKCG',
     role: 'ML Platform Engineer',
+    organisation: 'Startup',
     dates: 'Jan 2025 - Mar 2026',
     location: 'London, UK',
     type: 'Contract',
@@ -61,6 +76,7 @@ export const professionalExperiences: ProfessionalExperience[] = [
   {
     title: 'University of Bristol Intelligent Systems Laboratory' ,
     role: 'Graduate Researcher, Bristol ISL',
+    organisation: 'AIML and MaVI Group',
     dates: 'Jun 2025 – Dec 2025',
     location: 'Bristol, UK',
     type: 'Researcher',
@@ -71,6 +87,7 @@ export const professionalExperiences: ProfessionalExperience[] = [
   {
     title: 'University of Bristol School of Civil, Aerospace and Design Engineering',
     role: 'Undergraduate Researcher, School of CADE',
+    organisation: 'School of Civil, Aerospace, and Design Engineering',
     dates: 'Jan 2025 – Aug 2025',
     location: 'Bristol, UK',
     type: 'Researcher',
@@ -81,6 +98,7 @@ export const professionalExperiences: ProfessionalExperience[] = [
   {
     title: 'KKP Financial Group',
     role: 'Data Science and Engineering Intern',
+    organisation: 'Customer and Digital Group',
     dates: 'Jul 2024 – Aug 2024',
     location: 'Bangkok, Thailand',
     type: 'Internship',
@@ -90,7 +108,8 @@ export const professionalExperiences: ProfessionalExperience[] = [
   },
   {
     title: 'YSG Group Co.',
-    role: 'Data Engineering Intern',
+    role: 'Audit Intern',
+    organisation: 'Retailer',
     dates: 'Jun 2023 – Aug 2023',
     location: 'Bangkok, Thailand',
     type: 'Internship',

@@ -2,6 +2,7 @@
 
 import llmNebiusBadge from '../icons/llm-nebius.png?url';
 import qteLogo from '../assets/extra/qte.jpg?url';
+import nebiusLogo from '../icons/nebius_logo.jpg?url';
 
 export type AcademicExperienceType = 'Researcher';
 
@@ -85,35 +86,13 @@ export const academicExperiences: AcademicExperience[] = [
     description: '',
     skills: ['LLM Architectures', 'Agentic AI', 'Performance Engineering'],
     languages: ['n8n', 'MCP', 'LangChain'],
-    logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQGq1CsuIGw9_w/company-logo_200_200/B4EZ9.OrKmIcAE-/0/1784529204073/nebius_academy_logo?e=1787788800&v=beta&t=6myTgx3z8ScsqqmMtTdCze_QGXs3pC8ZVF6Bi9Nf1r0',
+    logo: nebiusLogo,
     links: [
       {
         label: 'LLM Architectures Badge',
         url: llmNebiusBadge,
         type: 'Award',
       },
-    ],
-    contributors: [],
-    subroles: [],
-  },
-  {
-    id: 19,
-    title: 'Trainee',
-    role: 'Quantitative Analyst',
-    organisation: 'D+A Stategies',
-    dates: 'Mar 2026 - Present',
-    location: 'Remote, Italy',
-    type: 'Researcher',
-    description: '',
-    skills: ['Algorithmic Trading', 'Quantitatiive Research', 'Financial Markets'],
-    languages: [],
-    logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQFfBVrQzJAIKg/company-logo_200_200/B4EZUbCpHBHgAI-/0/1739915433414/d_a_strategies_gbr_logo?e=1787788800&v=beta&t=X5iyIQYk0-ARHW-SO7dWfLh0mzmiLSZFLdZ-Yqv0J80',
-    links: [
-      {
-        label : "D+A Strategies",
-        type: 'Website',
-        url: "http://da-strategies.com/"
-      }
     ],
     contributors: [],
     subroles: [],

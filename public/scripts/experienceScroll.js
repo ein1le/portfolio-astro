@@ -1,57 +1,84 @@
 const STORAGE_KEY = 'experience-scroll-positions';
+const DESKTOP_QUERY = '(min-width: 768px)';
 
-function readPositions() {
-  try {
-    return JSON.parse(window.sessionStorage.getItem(STORAGE_KEY) || '{}');
-  } catch {
-    return {};
-  }
-}
+if (typeof window !== 'undefined' && !window.__experienceScrollPersistenceSetup) {
+  window.__experienceScrollPersistenceSetup = true;
 
-function saveScrollPosition() {
-  const scrollArea = document.querySelector('.scroll-y-area');
-  if (!scrollArea) return;
+  let positions = null;
+  let activeScrollArea = null;
+  let writeFrameId = 0;
 
-  try {
-    const positions = readPositions();
-    positions[window.location.pathname] = scrollArea.scrollTop;
-    window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(positions));
-  } catch {
-    // Ignore unavailable storage.
-  }
-}
+  const readPositions = () => {
+    if (positions) return positions;
 
-function restoreScrollPosition() {
-  const scrollArea = document.querySelector('.scroll-y-area');
-  if (!scrollArea) return;
+    try {
+      positions = JSON.parse(window.sessionStorage.getItem(STORAGE_KEY) || '{}');
+    } catch {
+      positions = {};
+    }
 
-  const positions = readPositions();
-  const scrollTop = positions[window.location.pathname];
-  if (!Number.isFinite(scrollTop)) return;
+    return positions;
+  };
 
-  requestAnimationFrame(() => {
-    scrollArea.scrollTop = scrollTop;
-  });
-}
+  const writePositions = () => {
+    writeFrameId = 0;
 
-function setupExperienceScroll() {
-  const scrollArea = document.querySelector('.scroll-y-area');
-  if (!scrollArea) return;
+    try {
+      window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(readPositions()));
+    } catch {
+      // Ignore unavailable storage.
+    }
+  };
 
-  if (scrollArea.dataset.scrollPersistenceSetup !== 'true') {
-    scrollArea.dataset.scrollPersistenceSetup = 'true';
-    scrollArea.addEventListener('scroll', saveScrollPosition, { passive: true });
-  }
+  const scheduleWrite = () => {
+    if (!writeFrameId) writeFrameId = window.requestAnimationFrame(writePositions);
+  };
 
-  restoreScrollPosition();
-}
+  const getScrollPosition = () => {
+    if (window.matchMedia(DESKTOP_QUERY).matches && activeScrollArea) {
+      return activeScrollArea.scrollTop;
+    }
 
-document.addEventListener('astro:before-swap', saveScrollPosition);
-document.addEventListener('astro:page-load', setupExperienceScroll);
-window.addEventListener('pagehide', saveScrollPosition);
+    return window.scrollY || document.documentElement.scrollTop || 0;
+  };
 
-if (document.readyState === 'loading') {
-  window.addEventListener('DOMContentLoaded', setupExperienceScroll);
-} else {
-  setupExperienceScroll();
+  const saveScrollPosition = () => {
+    readPositions()[window.location.pathname] = getScrollPosition();
+    scheduleWrite();
+  };
+
+  const flushScrollPosition = () => {
+    saveScrollPosition();
+    if (writeFrameId) window.cancelAnimationFrame(writeFrameId);
+    writePositions();
+  };
+
+  const restoreScrollPosition = () => {
+    const scrollTop = readPositions()[window.location.pathname];
+    if (!Number.isFinite(scrollTop)) return;
+
+    window.requestAnimationFrame(() => {
+      if (window.matchMedia(DESKTOP_QUERY).matches && activeScrollArea) {
+        activeScrollArea.scrollTop = scrollTop;
+      } else {
+        window.scrollTo(0, scrollTop);
+      }
+    });
+  };
+
+  const setupExperienceScroll = () => {
+    const nextScrollArea = document.querySelector('.scroll-y-area');
+
+    if (activeScrollArea !== nextScrollArea) {
+      activeScrollArea?.removeEventListener('scroll', saveScrollPosition);
+      activeScrollArea = nextScrollArea;
+      activeScrollArea?.addEventListener('scroll', saveScrollPosition, { passive: true });
+    }
+
+    restoreScrollPosition();
+  };
+
+  document.addEventListener('astro:before-swap', flushScrollPosition);
+  document.addEventListener('astro:page-load', setupExperienceScroll);
+  window.addEventListener('pagehide', flushScrollPosition);
 }

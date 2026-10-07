@@ -65,20 +65,36 @@ const subnavLinks = [
     const prev = document.querySelector('[data-subnav-prev]');
     const next = document.querySelector('[data-subnav-next]');
 
-    if (!nav || !prev || !next || nav.dataset.scrollSetup === 'true') return;
-    nav.dataset.scrollSetup = 'true';
+    if (!nav || !prev || !next) return;
+
+    window.__subnavScrollCleanup?.();
+
+    const desktopMedia = window.matchMedia('(min-width: 768px)');
+    let frameId = 0;
 
     const updateButtons = () => {
-      const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+      frameId = 0;
+      const isDesktop = desktopMedia.matches;
+
+      if (!isDesktop) {
+        nav.classList.add('justify-center');
+        nav.classList.remove('justify-start', 'gap-3', 'gap-5');
+        prev.disabled = true;
+        next.disabled = true;
+        prev.classList.add('opacity-0', 'pointer-events-none');
+        next.classList.add('opacity-0', 'pointer-events-none');
+        return;
+      }
+
       const maxScroll = nav.scrollWidth - nav.clientWidth;
-      const scrollable = isDesktop && maxScroll > 1;
+      const scrollable = maxScroll > 1;
       const atStart = nav.scrollLeft <= 0;
       const atEnd = nav.scrollLeft >= maxScroll - 1;
 
       nav.classList.toggle('justify-center', !scrollable);
       nav.classList.toggle('justify-start', scrollable);
-      nav.classList.toggle('gap-5', isDesktop && !scrollable);
-      nav.classList.toggle('gap-3', isDesktop && scrollable);
+      nav.classList.toggle('gap-5', !scrollable);
+      nav.classList.toggle('gap-3', scrollable);
 
       const showPrev = scrollable && !atStart;
       const showNext = scrollable && !atEnd;
@@ -90,6 +106,10 @@ const subnavLinks = [
       prev.classList.toggle('pointer-events-none', !showPrev);
       next.classList.toggle('opacity-0', !showNext);
       next.classList.toggle('pointer-events-none', !showNext);
+    };
+
+    const scheduleUpdate = () => {
+      if (!frameId) frameId = window.requestAnimationFrame(updateButtons);
     };
 
     const scrollByStep = (direction) => {
@@ -106,21 +126,31 @@ const subnavLinks = [
       nav.scrollBy({ left: direction * step, behavior: 'smooth' });
     };
 
-    prev.addEventListener('click', () => scrollByStep(-1));
-    next.addEventListener('click', () => scrollByStep(1));
-    nav.addEventListener('scroll', updateButtons);
-    window.addEventListener('resize', updateButtons);
+    const onPrevClick = () => scrollByStep(-1);
+    const onNextClick = () => scrollByStep(1);
 
-    updateButtons();
+    prev.addEventListener('click', onPrevClick);
+    next.addEventListener('click', onNextClick);
+    nav.addEventListener('scroll', scheduleUpdate, { passive: true });
+
+    const resizeObserver = new ResizeObserver(scheduleUpdate);
+    resizeObserver.observe(nav);
+    desktopMedia.addEventListener('change', scheduleUpdate);
+
+    window.__subnavScrollCleanup = () => {
+      if (frameId) window.cancelAnimationFrame(frameId);
+      resizeObserver.disconnect();
+      desktopMedia.removeEventListener('change', scheduleUpdate);
+      prev.removeEventListener('click', onPrevClick);
+      next.removeEventListener('click', onNextClick);
+      nav.removeEventListener('scroll', scheduleUpdate);
+    };
+
+    scheduleUpdate();
   };
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && !window.__subnavScrollLifecycleSetup) {
+    window.__subnavScrollLifecycleSetup = true;
     document.addEventListener('astro:page-load', setupSubnavScroll);
-
-    if (document.readyState === 'loading') {
-      window.addEventListener('DOMContentLoaded', setupSubnavScroll);
-    } else {
-      setupSubnavScroll();
-    }
   }
 </script>

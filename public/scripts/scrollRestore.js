@@ -17,9 +17,5 @@ function restoreScroll() {
 }
 
 if (typeof window !== 'undefined') {
-  if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', restoreScroll);
-  } else {
-    restoreScroll();
-  }
+  document.addEventListener('astro:page-load', restoreScroll);
 }

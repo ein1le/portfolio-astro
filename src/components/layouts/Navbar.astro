@@ -70,10 +70,24 @@ const baseLinkClasses =
     const prev = document.querySelector('[data-navbar-prev]');
     const next = document.querySelector('[data-navbar-next]');
 
-    if (!nav || !prev || !next || nav.dataset.scrollSetup === 'true') return;
-    nav.dataset.scrollSetup = 'true';
+    if (!nav || !prev || !next) return;
+
+    window.__navbarScrollCleanup?.();
+
+    const desktopMedia = window.matchMedia('(min-width: 768px)');
+    let frameId = 0;
 
     const updateButtons = () => {
+      frameId = 0;
+
+      if (!desktopMedia.matches) {
+        prev.disabled = true;
+        next.disabled = true;
+        prev.classList.add('opacity-0', 'pointer-events-none');
+        next.classList.add('opacity-0', 'pointer-events-none');
+        return;
+      }
+
       const maxScroll = nav.scrollWidth - nav.clientWidth;
       const scrollable = maxScroll > 1;
       const atStart = nav.scrollLeft <= 0;
@@ -91,6 +105,10 @@ const baseLinkClasses =
       next.classList.toggle('pointer-events-none', !showNext);
     };
 
+    const scheduleUpdate = () => {
+      if (!frameId) frameId = window.requestAnimationFrame(updateButtons);
+    };
+
     const scrollByStep = (direction) => {
       const items = nav.querySelectorAll('a');
       if (!items.length) return;
@@ -105,34 +123,43 @@ const baseLinkClasses =
       nav.scrollBy({ left: direction * step, behavior: 'smooth' });
     };
 
-    prev.addEventListener('click', () => scrollByStep(-1));
-    next.addEventListener('click', () => scrollByStep(1));
-    nav.addEventListener('scroll', updateButtons);
-    window.addEventListener('resize', updateButtons);
+    const onPrevClick = () => scrollByStep(-1);
+    const onNextClick = () => scrollByStep(1);
+    const onNavigationClick = (event) => {
+      if (!(event.target instanceof Element) || !event.target.closest('a')) return;
 
-    // Remember the current scroll position before navigating
-    // so the next page can restore it (especially useful in stacked view).
-    nav.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        const y = window.scrollY || document.documentElement.scrollTop || 0;
-        try {
-          window.sessionStorage.setItem(SCROLL_KEY, String(y));
-        } catch {
-          // ignore storage errors
-        }
-      });
-    });
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      try {
+        window.sessionStorage.setItem(SCROLL_KEY, String(y));
+      } catch {
+        // Ignore unavailable storage.
+      }
+    };
 
-    updateButtons();
+    prev.addEventListener('click', onPrevClick);
+    next.addEventListener('click', onNextClick);
+    nav.addEventListener('scroll', scheduleUpdate, { passive: true });
+    nav.addEventListener('click', onNavigationClick);
+
+    const resizeObserver = new ResizeObserver(scheduleUpdate);
+    resizeObserver.observe(nav);
+    desktopMedia.addEventListener('change', scheduleUpdate);
+
+    window.__navbarScrollCleanup = () => {
+      if (frameId) window.cancelAnimationFrame(frameId);
+      resizeObserver.disconnect();
+      desktopMedia.removeEventListener('change', scheduleUpdate);
+      prev.removeEventListener('click', onPrevClick);
+      next.removeEventListener('click', onNextClick);
+      nav.removeEventListener('scroll', scheduleUpdate);
+      nav.removeEventListener('click', onNavigationClick);
+    };
+
+    scheduleUpdate();
   };
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && !window.__navbarScrollLifecycleSetup) {
+    window.__navbarScrollLifecycleSetup = true;
     document.addEventListener('astro:page-load', setupNavbarScroll);
-
-    if (document.readyState === 'loading') {
-      window.addEventListener('DOMContentLoaded', setupNavbarScroll);
-    } else {
-      setupNavbarScroll();
-    }
   }
 </script>

@@ -9,6 +9,7 @@ import goldaccreditation from '../assets/extra/Gold_Accreditation_Kitemark_2025.
 import courseRepAward from '../assets/extra/CourseRep.png?url';
 import harrowLogo from '../assets/education/Harrow.jpg?url';
 import imperialLogo from '../assets/education/Imperial.png?url';
+import icumsLogo from '../icons/icums.jpg?url';
 
 
 export interface ExtracurrExperienceLink {
@@ -63,24 +64,33 @@ export const extracurrExperiences: ExtracurrExperience[] = [
     ],
   },
   {
-    title: 'Director of Choreography',
-    role: '26/27 Executive Committee',
-    organisation: 'T Stage',
-    dates: 'Jun 2026 - Present',
+    title: 'Creative Team',
+    role: 'MNight Committee',
+    organisation: 'Imperial College Union Malaysian Society',
+    dates: 'Oct 2026 - Mar 2027',
     location: 'London, UK',
-    description: 'Committee member on the artistic team for T Stage, a Thai musical production jointly organised by UAL, UCL, and Imperial College London. Choreographed eight songs for a live production attended by 200+ audience members, coordinating rehearsals with the wider creative team.',
+    description: '',
     skills: [],
     languages: [],
-    logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQHPLVpCR_LIXg/company-logo_200_200/B4EZ0iKB5hG0AI-/0/1774394548679?e=1787788800&v=beta&t=vUhl3_MARmqLv6mFbtIBO4GO0RU24w29G8Bw5N0yCug',
-    links: [
+    logo: icumsLogo,
+    links: [],
+    contributors: ['Heidi Chong', 'Li Zhen'],
+    subroles: [
       {
-        label: 'Instagram',
-        url: 'https://www.instagram.com/tstage.musical/',
-        type: 'Instagram',
+        role: 'Lead Choreographer - Modern Dance',
+        dates: 'Oct 2026 - Mar 2027',
+        description: '',
+        links: [],
+        contributors: [],
+      },
+      {
+        role: 'Assistant Choreographer - Senior Dance',
+        dates: 'Oct 2026 - Mar 2027',
+        description: '',
+        links: [],
+        contributors: ['Jia Yie', 'Soon Keng'],
       },
     ],
-    contributors: [],
-    subroles: [],
   },
   {
     title: 'General Secretary',
