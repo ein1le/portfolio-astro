@@ -11,6 +11,7 @@ interface DanceLink {
 
 interface Props {
   name: string;
+  organisation?: string;
   subtitle: string;
   date: string;
   logo: string;
@@ -18,7 +19,7 @@ interface Props {
   links: DanceLink[];
 }
 
-const { name, subtitle, date, logo, description, links = [] } = Astro.props as Props;
+const { name, organisation, subtitle, date, logo, description, links = [] } = Astro.props as Props;
 
 const getLinkVisuals = (type?: string) => {
   switch (type) {
@@ -79,6 +80,9 @@ const getLinkVisuals = (type?: string) => {
           <h3 class="subtitle m-0 text-left">
             {name}
           </h3>
+          {organisation && (
+            <p class="mt-1 text-[0.68rem] text-purple-300">{organisation}</p>
+          )}
           <p class="mt-1 text-[0.68rem] text-[color:var(--text-muted)]">{subtitle}</p>
         </div>
         <p class="text-[0.68rem] text-[color:var(--text-muted)] whitespace-nowrap">{date}</p>

@@ -1,6 +1,7 @@
 // Professional experiences data for the Experiences > Professional view.
 
 import tiktokLogo from '../icons/TikTok.png?url';
+import ekimetricsLogo from '../icons/eki.jpg?url';
 
 export type ExperienceType =
   | 'Contract'
@@ -40,6 +41,17 @@ export interface ProfessionalExperience {
 }
 
 export const professionalExperiences: ProfessionalExperience[] = [
+  {
+    title: 'Ekimetrics',
+    role: 'Data Science & Marketing Effectiveness Intern',
+    organisation: 'Consulting and Data Science Division',
+    dates: 'Aug 2027 - Dec 2027',
+    location: 'London, UK',
+    type: 'Internship',
+    description: '',
+    skills: [],
+    logo: ekimetricsLogo,
+  },
   {
     title: 'TikTok',
     role: 'Data Analyst Intern',

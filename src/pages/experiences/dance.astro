@@ -11,13 +11,14 @@ const cardSpanOverride: Record<string, string> = {
   Hydrogen: 'span-6',
   'Bristol MSNight': 'span-6',
   'Imperial MNight': 'span-6',
+  'Legends of Lions': 'span-4',
+  'Elevate Studio': 'span-4',
+  'Imperial Funkology': 'span-4',
   PARADOX: 'span-7',
   KMDC: 'span-5',
-  Astris: 'span-3',
+  Astris: 'span-4',
   'B House Studio': 'span-6',
-  'Elevate Studio': 'span-3',
   Reines: 'span-4',
-  'Legends of Lions': 'span-4',
   '44 City': 'span-4',
 };
 
@@ -26,14 +27,15 @@ const danceCardOrder = [
   'Hydrogen',
   'Bristol MSNight',
   'Imperial MNight',
+  'Legends of Lions',
+  'Elevate Studio',
+  'Imperial Funkology',
   'PARADOX',
   'KMDC',
+  '44 City',
+  'Reines',
   'Astris',
   'B House Studio',
-  'Elevate Studio',
-  'Reines',
-  'Legends of Lions',
-  '44 City',
 ];
 const orderedDanceExperiences = [...danceExperiences].sort((a, b) => {
   const aIndex = danceCardOrder.indexOf(a.name);
@@ -66,6 +68,7 @@ const orderedDanceExperiences = [...danceExperiences].sort((a, b) => {
                 >
                   <DanceCard
                     name={card.name}
+                    organisation={card.organisation}
                     subtitle={card.subtitle}
                     date={card.date}
                     logo={card.logo}

@@ -17,6 +17,7 @@ export interface DanceLink {
 
 export interface DanceExperience {
   name: string;
+  organisation?: string;
   subtitle: string;
   date: string;
   logo: string;
@@ -27,7 +28,8 @@ export interface DanceExperience {
 export const danceExperiences: DanceExperience[] = [
   {
     name: 'PARADOX',
-    subtitle: 'KPOP Dance Crew',
+    organisation: 'Member',
+    subtitle: 'KPOP Cover Crew',
     date: 'Apr 2026 - Present',
     logo: paradoxLogo,
     description: '',
@@ -46,6 +48,7 @@ export const danceExperiences: DanceExperience[] = [
   },
   {
     name: 'DCorps',
+    organisation: 'Training Corps',
     subtitle: 'London Dance Company',
     date: 'Nov 2025 - Present',
     logo: dcorpsLogo,
@@ -60,7 +63,8 @@ export const danceExperiences: DanceExperience[] = [
   },
   {
     name: 'KMDC',
-    subtitle: 'KPOP Filming Projects',
+    organisation: 'Member',
+    subtitle: 'KPOP Filming Studio',
     date: 'Jul 2025 - Present',
     logo: kmdcLogo,
     description: '',
@@ -79,7 +83,8 @@ export const danceExperiences: DanceExperience[] = [
   },
   {
     name: 'Astris',
-    subtitle: 'KPOP Dance Crew',
+    organisation: 'Guest Member',
+    subtitle: 'KPOP Cover Crew',
     date: 'May 2026 - Present',
     logo: '',
     description: '',
@@ -93,7 +98,8 @@ export const danceExperiences: DanceExperience[] = [
   },
   {
     name: 'Bristol MSNight',
-    subtitle: 'Student Production',
+    organisation: 'Director',
+    subtitle: 'University of Bristol Student Production',
     date: 'Jan 2023 - May 2025',
     logo: msnightWallpaperLogo,
     description: '',
@@ -107,7 +113,8 @@ export const danceExperiences: DanceExperience[] = [
   },
   {
     name: 'Legends of Lions',
-    subtitle: 'Harrow Dance Team',
+    organisation: 'Boy Group Captain',
+    subtitle: 'Highschool Dance Team',
     date: 'Aug 2019 - May 2021',
     logo: '',
     description: '',
@@ -121,7 +128,8 @@ export const danceExperiences: DanceExperience[] = [
   },
   {
     name: 'B House Studio',
-    subtitle: 'Bangkok Dance Crew',
+    organisation: 'Choreographer',
+    subtitle: 'Dance Studio',
     date: 'May 2020 - Aug 2021',
     logo: bhouseLogo,
     description: '',
@@ -140,7 +148,8 @@ export const danceExperiences: DanceExperience[] = [
   },
   {
     name: 'Elevate Studio',
-    subtitle: 'Bristol KPOP Team',
+    organisation: 'BG Team',
+    subtitle: 'University of Bristol KPOP Competition Team',
     date: 'Oct 2022 - Mar 2023',
     logo: elevateLogo,
     description: '',
@@ -153,7 +162,17 @@ export const danceExperiences: DanceExperience[] = [
     ],
   },
   {
+    name: 'Imperial Funkology',
+    organisation: 'Advanced Crew',
+    subtitle: 'Imperial College London Competition Team',
+    date: 'Oct 2026 - Present',
+    logo: '',
+    description: '',
+    links: [],
+  },
+  {
     name: 'Hydrogen',
+    organisation: 'H3',
     subtitle: 'London Dance Company',
     date: 'Jan 2027',
     logo: hydrogenLogo,
@@ -168,7 +187,8 @@ export const danceExperiences: DanceExperience[] = [
   },
   {
     name: 'Reines',
-    subtitle: 'KPOP Dance Crew',
+    organisation: 'Guest Member',
+    subtitle: 'KPOP Cover Crew',
     date: 'May 2026 - Present',
     logo: reinesLogo,
     description: '',
@@ -182,7 +202,8 @@ export const danceExperiences: DanceExperience[] = [
   },
   {
     name: '44 City',
-    subtitle: 'KPOP Dance Crew',
+    organisation: 'Member',
+    subtitle: 'KPOP Cover Crew',
     date: 'Jul 2026 - Present',
     logo: city44Logo,
     description: '',
@@ -196,7 +217,8 @@ export const danceExperiences: DanceExperience[] = [
   },
   {
     name: 'Imperial MNight',
-    subtitle: 'Student Production',
+    organisation: 'Choreographer',
+    subtitle: 'Imperial College London Student Production',
     date: 'Oct 2026 - Mar 2027',
     logo: '',
     description: '',

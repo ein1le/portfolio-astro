@@ -61,6 +61,12 @@ export const extracurrExperiences: ExtracurrExperience[] = [
         links: [],
         contributors: [],
       },
+      {
+        role: 'Event Assistant - Impowered',
+        description: '',
+        links: [],
+        contributors: [],
+      },
     ],
   },
   {
